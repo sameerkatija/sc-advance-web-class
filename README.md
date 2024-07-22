@@ -1,5 +1,10 @@
 # Day 2
 
+## Code
+
+- [index.html](./index.html)
+- [about.html](./about.html)
+
 ## HTML Semantic Elements
 
 Semantic elements clearly describe their meaning in a human- and machine-readable way. They provide better accessibility and SEO benefits by defining the structure and purpose of content.
