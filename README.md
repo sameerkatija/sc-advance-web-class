@@ -97,6 +97,30 @@ index.html/search?query=example
 |  PUT   | Update or create a resource |    Request body    | No (requires JavaScript) | Updating user profile information |
 | DELETE |      Remove a resource      |        N/A         | No (requires JavaScript) |      Deleting a user or item      |
 
+## Status Code
+
+A status code is a three-digit number returned by the server to indicate the result of the HTTP request. The first digit of the code indicates the general category of the response, while the last two digits provide additional detail about the response.
+
+HTTP status codes are part of the response sent by a web server to a client (such as a browser) after it makes a request. These codes are issued to indicate the outcome of the request, and they fall into various categories based on the type of response.
+
+| Status Code |     Range     |                       Category Description                       |
+| :---------: | :-----------: | :--------------------------------------------------------------: |
+|     1xx     | Informational |         The request was received and is being processed.         |
+|     2xx     |    Success    | The request was successfully received, understood, and accepted. |
+|     3xx     |  Redirection  |    Further action needs to be taken to complete the request.     |
+|     4xx     | Client Error  |     The request contains bad syntax or cannot be fulfilled.      |
+|     5xx     | Server Error  |          The server failed to fulfill a valid request.           |
+
+### List of most used status codes
+
+| Status Code |         Name          |                                          Description                                          |
+| :---------: | :-------------------: | :-------------------------------------------------------------------------------------------: |
+|     200     |          ok           |                                  The request has succeeded.                                   |
+|     401     |     Unauthorized      |                           The request requires user authentication.                           |
+|     403     |       Forbidden       |                The server understands the request but refuses to authorize it.                |
+|     404     |       Not Found       |                          The requested resource could not be found.                           |
+|     500     | Internal Server Error | The server encountered an unexpected condition that prevented it from fulfilling the request. |
+
 ## Important Points
 
 - Inorder to link the css file with html, use the `link` tag inside head and give the address of the file inside `href` attribute
