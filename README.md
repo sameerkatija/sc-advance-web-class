@@ -1,5 +1,11 @@
 # Day 3
 
+## Today's Code
+
+- [Index.html](./index.html) - Main File
+- [about.html](./about.html) /about
+- [contact.html](./contact.html) / contact
+
 ## 1. What is a Compiler?
 
 A **compiler** is a tool that translates the entire high-level source code of a program into machine code or an intermediate code all at once. This translation happens before any of the code is executed.
@@ -10,9 +16,7 @@ A **compiler** is a tool that translates the entire high-level source code of a 
 
 2. **Compilation Process:** The compiler reads the entire source code and converts it into machine code.
 
-3. **Output:** The result is an executable file or an intermediate file that can be run on a computer.
-
-## 2. What is an Interpreter?
+3. **Output:** The result is an executable fh
 
 An **interpreter** is a tool that translates and executes code line-by-line or statement-by-statement. It reads the source code, interprets it, and executes it on the fly.
 
@@ -81,7 +85,7 @@ index.html/search?query=example
 #### 3. PUT Method
 
 `Purpose:` Update an existing resource or create a resource if it does not exist.
-
+h
 `Usage:` Not directly supported by HTML forms, but can be simulated using JavaScript.
 
 #### 4. DELETE Method
