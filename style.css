@@ -1,0 +1,7 @@
+body {
+  background-color: aqua;
+}
+li {
+  list-style-type: none;
+  display: inline;
+}
