@@ -6,7 +6,97 @@
 - [about.html](./about.html) /about
 - [contact.html](./contact.html) / contact
 
-## 1. What is a Compiler?
+## CSS Internal styling
+
+Internal styling in CSS refers to the practice of including CSS code directly within an HTML document, typically within the `<style>` tags in the `<head>` section. This method is useful for small-scale styling or when you want to keep styles specific to a single HTML file.
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal CSS Example</title>
+    <style>
+        /* Internal CSS goes here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Internal CSS Example</h1>
+        <p>This is an example of internal CSS.</p>
+    </div>
+</body>
+</html>
+```
+
+## CSS External Styling
+
+External styling in CSS involves linking a separate CSS file to your HTML document using `link` tag. This method is widely used for larger projects or when you want to maintain a separation between your HTML structure and styling, allowing for easier maintenance and scalability.
+
+> Create a file `styles.css` and link it to HTML
+
+```CSS
+
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+```
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>External CSS Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>External CSS Example</h1>
+        <p>This is an example of external CSS.</p>
+    </div>
+</body>
+</html>
+```
+
+## What is a Compiler?
 
 A **compiler** is a tool that translates the entire high-level source code of a program into machine code or an intermediate code all at once. This translation happens before any of the code is executed.
 
@@ -17,6 +107,8 @@ A **compiler** is a tool that translates the entire high-level source code of a 
 2. **Compilation Process:** The compiler reads the entire source code and converts it into machine code.
 
 3. **Output:** The result is an executable fh
+
+## What is Interpreter?
 
 An **interpreter** is a tool that translates and executes code line-by-line or statement-by-statement. It reads the source code, interprets it, and executes it on the fly.
 
