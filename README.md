@@ -5,6 +5,8 @@
 - [index.html](./index.html)
 - [image we are using](./1680955326122.png)
 
+> Before we start Read this [How does the Internet work?](https://sameerkatija.medium.com/how-does-the-internet-work-d0c51f5422c3)
+
 ## Front-end:
 
 The front-end, also known as the client-side, refers to the user interface and user experience of a website or web application. It involves the design, layout, and functionality of the website or application, as seen by the user. The front-end is built using HTML, CSS, JavaScript.
