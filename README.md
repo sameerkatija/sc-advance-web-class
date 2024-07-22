@@ -1,5 +1,10 @@
 # Day 1
 
+## Code
+
+- [index.html](./index.html)
+- [image we are using](./1680955326122.png)
+
 ## Front-end:
 
 The front-end, also known as the client-side, refers to the user interface and user experience of a website or web application. It involves the design, layout, and functionality of the website or application, as seen by the user. The front-end is built using HTML, CSS, JavaScript.
@@ -7,6 +12,8 @@ The front-end, also known as the client-side, refers to the user interface and u
 ## HTML (Hypertext Markup Language):
 
 HTML is the standard markup language used to create web pages. It is the backbone of a website, providing the structure and content that the web browser renders to the user.
+
+> The file extension for html is `.html`
 
 ## HTML Elements
 
