@@ -112,6 +112,70 @@ The universal selector (\*) selects all HTML elements on the page.
 }
 ```
 
+## CSS combinators
+
+CSS combinators are like special words that tell the css engine how to select certain elements based on their relationships with other elements.
+
+### 1 Descendant Combinator (Space) `" "`
+
+#### What it looks like:
+
+```CSS
+/* Select all the p inside div */
+div p {
+    /* give css */
+}
+```
+
+#### What it means:
+
+> "Find all P's inside div."
+
+### 2. Child Combinator (>)
+
+#### What it looks like:
+
+```CSS
+/* Select all the p that are direct child of div */
+div > p {
+    /* give css */
+}
+```
+
+#### What it means:
+
+> "Find all p that are direct children of Div."
+
+### 3. Adjacent Sibling Combinator (+)
+
+#### What it looks like:
+
+```css
+/* select the div which is right after h1 */
+h1 + div {
+  /* css style */
+}
+```
+
+#### What it means:
+
+> "Find div that comes right after h1."
+
+### 4. General Sibling Combinator (~)
+
+#### What it looks like:
+
+```css
+/* select the div which comes right after h1 */
+h1 ~ div {
+  /* css style */
+}
+```
+
+#### What it means:
+
+> "Find div that are siblings of h1."
+
 ## CSS Colors
 
 Colors are specified using predefined color names, or RGB, HEX, HSL, RGBA, HSLA values.
