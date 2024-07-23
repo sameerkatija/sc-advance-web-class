@@ -2,6 +2,9 @@
 
 ## Code
 
+- [Index.html](./index.html)
+- [App.css](./app.css)
+
 ## CSS
 
 CSS (Cascading Style Sheets) is a language used for describing the presentation of a document written in HTML or XML (including XML dialects like SVG or XHTML). It defines how elements are displayed on a web page, including their layout, colors, fonts, and other visual aspects.
@@ -319,6 +322,16 @@ Adjusts the space between words.
 }
 ```
 
+#### Text-align
+
+Aligns the text
+
+```css
+.content {
+  text-align: center; /* left, right ,center, justify */
+}
+```
+
 ## Using Google Fonts
 
 We can use the custom fonts provided by [google](https://fonts.google.com/).
@@ -348,6 +361,108 @@ p {
 
 p {
      font-family: "Kalnia Glaze", serif;
+}
+
+```
+
+## What is Inheritance?
+
+Inheritance in CSS refers to the ability of child elements to adopt the styles of their parent elements. This means that if a parent element has a certain CSS property, its child elements will automatically have that property unless they have their own styles that override it.
+
+## CSS Specificity
+
+CSS specificity is a set of rules used by browsers to determine which CSS rules to apply when multiple rules could apply to the same element. The specificity of a selector determines its weight or importance in the CSS cascade.
+
+### How Specificity is Calculated
+
+Specificity is calculated using a four-part value that is based on the types of selectors used. These are:
+
+1. Inline Styles (a)
+2. IDs (b)
+3. Classes, Pseudo-classes, and Attributes (c)
+4. Element and Pseudo-elements (d)
+
+The specificity is represented as a value in the format `(a, b, c, d)`
+
+### Specificity Calculation Rules
+
+- **Inline Styles**: An inline style has the highest specificity. It is considered as `(1, 0, 0, 0)`.
+- **ID Selectors**: An ID selector contributes to the second most specific level. Each ID selector adds `(0, 1, 0, 0)`.
+- **Class Selectors**, Pseudo-classes, and Attribute Selectors: Each of these selectors adds `(0, 0, 1, 0)`.
+- **Element Selectors and Pseudo-elements**: These have the lowest specificity. Each element or pseudo-element selector adds `(0, 0, 0, 1)`.
+
+```CSS
+/* Specificity: (0, 0, 0, 1) */
+div {
+  color: blue;
+}
+
+/* Specificity: (0, 0, 1, 0) */
+p {
+  color: red;
+}
+
+/* Specificity: (0, 1, 0, 0) */
+#myID {
+  color: green;
+}
+
+/* Specificity: (0, 0, 1, 1) */
+p span {
+  color: yellow;
+}
+
+/* Specificity: (1, 0, 0, 0) */
+div p {
+  color: orange;
+}
+```
+
+## The `height` and `width` Properties:
+
+The height and width properties control the dimensions of an element.
+
+```CSS
+div {
+  height: 100px;
+  width: 200px;
+}
+```
+
+## The display Property
+
+The `display` property specifies the display behavior of an element and determines how it will be rendered and how it interacts with other elements.
+
+```CSS
+element {
+  display: value;
+}
+```
+
+- **block:** block element take up full width of container
+- **inline:** do not start on new line, only take space needed, can't set `heigth` or `width`.
+- **inline-block:** similar to `inline`, but can have width and height defined.
+- **none:** element's wont be visible, doesn't take up space.
+
+```CSS
+/* display none */
+div {
+  display: none
+}
+
+/* display inline */
+div {
+  display: inline
+}
+
+/* display inline-block */
+div {
+  display: inline-block
+}
+
+/* display block */
+div {
+  display: block
 }
 
 ```
