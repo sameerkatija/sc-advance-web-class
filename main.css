@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#div1 {
+  background-color: rgb(74, 77, 253);
+}
+#div2 {
+  background-color: rgb(245, 205, 60);
+}
+#div3 {
+  background-color: rgb(83, 234, 109);
+}
+#div4 {
+  background-color: rgb(221, 29, 195);
+}
+#div5 {
+  background-color: rgb(229, 240, 29);
+}
+
+.flex {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  width: 230px;
+  height: 200px;
+  text-align: center;
+  align-content: center;
+}
