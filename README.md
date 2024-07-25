@@ -5,104 +5,54 @@
 - [html code](./index.html)
 - [CSS code](./main.css)
 
-## BOX Model in CSS
+## Flex properties (Continued.)
 
-The CSS Box Model is a fundamental concept in web design and layout. It describes how every element in a webpage is represented as a rectangular box with content, padding, borders, and margins. Understanding this model is crucial for accurately positioning and styling elements on a webpage.
+### 1. flex-basis
 
-Here are the key components of the CSS Box Model:
+Specifies the initial size of a flex item before any space distribution occurs.
 
-### 1 Content:
+`Default Value:` auto (which means the item's intrinsic size is used).
 
-This is the actual content of the HTML element, such as text, images, etc. It occupies the area inside the padding and border.
+`Values:` Can be set to a length (e.g., 200px, 10%) or auto.
 
-### 2. Padding:
+`Usage:` Defines the base size of the flex item. For instance, if you set `flex-basis: 200px`, the item will start with a size of `200px.`
 
-The padding is the space between the content and the border. It helps create space around the element's content, inside the border.
+### 2. flex-grow
 
-### 3. Border:
+Determines how much a flex item should grow relative to the rest of the flex items in the container when there is extra space available.
 
-The border surrounds the padding and content. It is optional but, when specified, it separates the padding from the margin and content.
+`Default Value: 0` (which means the item will not grow).
 
-### 4. Margin:
+`Values:` A positive number. For example, `flex-grow: 2` means the item will grow twice as much as an item with `flex-grow: 1`.
 
-The margin is the space outside the border. It creates distance between the element's border and surrounding elements.
+`Usage:` If you want an item to take up more space compared to others, you would increase its flex-grow value.
 
-When you set dimensions (width and height) for an element using CSS, you're specifying the dimensions of the content area. The total space taken up by the element includes the content area, padding, border, and margin.
+### 3. flex-shrink
 
-```CSS
-.box {
-  width: 200px;
-  height: 100px;
-  padding: 20px;
-  border: 1px solid black;
-  margin: 10px;
-}
-```
+Determines how much a flex item should shrink relative to the rest of the flex items in the container when there is not enough space.
 
-To visualize the CSS Box Model, you can inspect elements in your browser's developer tools. Understanding how these components interact helps in efficiently laying out and styling elements on webpages.
+`Default Value: 1` (which means the item will shrink if needed).
 
-> The width and height properties include the content, padding, and border, but do not include the margin.
+`Values:` A positive number. For example, flex-shrink: 2 means the item will shrink twice as much as an item with `flex-shrink: 1`.
 
-## Width Calculation:
+`Usage:` If you want an item to be less likely to shrink compared to others, you would decrease its flex-shrink value.
 
-```
-Width = content width + left padding + right padding + left border + right border
+### 4. order
 
-Content width = 200px
-Padding (left + right) = 20px + 20px = 40px
-Border (left + right) = 1px + 1px = 2px
-Total width = 200px + 40px + 2px = 242px
+Specifies the order of a flex item relative to other flex items in the same container.
 
-```
+`Default Value: 0`
 
-## Height Calculation:
+`Values:` Integer values (positive, negative, or zero).
 
-```
-Height = content height + top padding + bottom padding + top border + bottom border
-Content height = 100px
-Padding (top + bottom) = 20px + 20px = 40px
-Border (top + bottom) = 1px + 1px = 2px
-Total height = 100px + 40px + 2px = 142px
-```
+## Library
 
-Therefore, based on the CSS rules provided, the dimensions (width and height) of the .box element will be:
+A library is a collection of pre-written code that developers can use to perform common tasks or add functionality to their applications. It provides reusable functions or classes that you can call from your own code.
 
-`Width:` 242px
+1. **Control:** When using a library, you have control over the flow of your application. You decide when and where to call the library’s functions or methods.
 
-`Height:` 142px
+## Framework
 
-## CSS Flex Box
+A framework is a more comprehensive tool that provides a structured way to build and organize your application. It often includes libraries but also imposes certain rules and conventions about how to structure your code.
 
-The flexible box layout module (usually referred to as flexbox) is a one-dimensional layout model for distributing space between items and includes numerous alignment capabilities.
-
-### Basics of `display: flex;`:
-
-#### 1. Flex Container:
-
-When you apply `display: flex;` to an element, it becomes a flex container. This means its direct children (flex items) will follow the flexbox layout rules.
-
-#### 2. Main Axis and Cross Axis:
-
-Flexbox layout works along two axes:
-
-1. **Main Axis:** Defined by flex-direction, determines the direction in which flex items are laid out. By default, it's `horizontal` (left to right).
-   ![Main Axis for flex direction row](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox/basics1.svg)
-
-2. **Cross Axis:** Perpendicular to the main axis.
-   ![Cross Axis for flex direction row](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox/basics2.svg)
-
-> If the flex direction is colume then the main axis is vertical and cross asix is horizental.
-
-#### 3. Flex Properties:
-
-Flexbox introduces several properties to control the layout:
-
-1. **flex-direction:** Specifies the direction of the main axis (row, row-reverse, column, column-reverse).
-
-2. **justify-content:** Aligns flex items along the main axis.
-
-3. **align-items:** Aligns flex items along the cross axis.
-
-4. **Flex Wrap:** The flex-wrap property sets whether flex items are forced onto one line or can wrap onto multiple lines. If wrapping is allowed, it sets the direction that lines are stacked.
-
-> If you want detailed explaination, check out this [article](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox)
+1.  **Control:** A framework generally takes control of the application flow. It provides a skeleton or template and expects you to fit your code into its structure. This is often referred to as "Inversion of Control" or "The Hollywood Principle": `“Don't call us, we’ll call you.”`

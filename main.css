@@ -11,9 +11,11 @@
 }
 #div3 {
   background-color: rgb(83, 234, 109);
+  flex-grow: 1;
 }
 #div4 {
   background-color: rgb(221, 29, 195);
+  flex-shrink: 2;
 }
 #div5 {
   background-color: rgb(229, 240, 29);
@@ -29,7 +31,7 @@
 }
 
 .flex-item {
-  width: 230px;
+  flex-basis: 230px;
   height: 200px;
   text-align: center;
   align-content: center;
