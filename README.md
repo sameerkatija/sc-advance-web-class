@@ -20,19 +20,19 @@ The CRAP principles of design are a set of guidelines aimed at helping designers
 
 ### 1. Contrast:
 
-    This principle involves using differences in color, size, shape, or style to distinguish different elements on a page. High contrast helps ensure that key elements stand out and are easily readable. For instance, using a dark text on a light background increases readability and draws attention to the text.
+This principle involves using differences in color, size, shape, or style to distinguish different elements on a page. High contrast helps ensure that key elements stand out and are easily readable. For instance, using a dark text on a light background increases readability and draws attention to the text.
 
 ### 2. Repetition:
 
-    Repetition involves repeating certain design elements throughout a project to create consistency and unity. This can include repeating colors, fonts, shapes, or other visual elements. Repetition helps to create a cohesive look and feel, making the design appear more organized and harmonious.
+Repetition involves repeating certain design elements throughout a project to create consistency and unity. This can include repeating colors, fonts, shapes, or other visual elements. Repetition helps to create a cohesive look and feel, making the design appear more organized and harmonious.
 
 ### 3. Alignment:
 
-    Alignment refers to the placement of elements in relation to each other and to the overall layout. Proper alignment helps to create a sense of order and structure, making the design easier to follow and understand. Elements should be aligned with each other or with a grid to ensure a balanced and professional appearance.
+Alignment refers to the placement of elements in relation to each other and to the overall layout. Proper alignment helps to create a sense of order and structure, making the design easier to follow and understand. Elements should be aligned with each other or with a grid to ensure a balanced and professional appearance.
 
 ### 4. Proximity:
 
-    Proximity involves placing related items close to each other to indicate their relationship and to reduce clutter. By grouping related elements together, you can create a clearer visual hierarchy and make the content easier to digest. Proper use of proximity helps users navigate and understand the layout more intuitively.
+Proximity involves placing related items close to each other to indicate their relationship and to reduce clutter. By grouping related elements together, you can create a clearer visual hierarchy and make the content easier to digest. Proper use of proximity helps users navigate and understand the layout more intuitively.
 
 These principles work together to enhance the effectiveness of a design, improving readability, usability, and visual appeal. Using CRAP effectively can lead to more engaging and professionally presented work.
 
