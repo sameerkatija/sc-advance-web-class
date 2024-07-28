@@ -251,3 +251,136 @@ The width and height of an element include padding and borders. This makes it ea
 ```
 
 In this example, the total width of the element is exactly `100px`, which includes the content, padding, and border.
+
+## Css transform property
+
+The `transform` property in CSS allows you to apply 2D and 3D transformations to elements. This can be used to move, rotate, scale, skew, and even apply perspective effects to elements, enhancing the visual design and user interactions on your webpage.
+
+### Common Transform Functions
+
+#### 1. `translate(x, y)`
+
+Moves an element from its original position by a specified distance along the X and Y axes.
+
+```CSS
+.translate-example {
+  transform: translate(50px, 100px);
+}
+/* Moves the element 50px to the right and 100px down. */
+```
+
+#### 2. `rotate(angle)`
+
+Rotates an element around its origin (default is the center).
+
+```CSS
+.rotate-example {
+  transform: rotate(45deg);
+}
+/* Rotates the element by 45 degrees clockwise. */
+```
+
+#### 3. `scale(x, y)`
+
+Scales an element up or down along the X and Y axes.
+
+```CSS
+.scale-example {
+  transform: scale(1.5, 1.5);
+}
+/* Increases the element's size by 150% in both dimensions. */
+```
+
+#### 4. `skew(x-angle, y-angle)`
+
+Skews (distorts) an element along the X and Y axes by specified angles.
+
+```CSS
+.skew-example {
+  transform: skew(20deg, 10deg);
+}
+/* Skews the element by 20 degrees along the X axis and 10 degrees along the Y axis. */
+```
+
+### Chaining Transformations
+
+You can chain multiple transformations in a single transform property. The order of transformations is important and can affect the final result:
+
+```CSS
+.transformed-element {
+  transform: translate(50px, 100px) rotate(45deg) scale(1.5);
+}
+
+/* The element is first moved (translated) by 50px and 100px. */
+/* Then, it is rotated by 45 degrees. */
+/* Finally, it is scaled up by 150%. */
+
+```
+
+## Css Animation and keyframe
+
+CSS animations and keyframes allow you to create dynamic and engaging visual effects by animating elements over time.
+
+CSS animations involve two main components:
+
+1. `@keyframes`
+2. `animate`
+
+### 1. Defining Keyframes
+
+The `@keyframes` rule is used to define the intermediate steps (keyframes) of an animation. You specify the CSS properties to be animated at various stages of the animation.
+
+### 2. Applying Animations
+
+The `animation` property is used to apply the animation to an element and control its behavior.
+
+```CSS
+h1 {
+  font-size: 100px;
+  font-weight: 500;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 0;
+  /* animation */
+  animation-name: focus-in-contract;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+}
+
+.social-media-icons {
+  font-size: 70px;
+  position: relative;
+  top: -60%;
+  text-align: center;
+  /* short-hand for animation */
+  animation: focus-in-contract 3s linear;
+}
+
+@keyframes focus-in-contract {
+  0% {
+    letter-spacing: 1em;
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    letter-spacing: 0;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+/*
+Summary of Animation Effect
+
+1. Start (0%): The body content starts with:
+    - Large letter spacing (1em).
+    - A strong blur effect (12px).
+    - Full transparency (opacity: 0).
+
+2. End (100%): The body content transitions to:
+    - Normal letter spacing (0).
+    - No blur (0).
+    - Full opacity (1).
+
+*/
+
+```
