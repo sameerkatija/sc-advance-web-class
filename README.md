@@ -5,6 +5,8 @@
 - [HTML](./index.html)
 - [CSS](./style.css)
 
+> View The [Project](https://codepen.io/Sameerkatija/pen/eYwgpVp)
+
 ## Web Design Fundamentals
 
 - Always think about the user's perspective when designing the look and flow of your web projects.
