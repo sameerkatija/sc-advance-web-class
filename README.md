@@ -1,5 +1,10 @@
 # Day 8
 
+## Code
+
+- [HTML](./index.html)
+- [CSS](./style.css)
+
 ## Web Design Fundamentals
 
 - Always think about the user's perspective when designing the look and flow of your web projects.
