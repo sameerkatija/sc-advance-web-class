@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  font-family: "jost" sans-serif;
+  overflow: hidden;
+}
+.main {
+  position: relative;
+  width: 100vw;
+}
+.hero-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, 70%);
+}
+
+.hero-section h1 {
+  font-size: 100px;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 0;
+  animation-name: focus-in;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+
+.social-media-icons i {
+  font-size: 70px;
+  padding: 5px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  animation: focus-in 2s linear;
+}
+
+@keyframes focus-in {
+  0% {
+    letter-spacing: 0.15em;
+    word-spacing: 2em;
+    filter: blur(12px) opacity(0);
+    transform: rotate(45deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  75% {
+    transform: rotate(180deg);
+  }
+  100% {
+    letter-spacing: 0;
+    filter: blur(0) opacity(1);
+    transform: rotate(360deg);
+  }
+}
+
+.social-media-icons i:hover {
+  transform: scale(1.4);
+}
+
+footer {
+  position: absolute;
+  top: calc(100vh - 30px);
+  width: 100%;
+  text-align: center;
+}
