@@ -147,14 +147,15 @@ let age = 30; // Declaration and initialization of 'age' with value 30
 
 ## Basic Arithmetic Operators
 
-| Operator |                                       |
-| :------: | :-----------------------------------: |
-|    +     |            Add two numbers            |
-|    -     |         Subtract two numbers          |
-|    \*    |         Multiply two numbers          |
-|    /     |          Divide two numbers           |
-|    %     | Divide two numbers, returns remainder |
-|    =     |       Assign value to variable        |
+| Operator |                                                        |
+| :------: | :----------------------------------------------------: |
+|    +     |                    Add two numbers                     |
+|    -     |                  Subtract two numbers                  |
+|    \*    |                  Multiply two numbers                  |
+|    /     |                   Divide two numbers                   |
+|    %     |         Divide two numbers, returns remainder          |
+|   \*\*   | used to raise a number to the power of another number. |
+|    =     |                Assign value to variable                |
 
 ```js
 let sum = 5 + 3; // sum is 8
@@ -168,4 +169,8 @@ let quotient = 6 / 3; // quotient is 2
 let remainder = 5 % 2; // remainder is 1
 
 let age = 12; // assign 12 to age variable
+
+let base = 2;
+let exponent = 3;
+let result = base ** exponent; // 2^3 == 8 output is 8
 ```
