@@ -1,171 +1,166 @@
-# Day 11
+# Day 12
 
 ## Code
 
-- [Javascript Code](./main.js)
+## Most popular technologies
 
-## What is a Compiler?
+As we can see, the `js` is most popular.
 
-Translates the entire program into machine code before execution.
+![Most popular technologies](./assets/imp.png)
 
-[Read More](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#what-is-a-compiler)
+source of this [image](https://survey.stackoverflow.co/2024/technology#most-popular-technologies-language-prof).
 
-## What is Interpreter?
+## ECMAScript
 
-Translates and executes code line by line. Easier to debug but generally slower at runtime. Examples: Python, JavaScript.
+ECMAScript (often abbreviated as ES) is a specification for scripting languages, including JavaScript. It defines the syntax, semantics, and core features of the language. JavaScript is an implementation of the ECMAScript specification.
 
-[Read More](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#what-is-interpreter)
+### Key Points About ECMAScript:
 
-## What is JavaScript?
+- **Standardization:** ECMAScript is standardized by ECMA International. The standardization process helps ensure consistency across different JavaScript engines and environments.
 
-JavaScript is a dynamic, weakly typed programming language which is compiled at runtime. It can be executed as part of a webpage in a browser or directly on any machine.
+- **Versions:** The ECMAScript standard evolves over time with new versions. Each version of ECMAScript introduces new features and improvements. For example, ES5 (ECMAScript 5) was released in 2009, and ES6 (ECMAScript 2015) brought significant updates like classes and modules.
 
-JavaScript was created to make webpages more dynamic (e.g. change content on a
-page directly from inside the browser). Originally, it was called `LiveScript` but due to
-the popularity of `Java`, it was renamed to `JavaScript`.
+- **Feature Evolution:** New features and syntax enhancements are proposed, reviewed, and standardized through the ECMAScript specification. These features eventually make their way into JavaScript engines and, therefore, into browsers and other JavaScript environments.
 
-> JavaScript is totally independent from Java and has nothing in common with Java!
+[Visit the official Link](https://ecma-international.org/publications-and-standards/standards/ecma-262/)
 
-![How Do Webpages Work?](./assets/WhatsApp%20Image%202024-08-01%20at%207.53.15%20PM.jpeg)
+## Data Type
 
-## Dynamic vs. Static Typing.
+A data type is a classification that specifies which type of value a variable can hold and what operations can be performed on that value. In programming, data types define the nature of the data and ensure that operations are performed correctly.
 
-### Dynamic Typing
+In `JavaScript`, data types are categorized into two main groups: `primitive` and `non-primitive` (also known as `reference`) data types. Understanding these helps in handling and manipulating data effectively.
 
-Type checking is performed at runtime, meaning the type of a variable is determined and checked while the program is running.
+JavaScript has 8 DataTypes:
 
-```JS
-let x = 5;       // x is an integer
-let x = "hello"; // now x is a string
-```
+1. `String` (primitive data types)
+2. `Number` (primitive data types)
+3. `Bigint` (primitive data types)
+4. `Boolean` (primitive data types)
+5. `Undefined` (primitive data types)
+6. `Null` (primitive data types)
+7. `Symbol` (primitive data types)
+8. `Object` (non-primitive data types)
 
-### Static Typing.
+## Primitive Data Types
 
-Type checking is performed at compile-time, meaning the type of a variable is known and checked before the program runs.
+Primitive data types are the basic building blocks in JavaScript. They are immutable and are not objects.
 
-```JAVA
-int x = 5;  // x is an integer
-x = "hello"; // compilation error: incompatible types
-```
-
-## Strong Type vs. Weak Type
-
-### Strongly Typed
-
-A language where types are enforced strictly, and type errors are less common. `Explicit` type conversions are required.
-
-### Weakly Typed
-
-A language with more lenient type rules where implicit type conversions are allowed, sometimes leading to unexpected results.
-
-## JavaScript Environments
-
-JavaScript environments refer to the contexts or platforms where JavaScript code can be executed.
-
-1. **In the Browser:** Runs client-side to create interactive web pages. Example: Handling button clicks, updating content dynamically.
-
-2. **On the Server (Node.js):** Runs server-side to handle backend tasks. Example: Building web servers, managing data.
-
-## Variable
-
-A storage location in a program that can hold a value and whose content can be changed during execution.
-
-> The value can be updated or changed.
+> While you cannot modify the value of a primitive directly, you can reassign a new value to a variable that holds a primitive.
 
 ```js
-let age = 25; // Variable with initial value 25
-age = 30; // Value updated to 30
+let x = 5; // x holds the value 5
+x = 10; // Now x holds a new value 10
 ```
 
-## Constant
+In this case, `x` initially holds the value `5`, but after reassignment, `x` holds the value `10`. This does not change the original value but rather changes what `x` points to.
 
-A storage location in a program that holds a value which cannot be changed once assigned.
+There are seven primitive data types:
 
-> The value cannot be altered after initialization.
+### 1. Number
 
-```JS
-const PI = 3.14; // Constant with value 3.14
-// PI = 3.14159; // Error: Cannot assign to 'PI' because it is a constant
-```
-
-## Variable naming conventions
-
-When naming variables in programming, it's important to follow conventions to ensure clarity and consistency in your code. Here are some common variable naming conventions:
-
-### 1. CamelCase
-
-`CamelCase` is a naming convention in which words are concatenated without spaces, and each subsequent word starts with a capital letter. It is commonly used in programming for variable names, function names, and other identifiers.
-
-Examples:
-
-- `myVariableName`
-- `calculateTotalAmount`
-- `userProfileData`
-
-### 2. Cannot Be a Reserved Keyword
-
-In JavaScript, reserved keywords are names that are part of the language's syntax and cannot be used as identifiers (such as variable names, function names, or class names). These reserved words are part of the language specification and have special meanings.
-
-Examples of reserved keywords in JavaScript:
-
-> break, case, catch, class, const, continue, debugger, default, delete, do, else, export, extends, finally, for, function, if, import, in, instanceof, let, new, return, super, switch, this, throw, try, typeof, var, void, while, with, yield
-
-### 3. Cannot Start with a Number
-
-Variable names must begin with a letter (`a-z`, `A-Z`), underscore (`_`), or dollar sign (`$`).
-
-### 4. Cannot Contain Special Characters
-
-Variable names can only include letters, digits (`if not the first character`), underscores (\_), and dollar signs ($).
-
-### 5. Case-Sensitive
-
-Variable names are case-sensitive, meaning myVar and myvar are considered different variables.
-
-### 6. No Spaces
-
-Variable names cannot contain spaces.
-
-## Variable Declaration and Initialization
-
-### Variable Declaration
-
-The process of defining a variable by specifying its name so it can be used in the code. Declaration alone does not assign a value to the variable.
+Represents both integer and floating-point numbers.
 
 ```js
-let age; // Declaration of a variable named 'age'
+let num = 42;
+let pi = 3.14;
 ```
 
-### Variable Initialization
+### 2. String
 
-The process of assigning a value to a variable at the time of declaration. Initialization sets the variable to a specific value.
+Represents a sequence of characters enclosed in quotes (single `''`, double`""`, or backticks ` `` `).
 
 ```js
-age = 30; // initialization of 'age' with value 30
-let age = 30; // Declaration and initialization of 'age' with value 30
+let name = "John";
+let greeting = "Hello, world!";
+let templateString = `Hello, ${name}`;
 ```
 
-## Basic Arithmetic Operators
+### 3. Boolean
 
-| Operator |                                       |
-| :------: | :-----------------------------------: |
-|    +     |            Add two numbers            |
-|    -     |         Subtract two numbers          |
-|    \*    |         Multiply two numbers          |
-|    /     |          Divide two numbers           |
-|    %     | Divide two numbers, returns remainder |
-|    =     |       Assign value to variable        |
+Represents a logical value, either true or false.
 
 ```js
-let sum = 5 + 3; // sum is 8
-
-let difference = 5 - 3; // difference is 2
-
-let product = 5 * 3; // product is 15
-
-let quotient = 6 / 3; // quotient is 2
-
-let remainder = 5 % 2; // remainder is 1
-
-let age = 12; // assign 12 to age variable
+let isTrue = true;
+let isFalse = false;
 ```
+
+### 4. Undefined
+
+Represents a variable that has been declared but not yet assigned a value.
+
+```js
+let notDefined;All these data types are built upon the fundamental object type, but they come with additional functionality and specific use cases.
+console.log(notDefined); // undefined
+```
+
+### 5. Null
+
+Represents a deliberate non-value or a "null" value, indicating the absence of any object value.
+
+```js
+let emptyValue = null;
+```
+
+### 6. Symbol
+
+A Symbol is a primitive data type introduced in `ECMAScript 6 (ES6)`. It represents a unique and immutable value that is often used as a unique identifier for object properties.
+
+```js
+let sym = Symbol("description");
+```
+
+### 7. BigInt
+
+BigInt is a primitive data type introduced in `ECMAScript 2020 (ES11)` that allows you to work with integers of arbitrary precision. Unlike the standard Number type which can only safely represent integers up to `2^53 - 1`, BigInt can handle much larger integers.
+
+```js
+let bigIntNumber = 1234567890123456789012345678901234567890n;
+```
+
+## Non-Primitive (Reference) Data Types
+
+Non-primitive data types are objects and can store collections of values or more complex entities. They are mutable and are accessed by reference.
+
+### 1. Object
+
+A collection of key-value pairs. Objects can be created using either the object literal notation or the new Object() syntax.
+
+```js
+let person = {
+  name: "Alice",
+  age: 30,
+  greet: function () {
+    console.log("Hello!");
+  },
+};
+```
+
+### 2. Array (a special type of object)
+
+A special type of object used to store ordered collections of values. Arrays are created using square brackets.
+
+```js
+let numbers = [1, 2, 3, 4, 5];
+```
+
+### 3. Function (a special type of object)
+
+A special type of object used to define reusable blocks of code. Functions are created using the function declaration or expression syntax.
+
+```js
+function add(a, b) {
+  return a + b;
+}
+```
+
+> While `Arrays` and `Functions` are categorized as non-primitive data types in JavaScript, they are more specifically types of objects.
+
+The non-primitive (or reference) data types in JavaScript are:
+
+- Objects
+- Arrays (a specialized object for lists)
+- Functions (a specialized object for executable code)
+- Dates (objects for handling dates and times)
+- Regular Expressions (objects for pattern matching)
+
+All these data types are built upon the fundamental object type, but they come with additional functionality and specific use cases.
