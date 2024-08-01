@@ -235,7 +235,64 @@ The `prompt()` function displays a dialog box that prompts the user to enter som
 
 In JavaScript, `operators` are used to perform operations on values and variables.
 
-1. Arithmetic Operators
+### 1. Arithmetic Operators
+
+Perform basic arithmetic operations.
+
+| Operator | Name           | What it does                                                                           |
+| -------- | -------------- | -------------------------------------------------------------------------------------- |
+| `+`      | Addition       | Adds two values. Example: `5 + 3` evaluates to `8`.                                    |
+| `-`      | Subtraction    | Subtracts the second value from the first. Example: `5 - 3` evaluates to `2`.          |
+| `*`      | Multiplication | Multiplies two values. Example: `5 * 3` evaluates to `15`.                             |
+| `/`      | Division       | Divides the first value by the second. Example: `6 / 3` evaluates to `2`.              |
+| `%`      | Modulus        | Returns the remainder of the division. Example: `5 % 2` evaluates to `1`.              |
+| `**`     | Exponentiation | Raises the first value to the power of the second. Example: `2 ** 3` evaluates to `8`. |
+
+### 2. Assignment Operators
+
+Assign values to variables.
+
+| Operator | Name                      | What it does                                                                                                                                           |
+| -------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `=`      | Assignment                | Assigns a value to a variable. Example: `let a = 5;`                                                                                                   |
+| `+=`     | Addition Assignment       | Adds the right operand to the left operand and assigns the result to the left operand. Example: `a += 3` is equivalent to `a = a + 3;`                 |
+| `-=`     | Subtraction Assignment    | Subtracts the right operand from the left operand and assigns the result to the left operand. Example: `a -= 2` is equivalent to `a = a - 2;`          |
+| `*=`     | Multiplication Assignment | Multiplies the left operand by the right operand and assigns the result to the left operand. Example: `a *= 4` is equivalent to `a = a * 4;`           |
+| `/=`     | Division Assignment       | Divides the left operand by the right operand and assigns the result to the left operand. Example: `a /= 2` is equivalent to `a = a / 2;`              |
+| `%=`     | Modulus Assignment        | Takes the modulus of the left operand by the right operand and assigns the result to the left operand. Example: `a %= 3` is equivalent to `a = a % 3;` |
+
+### 3. Comparison (Relational) Operators
+
+Compare two values and return a boolean result.
+
+| Operator | Description              | Example                |
+| -------- | ------------------------ | ---------------------- |
+| `==`     | Equal to                 | `5 == '5'` -> `true`   |
+| `===`    | Strict Equal to          | `5 === '5'` -> `false` |
+| `!=`     | Not equal to             | `5 != '6'` -> `true`   |
+| `!==`    | Strict Not Equal to      | `5 !== '5'` -> `true`  |
+| `>`      | Greater than             | `5 > 3` -> `true`      |
+| `<`      | Less than                | `5 < 3` -> `false`     |
+| `>=`     | Greater than or equal to | `5 >= 5` -> `true`     |
+| `<=`     | Less than or equal to    | `5 <= 6` -> `true`     |
+
+## 4. Logical Operators
+
+Perform logical operations and return a boolean result.
+
+| Operator | Description | Example                     |
+| -------- | ----------- | --------------------------- |
+| `&&`     | Logical AND | `true && false` -> `false`  |
+| `\|\|`   | Logical OR  | `true \|\| false` -> `true` |
+| `!`      | Logical NOT | `!true` -> `false`          |
+
+## 5. ### Unary Operators
+
+Operate on a single operand.
+| Operator | Description | Example |
+|----------|--------------------------------------|------------------|
+| `++` | Increment | `let a = 5; a++` -> `6` |
+| `--` | Decrement | `let a = 5; a--` -> `4` |
 
 ## NaN in JavaScript
 
