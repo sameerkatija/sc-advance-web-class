@@ -164,3 +164,94 @@ The non-primitive (or reference) data types in JavaScript are:
 - Regular Expressions (objects for pattern matching)
 
 All these data types are built upon the fundamental object type, but they come with additional functionality and specific use cases.
+
+## Input
+
+Input is the data that a program receives from various sources.
+
+## Output
+
+Output is the data that a program produces or displays as a result of its processing.
+
+## Processing
+
+Processing in programming refers to the series of operations or steps that a program performs to transform input data into meaningful output or results. This involves manipulating, analyzing, and interpreting data based on predefined logic or algorithms.
+
+## Source Code
+
+Human-readable instructions written in a programming language. It must be translated into machine code to be executed by a computer.
+
+## Machine Code
+
+The binary instructions that a computer's CPU executes directly. It is specific to the CPU's architecture and is the result of compiling or assembling source code.
+
+## Algorithm
+
+A step-by-step procedure for solving a problem or performing a task. It is abstract, code-agnostic and not tied to any specific programming language or machine.
+
+### Finding the Largest Number in List (Example)
+
+- Initialize a variable to hold the largest number (let’s call it max).
+- Set max to the first number in the list.
+- Iterate through the rest of the numbers in the list:
+  - For each number, check if it is greater than max.
+  - If it is, update max to this number.
+- Continue until all numbers have been checked.
+- max will be the largest number in the list.
+
+## Js Output Statement
+
+In `JavaScript`, output statements are used to display information to the user or to log data for debugging purposes.
+
+### 1. `console.log()`
+
+The `console.log()` method is widely used for printing output to the web browser's console. It is useful for debugging and logging information.
+
+```js
+console.log("Hello, World!");
+let number = 42;
+console.log("The number is:", number);
+```
+
+### 2. `alert()`
+
+The alert() method displays a dialog box with a message and an OK button. It's useful for simple notifications or debugging but can be disruptive for users.
+
+```js
+alert("Hello, World!");
+let number = 42;
+alert("The number is: " + number);
+```
+
+## Js Input Statement
+
+In JavaScript, input statements are used to receive or gather input from users or other sources.
+
+### 1. `prompt()`
+
+The `prompt()` function displays a dialog box that prompts the user to enter some text. This method is often used for simple or quick input tasks.
+
+## Operators in Js
+
+In JavaScript, `operators` are used to perform operations on values and variables.
+
+1. Arithmetic Operators
+
+## NaN in JavaScript
+
+In JavaScript, `NaN` stands for "Not-a-Number." It is a special value that represents the result of a mathematical operation that does not yield a valid number.
+For example, `dividing zero by zero` or `attempting to perform arithmetic operations with non-numeric values` can produce NaN.
+
+```js
+let result1 = 0 / 0; // NaN
+console.log(result1); // Outputs: NaN
+
+let result2 = Math.sqrt(-1); // NaN
+console.log(result2); // Outputs: NaN
+
+let result3 = "hello" * 2; // NaN
+console.log(result3); // Outputs: NaN
+
+console.log(typeof NaN); // Outputs: 'number'
+console.log(NaN === NaN); // Outputs: false
+```
