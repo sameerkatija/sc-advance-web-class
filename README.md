@@ -145,7 +145,7 @@ age = 30; // initialization of 'age' with value 30
 let age = 30; // Declaration and initialization of 'age' with value 30
 ```
 
-## Basic Arithmetic Operators
+## Basic Operators
 
 | Operator |                                                        |
 | :------: | :----------------------------------------------------: |
