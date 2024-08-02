@@ -2,6 +2,8 @@
 
 ## Code
 
+- [Javascript](./main.js)
+
 ## Most popular technologies
 
 As we can see, the `js` is most popular.
@@ -89,7 +91,7 @@ let isFalse = false;
 Represents a variable that has been declared but not yet assigned a value.
 
 ```js
-let notDefined;All these data types are built upon the fundamental object type, but they come with additional functionality and specific use cases.
+let notDefined; //All these data types are built upon the fundamental object type, but they come with additional functionality and specific use cases.
 console.log(notDefined); // undefined
 ```
 
