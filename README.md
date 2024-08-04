@@ -40,7 +40,7 @@ Some languages, like MATLAB and Lua, use one-based indexing, where the first ele
 
 ## Note on String Methods in JavaScript
 
-**_JavaScript provides a wide array of string methods to handle various text processing needs. Given the extensive list of available methods, covering every single one in detail can be quite overwhelming and nearly impossible. It’s important to familiarize yourself with the most commonly used methods and consult the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) for more comprehensive information on additional methods and their uses._**
+> **_JavaScript provides a wide array of string methods to handle various text processing needs. Given the extensive list of available methods, covering every single one in detail can be quite overwhelming and nearly impossible. It’s important to familiarize yourself with the most commonly used methods and consult the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) for more comprehensive information on additional methods and their uses._**
 
 ## Strings in `JS`
 
