@@ -1,128 +1,49 @@
-# Day 14
+# Day 15
 
 ## Code
 
 - [Javascript](./main.js)
 
-## What is Decision Making?
+## What is Data Structure
 
-`Decision-making` is the process of choosing the best option from several alternatives to solve a problem or achieve a goal.
+A `data structure` is a way of organizing and storing data in a computer so that it can be accessed and modified efficiently. It defines how data is related and how it can be manipulated.
 
-## Decision-Making in JS
+> `Data Type` defines the kind of single value and its operations (e.g., number, string), while `Data Structure` organizes and manages collections of values and their relationships (e.g., arrays, trees).
 
-In JavaScript, decision-making is typically handled using `control flow statements` that allow your code to make decisions based on conditions. The main decision-making constructs are `if`, `else if`, `else`, `switch`, and `conditional (ternary) operators`.
+## Array in JS
 
-> A `control flow statement` in programming directs the order in which code is executed based on conditions or loops. It determines whether certain blocks of code run or how many times they should run.
+In JavaScript, an `array` is a `data structure` used to store a collection of elements, which can be of any type, including `numbers`, `strings`, `objects`, or even `other arrays`. Arrays are ordered and indexed, meaning each element has a numeric `index` starting from `0`.
 
-## Role of Comparison operators
+## Common Operations
 
-Comparison operators in JavaScript are used to compare two values and determine their relationship. They return a `boolean value (true or false)` based on the comparison.
-
-These operators are essential for making decisions in code and controlling the flow of execution based on conditions.
-
-If you don't know about comparison operators, [read here](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#3-comparison-relational-operators)
-
-## `if` Statement
-
-The `if` statement executes a block of code if a specified condition is true.
+### 1. Creating an Array
 
 ```js
-if (condition) {
-  // code to execute if condition is true
-}
-
-let age = 18;
-if (age >= 18) {
-  console.log("You are an adult.");
-}
+let fruits = ["apple", "banana", "cherry"];
 ```
 
-## `if...else` Statement
-
-The `if...else` statement executes one block of code if the condition is true, and another block if it is false.
+### 2. Accessing Elements
 
 ```js
-if (condition) {
-  // code to execute if condition is true
-} else {
-  // code to execute if condition is false
-}
-let age = 16;
-if (age >= 18) {
-  console.log("You are an adult.");
-} else {
-  console.log("You are a minor.");
-}
+console.log(fruits[0]); // Output: "apple"
 ```
 
-## `if...else if...else` Statement
-
-This construct allows you to test multiple conditions.
+### 3. Adding Elements
 
 ```js
-if (condition1) {
-  // code to execute if condition1 is true
-} else if (condition2) {
-  // code to execute if condition2 is true
-} else {
-  // code to execute if none of the conditions are true
-}
-let score = 85;
-if (score >= 90) {
-  console.log("Grade: A");
-} else if (score >= 80) {
-  console.log("Grade: B");
-} else if (score >= 70) {
-  console.log("Grade: C");
-} else {
-  console.log("Grade: D");
-}
+fruits.push("date"); // Adds "date" to the end of the array
+fruits.unshift("apple"); // Adds "apple" to the front
 ```
 
-## `switch` Statement
-
-The `switch` statement executes code based on the value of a variable or expression, which can be more readable than multiple `if...else if` statements.
+### 4. Removing Elements
 
 ```js
-switch (expression) {
-  case value1:
-    // code to execute if expression equals value1
-    break;
-  case value2:
-    // code to execute if expression equals value2
-    break;
-  default:
-  // code to execute if expression does not match any case
-}
-
-let day = 3;
-switch (day) {
-  case 1:
-    console.log("Monday");
-    break;
-  case 2:
-    console.log("Tuesday");
-    break;
-  case 3:
-    console.log("Wednesday");
-    break;
-  default:
-    console.log("Weekend");
-}
+fruits.pop(); // Removes the last element
+fruits.shift(); // Removes the first element
 ```
 
-## Conditional (Ternary) Operator
-
-The `conditional (ternary) operator` is a shorthand for if...else statements. It returns one of two values depending on a condition.
+### 5. Finding the Length:
 
 ```js
-condition ? expression1 : expression2;
-
-let age = 18;
-let status = age >= 18 ? "Adult" : "Minor";
-console.log(status); // Output: "Adult"
+console.log(fruits.length); // Output: Number of elements in the array
 ```
-
-## `break` statement
-
-The `break` statement in JavaScript is used to exit from a loop (for, while, do...while) or a switch statement before it naturally completes. It immediately terminates the loop or switch block and transfers control to the code following the loop or switch.
