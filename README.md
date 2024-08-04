@@ -168,3 +168,102 @@ console.log(quote); // Output: She said, "Hello!"
 console.log(newLine); // Output: First line
 //         Second line
 ```
+
+## Math Object
+
+The `Math` object in JavaScript is a `built-in` object that provides a collection of methods and properties for mathematical operations.
+
+> It does not create instances and is used directly via the Math namespace.
+
+### Key Properties (Attributes)
+
+#### 1. `Math.PI`
+
+The value of `π (pi)`, approximately `3.14159`.
+
+```js
+console.log(Math.PI); // Output: 3.141592653589793
+```
+
+#### 2. `Math.E`
+
+The `base of natural logarithms`, approximately `2.718`.
+
+```js
+console.log(Math.E); // Output: 2.718281828459045
+```
+
+### Key Methods
+
+#### 1. `Math.abs(x)`
+
+Returns the absolute value of `x`.
+
+```js
+console.log(Math.abs(-5)); // Output: 5
+```
+
+#### 2. `Math.ceil(x)`
+
+Rounds the number `x` up to the nearest integer.
+
+```javascript
+console.log(Math.ceil(4.2)); // Output: 5
+```
+
+#### 3. `Math.floor(x)`
+
+Rounds `x` down to the nearest integer.
+
+```js
+console.log(Math.floor(4.7)); // Output: 4
+```
+
+#### 4. `Math.round(x)`
+
+Rounds `x` to the nearest integer.
+
+```js
+console.log(Math.round(4.5)); // Output: 5
+console.log(Math.round(4.2)); // Output: 4
+```
+
+#### 5. `Math.max(a, b, ...)`
+
+Returns the largest of zero or more numbers.
+
+```js
+console.log(Math.max(1, 5, 3)); // Output: 5
+```
+
+#### 5. `Math.min(a, b, ...)`
+
+Returns the smallest of zero or more numbers.
+
+```js
+console.log(Math.min(1, 5, 3)); // Output: 1
+```
+
+#### 6. `Math.random()`
+
+Returns a pseudo-random number between 0 (inclusive) and 1 (exclusive).
+
+```js
+console.log(Math.random()); // Output: A random number between 0 and 1
+```
+
+#### 7. `Math.pow(base, exponent)`
+
+Returns the base raised to the power of the exponent.
+
+```js
+console.log(Math.pow(2, 3)); // Output: 8 // (2 ** 3 ==> 8)
+```
+
+#### 8. `Math.sqrt(x)`
+
+Returns the square root of x.
+
+```js
+console.log(Math.sqrt(16)); // Output: 4
+```
