@@ -38,6 +38,10 @@ Most programming languages (including JavaScript, Python, C, and C++) use `zero-
 
 Some languages, like MATLAB and Lua, use one-based indexing, where the first element is accessed with `index 1`.
 
+## Note on String Methods in JavaScript
+
+**_JavaScript provides a wide array of string methods to handle various text processing needs. Given the extensive list of available methods, covering every single one in detail can be quite overwhelming and nearly impossible. It’s important to familiarize yourself with the most commonly used methods and consult the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) for more comprehensive information on additional methods and their uses._**
+
 ## Strings in `JS`
 
 Strings in JavaScript are a fundamental data type used to represent text.
@@ -137,6 +141,16 @@ Split the string into an array of substrings.
 
 ```js
 console.log("a,b,c".split(",")); // Output: ["a", "b", "c"]
+```
+
+#### 7. `includes()`
+
+In JavaScript, the includes() method is used to determine whether a string contains a specific sequence of characters. It returns a boolean value (true or false).
+
+```js
+let message = "Hello, world!";
+console.log(message.includes("world")); // Output: true
+console.log(message.includes("foo")); // Output: false
 ```
 
 ### Template Literals
