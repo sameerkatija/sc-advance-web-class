@@ -1,269 +1,128 @@
-# Day 13
+# Day 14
 
 ## Code
 
 - [Javascript](./main.js)
 
-## Index
+## What is Decision Making?
 
-In programming, an `index` is a numerical position or reference used to access individual elements within a data structure, such as arrays, or strings.
+`Decision-making` is the process of choosing the best option from several alternatives to solve a problem or achieve a goal.
 
-## function
+## Decision-Making in JS
 
-A `function` in programming is a reusable block of code designed to perform a specific task. It can take `inputs (arguments)`, execute a sequence of statements, and optionally return a result.
+In JavaScript, decision-making is typically handled using `control flow statements` that allow your code to make decisions based on conditions. The main decision-making constructs are `if`, `else if`, `else`, `switch`, and `conditional (ternary) operators`.
 
-## methods
+> A `control flow statement` in programming directs the order in which code is executed based on conditions or loops. It determines whether certain blocks of code run or how many times they should run.
 
-In JavaScript, `methods` are `functions` that are associated with `objects`. They can be used to perform operations on the data contained within the object or to execute certain behaviors related to the object. Methods can be found on built-in objects like `arrays` and `strings`, or you can define your own methods in custom objects or classes.
+## Role of Comparison operators
 
-### 1. Built-In Methods
+Comparison operators in JavaScript are used to compare two values and determine their relationship. They return a `boolean value (true or false)` based on the comparison.
 
-Predefined methods provided by JavaScript's standard objects.
+These operators are essential for making decisions in code and controlling the flow of execution based on conditions.
 
-### 2. User-Defined Methods
+If you don't know about comparison operators, [read here](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#3-comparison-relational-operators)
 
-Methods created by developers within objects or classes.
+## `if` Statement
 
-### 1. Zero-Based Indexing
-
-Most programming languages (including JavaScript, Python, C, and C++) use `zero-based indexing`, where the first element of the array or list is accessed with `index 0`, the second element with `index 1`, and so forth.
-
-<center>
-
-![Array with indices](https://qph.cf2.quoracdn.net/main-qimg-8b306b4c6d47bbafe378924ab42d24ba.webp)
-
-</center>
-
-### 2. One-Based Indexing
-
-Some languages, like MATLAB and Lua, use one-based indexing, where the first element is accessed with `index 1`.
-
-## Strings in `JS`
-
-Strings in JavaScript are a fundamental data type used to represent text.
-
-### 1. Creating Strings
-
-Strings can be created using single quotes (`''`), double quotes (`""`), or backticks (` `` `) for template literals.
+The `if` statement executes a block of code if a specified condition is true.
 
 ```js
-let singleQuoteString = "Hello, world!";
-let doubleQuoteString = "Hello, world!";
-let templateLiteralString = `Hello, world!`;
+if (condition) {
+  // code to execute if condition is true
+}
+
+let age = 18;
+if (age >= 18) {
+  console.log("You are an adult.");
+}
 ```
 
-### 2. Strings are indexed in JS
+## `if...else` Statement
 
-In JavaScript, strings are indexed, meaning each character in a string has a numerical index associated with it. This index is `zero-based`, so the first character of the string is at `index 0`, the second character is at `index 1`, and so on.
-
-![Strings are indexed](./assets/strIndex.png)
+The `if...else` statement executes one block of code if the condition is true, and another block if it is false.
 
 ```js
-let str = "Hello";
-console.log(str[0]); // Output: "H"
-console.log(str.charAt(1)); // Output: "e"
+if (condition) {
+  // code to execute if condition is true
+} else {
+  // code to execute if condition is false
+}
+let age = 16;
+if (age >= 18) {
+  console.log("You are an adult.");
+} else {
+  console.log("You are a minor.");
+}
 ```
 
-### Length of String
+## `if...else if...else` Statement
 
-we can find the length of a string using the `length` property, which gives the number of characters in the string.
+This construct allows you to test multiple conditions.
 
 ```js
-let str = "hello";
-console.log(str.length); // Output: 5
+if (condition1) {
+  // code to execute if condition1 is true
+} else if (condition2) {
+  // code to execute if condition2 is true
+} else {
+  // code to execute if none of the conditions are true
+}
+let score = 85;
+if (score >= 90) {
+  console.log("Grade: A");
+} else if (score >= 80) {
+  console.log("Grade: B");
+} else if (score >= 70) {
+  console.log("Grade: C");
+} else {
+  console.log("Grade: D");
+}
 ```
 
-### String Concatenation
+## `switch` Statement
 
-Combine strings using the `+` operator or the `concat` method.
+The `switch` statement executes code based on the value of a variable or expression, which can be more readable than multiple `if...else if` statements.
 
 ```js
-let greeting = "Hello";
-let name = "World";
-let message = greeting + ", " + name + "!";
-console.log(message); // Output: "Hello, World!"
+switch (expression) {
+  case value1:
+    // code to execute if expression equals value1
+    break;
+  case value2:
+    // code to execute if expression equals value2
+    break;
+  default:
+  // code to execute if expression does not match any case
+}
 
-let message2 = greeting.concat(", ", name, "!");
-console.log(message2); // Output: "Hello, World!"
+let day = 3;
+switch (day) {
+  case 1:
+    console.log("Monday");
+    break;
+  case 2:
+    console.log("Tuesday");
+    break;
+  case 3:
+    console.log("Wednesday");
+    break;
+  default:
+    console.log("Weekend");
+}
 ```
 
-### String Methods
+## Conditional (Ternary) Operator
 
-JavaScript strings come with many `built-in` methods for string manipulation.
-
-#### 1. `toUpperCase()`
-
-Convert the string to uppercase.
+The `conditional (ternary) operator` is a shorthand for if...else statements. It returns one of two values depending on a condition.
 
 ```js
-console.log("hello".toUpperCase()); // Output: "HELLO"
+condition ? expression1 : expression2;
+
+let age = 18;
+let status = age >= 18 ? "Adult" : "Minor";
+console.log(status); // Output: "Adult"
 ```
 
-#### 2. `toLowerCase()`
+## `break` statement
 
-Convert the string to lowercase.
-
-```js
-console.log("WORLD".toLowerCase()); // Output: "world"
-```
-
-#### 3. `trim()`
-
-Remove whitespace from both ends of the string
-
-```js
-console.log("  trim me  ".trim()); // Output: "trim me"
-```
-
-#### 4. `slice(start, end)`
-
-Extract a portion of the string
-
-```js
-console.log("Hello, World!".slice(7, 12)); // Output: "World"
-```
-
-#### 5. `replace(searchValue, newValue)`
-
-Replace occurrences of a substring.
-
-```js
-console.log("Hello, World!".replace("World", "JavaScript")); // Output: "Hello, JavaScript!"
-```
-
-#### 6. `split(separator)`
-
-Split the string into an array of substrings.
-
-```js
-console.log("a,b,c".split(",")); // Output: ["a", "b", "c"]
-```
-
-### Template Literals
-
-Allow for embedded expressions and multi-line strings.
-
-```js
-let name = "World";
-let message = `Hello, ${name}!`; // String interpolation
-console.log(message); // Output: "Hello, World!"
-
-let multiLineStr = `This is a string
-that spans multiple lines.`;
-console.log(multiLineStr);
-```
-
-### Immutability
-
-Strings in JavaScript are immutable, meaning that once a string is created, it cannot be changed. Any operation that modifies a string will actually create a new string.
-
-## Special Characters (Escape Sequences)
-
-You can use `escape sequences` to include special characters in strings
-
-```js
-let quote = 'She said, "Hello!"';
-let newLine = "First line\nSecond line";
-console.log(quote); // Output: She said, "Hello!"
-console.log(newLine); // Output: First line
-//         Second line
-```
-
-## Math Object
-
-The `Math` object in JavaScript is a `built-in` object that provides a collection of methods and properties for mathematical operations.
-
-> It does not create instances and is used directly via the Math namespace.
-
-### Key Properties (Attributes)
-
-#### 1. `Math.PI`
-
-The value of `π (pi)`, approximately `3.14159`.
-
-```js
-console.log(Math.PI); // Output: 3.141592653589793
-```
-
-#### 2. `Math.E`
-
-The `base of natural logarithms`, approximately `2.718`.
-
-```js
-console.log(Math.E); // Output: 2.718281828459045
-```
-
-### Key Methods
-
-#### 1. `Math.abs(x)`
-
-Returns the absolute value of `x`.
-
-```js
-console.log(Math.abs(-5)); // Output: 5
-```
-
-#### 2. `Math.ceil(x)`
-
-Rounds the number `x` up to the nearest integer.
-
-```javascript
-console.log(Math.ceil(4.2)); // Output: 5
-```
-
-#### 3. `Math.floor(x)`
-
-Rounds `x` down to the nearest integer.
-
-```js
-console.log(Math.floor(4.7)); // Output: 4
-```
-
-#### 4. `Math.round(x)`
-
-Rounds `x` to the nearest integer.
-
-```js
-console.log(Math.round(4.5)); // Output: 5
-console.log(Math.round(4.2)); // Output: 4
-```
-
-#### 5. `Math.max(a, b, ...)`
-
-Returns the largest of zero or more numbers.
-
-```js
-console.log(Math.max(1, 5, 3)); // Output: 5
-```
-
-#### 5. `Math.min(a, b, ...)`
-
-Returns the smallest of zero or more numbers.
-
-```js
-console.log(Math.min(1, 5, 3)); // Output: 1
-```
-
-#### 6. `Math.random()`
-
-Returns a pseudo-random number between 0 (inclusive) and 1 (exclusive).
-
-```js
-console.log(Math.random()); // Output: A random number between 0 and 1
-```
-
-#### 7. `Math.pow(base, exponent)`
-
-Returns the base raised to the power of the exponent.
-
-```js
-console.log(Math.pow(2, 3)); // Output: 8 // (2 ** 3 ==> 8)
-```
-
-#### 8. `Math.sqrt(x)`
-
-Returns the square root of x.
-
-```js
-console.log(Math.sqrt(16)); // Output: 4
-```
+The `break` statement in JavaScript is used to exit from a loop (for, while, do...while) or a switch statement before it naturally completes. It immediately terminates the loop or switch block and transfers control to the code following the loop or switch.
