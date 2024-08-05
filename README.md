@@ -324,6 +324,8 @@ arr2 = null; // 'arr2' is now null, so the array is dereferenced
 
 A multi-dimensional array is an array that contains other arrays as its elements, creating a matrix-like structure. In JavaScript, multi-dimensional arrays are commonly used to represent tables, grids, or more complex data structures.
 
+> A nested array is an array that contains other arrays as its elements. It allows you to create multi-dimensional data structures.
+
 ### 1. Creating Multi-Dimensional Arrays
 
 #### Two-Dimensional Array
@@ -359,4 +361,23 @@ let cube = [
 ];
 
 console.log(cube[1][0][1]); // 6 (element in the second "layer", first row, second column)
+```
+
+## Introduction to Objects and Object Literals in JavaScript
+
+In JavaScript, objects are fundamental data structures that allow you to store collections of data and more complex entities.
+
+> The term "object" refers broadly to any instance of an object in JavaScript, regardless of how it was created.
+
+> When discussing objects, it's essential to understand the different methods of creation.
+
+## Object Literal `{}`
+
+This is a specific syntax used to create objects directly using a concise and straightforward notation. An object literal is defined with curly braces `{}`, containing `key-value` pairs that represent the `properties` and `methods` of the object.
+
+```js
+let person = {
+  name: "Alice",
+  age: 30,
+};
 ```
