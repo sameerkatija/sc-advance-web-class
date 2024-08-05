@@ -376,8 +376,80 @@ In JavaScript, objects are fundamental data structures that allow you to store c
 This is a specific syntax used to create objects directly using a concise and straightforward notation. An object literal is defined with curly braces `{}`, containing `key-value` pairs that represent the `properties` and `methods` of the object.
 
 ```js
-let person = {
+const person = {
   name: "Alice",
   age: 30,
+  speak: function () {
+    console.log("I can speak");
+  },
 };
+
+person.speak(); // calling method
+
+// Shorthand Property Names
+
+let name = "Bob";
+let age = 25;
+const person = {
+  name,
+  age,
+};
+
+console.log(person.name); // 'Bob'
+console.log(person.age); // 25
+```
+
+### Accessing and Modifying Properties
+
+#### Dot Notation `.`
+
+```js
+let user = {
+  username: "john_doe",
+  email: "john@example.com",
+};
+
+console.log(user.username); // 'john_doe'
+user.email = "john.doe@example.com"; // Modify property
+
+console.log(user.age); // undefined; as user doesn't have age property
+
+user.age = 30; // creates a new property and assigns value 30;
+console.log(user.age); // 30;
+
+// Deleting a property
+delete person.email;
+```
+
+#### Bracket Notation `[]`
+
+```js
+let user = {
+  "first name": "Jane",
+  "last name": "Doe",
+};
+
+console.log(user["first name"]); // 'Jane'
+user["last name"] = "Smith"; // Modify property
+
+// Adding a property
+person["phone"] = "123-456-7890";
+
+console.log(person["phone"]); // '123-456-7890'
+```
+
+## Nested Objects
+
+Objects can also contain other objects as properties.
+
+```js
+let person = {
+  name: "Daisy",
+  address: {
+    street: "123 Main St",
+    city: "Springfield",
+  },
+};
+
+console.log(person.address.city); // 'Springfield'
 ```
