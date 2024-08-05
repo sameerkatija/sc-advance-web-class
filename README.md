@@ -417,6 +417,8 @@ console.log(user.age); // undefined; as user doesn't have age property
 user.age = 30; // creates a new property and assigns value 30;
 console.log(user.age); // 30;
 
+user.age = 18; // updating age with value of 18;
+console.log(user.age); // 18;
 // Deleting a property
 delete person.email;
 ```
@@ -452,4 +454,43 @@ let person = {
 };
 
 console.log(person.address.city); // 'Springfield'
+```
+
+## Common Object built-in Methods
+
+### 1. `Object.hasOwnProperty(prop)`
+
+Returns a boolean indicating whether the object has the specified property as its own property (not inherited).
+
+```js
+const person = { name: "Alice" };
+console.log(person.hasOwnProperty("name")); // true
+console.log(person.hasOwnProperty("age")); // false
+```
+
+### 2. `Object.keys(obj)`
+
+Returns an array of a given object's own enumerable property names.
+
+```js
+const person = { name: "Alice", age: 30 };
+console.log(Object.keys(person)); // ['name', 'age']
+```
+
+### 3. `Object.values(obj)`
+
+Returns an array of a given object's own enumerable property values.
+
+```js
+const person = { name: "Alice", age: 30 };
+console.log(Object.values(person)); // ['Alice', 30]
+```
+
+### 4. `Object.entries(obj)`
+
+Returns an array of a given object's own enumerable string-keyed property [key, value] pairs.
+
+```js
+const person = { name: "Alice", age: 30 };
+console.log(Object.entries(person)); // [['name', 'Alice'], ['age', 30]]
 ```
