@@ -281,3 +281,12 @@ Returns the square root of x.
 ```js
 console.log(Math.sqrt(16)); // Output: 4
 ```
+
+## Method Chaining
+
+Method chaining is a programming technique where multiple methods are called on the same object in a single line of code. This is possible when each method returns the object itself (or another object with further methods). It can make code more concise and readable by reducing the need for intermediate variables.
+
+```js
+let str = "hello";
+console.log(str.toUpperCase().tolowerCase());
+```
