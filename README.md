@@ -1,274 +1,264 @@
-# Day 15
+# Day 16
 
-## Loops
+## Type Casting
 
-A loop is a programming mechanism that allows you to repeatedly execute a block of code as long as a `specific condition` is true.
+In JavaScript, `typecasting` (or `type conversion`) refers to the process of converting a value from one data type to another. JavaScript is a loosely typed language, meaning that variables can hold values of any type and types can be implicitly or explicitly converted.
 
-You can think of a loop as a general concept in programming that facilitates repeated execution of instructions based on `certain criteria`.
+### Implicit Type Conversion
 
-### Why We Need Loops
-
-- **Repetition**: Automate repetitive tasks, such as processing items in a list.
-
-- **Efficiency**: Reduce the amount of code needed by handling repetitive operations in a single loop.
-
-- **Dynamic Operations**: Handle dynamic or unknown quantities of data, such as user inputs or data retrieved from an API.
-
-## Categories of Loop
-
-In programming, loops can be categorized based on how they control iteration. The two broad types are `conditional` and `counter` loops—represent the general ways in which loops can operate.
-
-### 1. Counter Loops
-
-Counter loops are designed to run a specific number of times, typically determined by a counter variable. These loops are used when the number of iterations is known before the loop starts.
-
-### 2. Conditional Loops
-
-Conditional loops are based on a condition that determines whether the loop continues or not. These loops are used when the number of iterations is not known ahead of time and depends on some condition being met during the execution.
-
-## Types of Loops in JavaScript
-
-### 1. `for` Loop
-
-The for loop is commonly used when you know in advance how many times you want to execute a block of code.
+JavaScript often performs implicit type conversions automatically. This is also known as type coercion.
 
 ```js
-// for (initialization; condition; increment) {
-//   Code to execute on each iteration
-// }
+let num = 5;
+let str = "The number is " + num; // Implicitly converts num to string
+console.log(str); // Output: "The number is 5"
 
-// Initialization: let i = 1 - Initializes the loop counter.
-// Condition: i <= 5 - Determines whether to continue looping.
-// Increment: i++ - Updates the loop counter after each iteration.
+let str = "10";
+let result = str * 2; // Implicitly converts str to number
+console.log(result); // Output: 20
 
-// Print numbers from 1 to 5
-for (let i = 1; i <= 5; i++) {
-  console.log(i);
+let value = "Hello";
+if (value) {
+  console.log("This is true"); // "Hello" is truthy
 }
 ```
 
-### 2. `while` Loop
+### Explicit Type Conversion
 
-The while loop runs as long as the specified condition evaluates to true. It is used when the number of iterations is not known beforehand.
+Explicit type conversion is when you manually convert values to a specific type using built-in functions.
+
+#### Type Conversion Functions
+
+JavaScript provides several functions for converting values:
+
+`String(value)`: Converts value to a string.
+
+`Number(value)`: Converts value to a number.
+
+`Boolean(value)`: Converts value to a boolean.
 
 ```js
-let i = 1;
-while (i <= 5) {
-  console.log(i);
-  i++;
-}
+let num = 123;
+let str = String(num); // Converts number to string
+console.log(str); // Output: "123"
+
+let str = "123";
+let num = Number(str); // Converts string to number
+console.log(num); // Output: 123
+
+let intVal = parseInt("123"); // Converts string to integer
+let floatVal = parseFloat("123.45"); // Converts string to floating-point number
+
+let str = "Hello";
+let bool = Boolean(str); // Converts string to boolean
+console.log(bool); // Output: true
 ```
 
-### 3. `do...while` Loop
+## Truthy Values
 
-The do...while loop is similar to the while loop but guarantees that the code block runs at least once before checking the condition.
+A value is considered `"truthy"` if it evaluates to true in a boolean context.
 
-```js
-let i = 1;
-do {
-  console.log(i);
-  i++;
-} while (i <= 5);
-```
+> Almost all values are truthy, except for those that are explicitly falsy.
 
-### 4. `for...in` Loop
+## Falsy Values
 
-The for...in loop is used to iterate over the properties of an object.
+A value is considered "falsy" if it evaluates to false in a boolean context. JavaScript has exactly seven falsy values.
 
-```js
-const person = { name: "John", age: 30, city: "New York" };
+### Values
 
-for (let key in person) {
-  console.log(`${key}: ${person[key]}`);
-}
-```
+1. `false`: The boolean value false.
 
-### 5. `for...of` Loop
+2. `0`: The number zero. `-0`: The negative zero (treated as equal to 0).
 
-The for...of loop is used to iterate over iterable objects like arrays, strings, or other collections.
+3. `0n`: The BigInt zero.
 
-```js
-const fruits = ["apple", "banana", "cherry"];
+4. `"" (empty string)`: A string with no characters.
 
-for (let fruit of fruits) {
-  console.log(fruit);
-}
-```
+5. `null`: Represents the intentional absence of any object value.
 
-## Nested loop
+6. `undefined`: Represents a variable that has been declared but not assigned a value.
 
-A nested loop is a loop that contains another loop inside its body. This means you have one loop inside another loop, which allows for more complex and multidimensional iteration patterns. Nested loops are often used to handle tasks involving multidimensional data structures, such as `matrices`, or to perform operations that require multiple levels of iteration.
+7. `NaN`: Stands for `"Not-a-Number"`, representing a computation that does not yield a valid number.
+
+## Method
+
+Function defined inside object is known as method.
 
 ```js
-const matrix = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-];
-
-for (let i = 0; i < matrix.length; i++) {
-  for (let j = 0; j < matrix[i].length; j++) {
-    console.log(`matrix[${i}][${j}] = ${matrix[i][j]}`);
-  }
-}
-```
-
-## Infinite loop
-
-An infinite loop in programming is a loop that continues to execute indefinitely because its terminating condition is never met or is always true. This type of loop does not naturally exit or stop on its own and requires external intervention or a specific condition to terminate.
-
-## `continue` statement
-
-The `continue` statement in JavaScript is used to skip the current iteration of a loop and proceed to the next iteration. It is useful when you want to bypass the remaining code inside the loop body for the current iteration based on a certain condition.
-
-## Introduction to Functions
-
-Functions in JavaScript are fundamental building blocks that allow you to `encapsulate` and `reuse` code. They are used to perform specific tasks, return values, and enhance `modularity` and readability in your code.
-
-### Defining Functions
-
-Functions in JavaScript can be defined in several ways:
-
-#### 1. Function Declarations
-
-This is the most common way to define a function. It includes the `function` keyword, a `name`, `parameters`, and a `body`.
-
-```js
-function greet(name) {
-  return `Hello, ${name}!`;
-}
-```
-
-#### 2 Function Expressions
-
-Functions can also be defined as expressions and assigned to variables. This can be anonymous or named.
-
-```js
-const greet = function (name) {
-  return `Hello, ${name}!`;
+const person = {
+  name: "John",
+  age: 19,
+  //  defining method
+  greet: function () {
+    console.log("Hello");
+  },
 };
+
+// method calling
+
+person.greet();
 ```
 
-#### 3. Arrow Functions
+## Higher Order Functions
 
-Arrow functions provide a more concise syntax and do not have their own this context, making them useful for certain scenarios.
+In JavaScript, a `higher-order function` is a function that either:
 
-```js
-const greet = (name) => `Hello, ${name}!`;
-```
+1. Takes one or more functions as arguments, or
+2. Returns a function as its result.
 
-#### 4. Function Constructor
+Higher-order functions are a key concept in functional programming and are used extensively in JavaScript for tasks such as manipulating arrays, handling asynchronous operations, and creating more abstract and reusable code.
 
-Functions can be created using the Function constructor, though this approach is less common and often not recommended due to its potential complexity and security issues.
+### FUNCTIONS AS ARGUMENTS (Callback functions)
 
-```js
-const greet = new Function("name", "return `Hello, ${name}!`");
-```
-
-### Invoking (calling) Functions
-
-Once defined, you can `call` or `invoke` a function by using its name followed by parentheses `()`. You can pass arguments inside the parentheses.
+> In JavaScript, a callback is a function passed as an argument to another function, which is then invoked inside the outer function to complete some kind of routine or action. Callbacks are fundamental in JavaScript and are commonly used for handling asynchronous operations, such as responding to events, making network requests, or working with timers.
 
 ```js
-console.log(greet("Alice")); // Output: Hello, Alice!
-```
-
-### Parameters and Arguments
-
-#### 1 Parameters
-
-Parameters are placeholders for values that are passed to the function. In the `function declaration`, parameters are defined in the parentheses.
-
-#### 2 Arguments
-
-Arguments are the actual values passed to the function when it is called.
-
-### 3 Default Parameters
-
-You can provide default values for parameters in case no argument is passed or if undefined is passed.
-
-```js
-/* 
-In function declaration, the name is parameter
-and it's default value is Guest
-*/
-function greet(name = "Guest") {
-  return `Hello, ${name}!`;
+function applyOperation(value, func) {
+  let answer = func(value);
+  return answer;
 }
 
-console.log(greet()); // Output: Hello, Guest!
-
-// passing farrukh argument to function
-console.log(greet("farrukh")); // Output: Hello, farrukh
-```
-
-### `Return` Statement
-
-Functions return a value using the `return` statement. If no return statement is present, the function returns undefined.
-
-> In JavaScript, a function is designed to return a single value. However, this does not mean you are limited to returning just a single primitive value. You can return complex data structures that effectively bundle multiple values into one.
-
-## Scope in programming
-
-In a programming language, scope refers to the area where a function or variable is visible and accessible to other code. It determines the visibility and lifetime of variables, ensuring that they can be used only where they are meant to be accessible. Understanding scope is crucial for managing variable lifetimes, avoiding conflicts, and maintaining code clarity.
-
-### 1. Types of Scope
-
-#### 1.1 Global Scope
-
-Variables declared in the global scope are accessible from any part of the code. They are declared outside of any function or block.
-
-```js
-let globalVar = "I am global";
-
-function display() {
-  console.log(globalVar); // Accesses globalVar
+function square(num) {
+  return num ** 2;
 }
 
-display(); // Output: I am global
-```
-
-#### 1.2 Function Scope
-
-Variables declared inside a function are scoped to that function. They are not accessible outside of the function.
-
-```js
-function greet() {
-  let localVar = "Hello";
-  console.log(localVar); // Accesses localVar within the function
+function double(num) {
+  return num * 2;
 }
 
-greet(); // Output: Hello
-console.log(localVar); // Error: localVar is not defined
+console.log(applyOperation(5, double)); // Output: 10
+console.log(applyOperation(5, square)); // Output: 25
 ```
 
-#### 1.3 Block Scope
-
-Introduced with `ES6`, `block scope` refers to variables declared within a block (using curly braces `{}`) like those inside if statements, loops, or other code blocks.
+### RETURNING FUNCTIONS
 
 ```js
-if (true) {
-  let blockVar = "I am block-scoped";
-  console.log(blockVar); // Accesses blockVar within the block
+function createGreeter(greeting) {
+  return function (name) {
+    return `${greeting}, ${name}!`;
+  };
 }
 
-console.log(blockVar); // Error: blockVar is not defined
+const sayHello = createGreeter("Hello");
+const sayHi = createGreeter("Hi");
+
+console.log(sayHello("Alice")); // Output: "Hello, Alice!"
+console.log(sayHi("Bob")); // Output: "Hi, Bob!"
 ```
 
-#### 1.4 Lexical Scope (Static Scope)
+## Error
 
-Lexical scope refers to the scope of variables based on their physical placement in the code. It determines how variable names are resolved in nested functions.
+An error generally refers to an issue that occurs during the execution of a program which typically indicates a serious problem that cannot be handled by the program itself. Errors often represent fundamental problems that prevent the program from continuing its normal execution.
+
+## Exception
+
+An exception is a specific kind of error that occurs during the execution of a program and can be handled by the program itself using mechanisms provided by the programming language. Exceptions represent conditions that a program can potentially recover from.
+
+> Errors indicate unrecoverable system issues beyond program control. In contrast, exceptions represent unexpected events within the program that can often be handled gracefully.
+
+JavaScript uses the `try`, `catch`, `finally`, and `throw` statements to handle exceptions.
 
 ```js
-function outer() {
-  let outerVar = "I am outer";
-
-  function inner() {
-    console.log(outerVar); // Accesses outerVar from the outer function
-  }
-
-  inner();
+try {
+  // Code that might throw an exception
+  let result = someFunction(); // This function might throw an exception
+} catch (error) {
+  // Handling the exception
+  console.error("An error occurred:", error);
+} finally {
+  // Code that will always execute, regardless of whether an exception occurred
+  console.log("Cleanup or finalization code.");
 }
+```
 
-outer(); // Output: I am outer
+## Arrow function
+
+Arrow functions are a feature introduced in `ECMAScript 6 (ES6)` that provide a concise syntax for writing functions in JavaScript. They are often used to make function expressions more readable and to handle some specific cases involving the `this` keyword.
+
+```js
+const add = (a, b) => {
+  return a + b;
+};
+
+console.log(add(2, 3)); // Output: 5
+
+// Implicit Return
+
+const square = (x) => x * x;
+
+console.log(square(4)); // Output: 16
+```
+
+## Some more Array Methods
+
+### 1. `forEach`
+
+Executes a provided function once for each array element.
+
+```js
+const numbers = [1, 2, 3, 4];
+numbers.forEach((num) => console.log(num));
+```
+
+### 2. `map`
+
+Creates a new array with the results of calling a provided function on every element.
+
+```js
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map((num) => num * 2);
+console.log(doubled); // Output: [2, 4, 6, 8]
+```
+
+### 3. `filter`
+
+Creates a new array with all elements that pass the test implemented by the provided function.
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const evens = numbers.filter((num) => num % 2 === 0);
+console.log(evens); // Output: [2, 4]
+```
+
+### 4. `find`
+
+Returns the first element in the array that satisfies the provided testing function. If no elements satisfy the function, undefined is returned.
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const found = numbers.find((num) => num > 3);
+console.log(found); // Output: 4
+```
+
+### 5. `some`
+
+Tests whether at least one element in the array passes the test implemented by the provided function. Returns `true` if at least one element passes; otherwise, returns `false`.
+
+```js
+const numbers = [1, 2, 3, 4];
+const hasNegative = numbers.some((num) => num < 0);
+console.log(hasNegative); // Output: false
+```
+
+### 6. `every`
+
+Tests whether all elements in the array pass the test implemented by the provided function. Returns true if all elements pass; otherwise, returns false.
+
+```js
+const numbers = [1, 2, 3, 4];
+const allPositive = numbers.every((num) => num > 0);
+console.log(allPositive); // Output: true
+```
+
+### 7. `reduce`
+
+Executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
+
+```js
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce(
+  (accumulator, currentValue) => accumulator + currentValue,
+  0
+);
+console.log(sum); // Output: 10
 ```
