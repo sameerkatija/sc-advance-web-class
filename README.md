@@ -639,3 +639,24 @@ element.classList.toggle("active");
 ```js
 const hasClass = element.classList.contains("newClass");
 ```
+
+#### 6. Handling Events
+
+> In JavaScript, an event is an action or occurrence that happens in the browser or user interface, which can be detected and responded to by JavaScript code. Events are fundamental for creating interactive web applications because they allow your code to respond to user actions or other changes in the environment.
+
+> Complete list of DOM events : [W3School](https://www.w3schools.com/jsref/dom_obj_event.asp) & [mdn](https://developer.mozilla.org/en-US/docs/Web/API/Element#events)
+
+- `addEventListener(type, listener)`: Adds an event listener to an element.
+
+```js
+const button = document.getElementById("myButton");
+button.addEventListener("click", function () {
+  alert("Button clicked!");
+});
+```
+
+- `removeEventListener(type, listener)`: Removes an event listener.
+
+```js
+button.removeEventListener("click", myFunction);
+```
