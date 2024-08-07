@@ -420,6 +420,222 @@ console.log(`Screen width: ${screen.width}`);
 console.log(`Screen height: ${screen.height}`);
 ```
 
-### DOM (Document Object Model)
+## DOM (Document Object Model)
 
-The DOM represents the structure of an HTML document as a tree of objects. It allows programs to manipulate the content, structure, and style of web pages dynamically.
+The Document Object Model (DOM) represents the structure of an HTML or XML document as an object-oriented tree. This allows you to programmatically access, modify, and manipulate the content, structure, and style of a web page. Here’s a more detailed look at how the DOM works in JavaScript:
+
+> window provides access to document (DOM) among other things. While document is a property of window, the DOM and BOM serve different purposes and are not structured in a parent-child relationship where the DOM is a child of the BOM. Instead, the DOM and BOM are interrelated parts of the web browser's environment that work together to enable dynamic web interactions.
+
+### DOM Tree Structure
+
+![DOM Represenation](./assets/DOM.png)
+
+#### Root Node:
+
+The DOM tree starts with the root node, which is typically the document object in web browsers. It represents the entire document and serves as the top of the tree.
+
+#### Element Nodes:
+
+Elements are the primary building blocks of the DOM tree and represent HTML tags or XML elements. Each element node can have `child nodes` and `attributes`.
+
+- For example, in the HTML snippet `<div id="container"><p>Hello, World!</p></div>`, there are three element nodes: `<div>`, `<p>`, and the text node inside `<p>`.
+
+#### Text Nodes:
+
+Text nodes contain the text content inside elements. They are leaf nodes in the DOM tree, meaning they don’t have child nodes of their own.
+
+- For example, in `<p>Hello, World!</p>`, "Hello, World!" is a text node.
+
+#### Attribute Nodes:
+
+Attributes are represented as nodes that are associated with element nodes. However, in modern DOM APIs, attributes are generally accessed via properties of element nodes rather than as separate nodes.
+For example, in `<div id="container">`, `id="container"` is an attribute node of the `<div>` element.
+
+```js
+Document
+  ├── html
+  │    ├── head
+  │    │    └── title
+  │    │         └── "Example"
+  │    └── body
+  │         ├── h1
+  │         │    └── "Welcome!"
+  │         └── p (id="greeting")
+  │              └── "Hello, World!"
+```
+
+### `document` object
+
+In the Document Object Model (DOM), the document object represents the entire HTML document and serves as the entry point for accessing and interacting with the content and structure of the document. It provides a wide range of methods and properties to manipulate the document dynamically through JavaScript.
+
+### Selecting Elements in DOM
+
+Selecting elements is a fundamental task in JavaScript for interacting with and manipulating the DOM (Document Object Model). JavaScript provides several methods to select elements from an HTML document, each suited to different use cases.
+
+#### 1. `getElementById`
+
+Selects an element by its unique ID.
+
+```js
+const element = document.getElementById("myId");
+```
+
+#### 2. `getElementsByClassName`
+
+Selects elements by their class name. Returns a `live HTMLCollection` of elements.
+
+```js
+const elements = document.getElementsByClassName("myClass");
+// Accessing the first element with that class
+const firstElement = elements[0];
+```
+
+#### 3. `getElementsByTagName`
+
+Selects elements by their tag name. Returns a `live HTMLCollection` of elements.
+
+```js
+const elements = document.getElementsByTagName("p");
+// Accessing the first <p> element
+const firstParagraph = elements[0];
+```
+
+#### 4. `querySelector`
+
+Selects the first element that matches a `CSS selector`. Returns a single Element
+
+```js
+const element = document.querySelector(".myClass"); // Selects the first element with class 'myClass'
+const elementById = document.querySelector("#myId"); // Selects the element with ID 'myId'
+```
+
+#### 5. `querySelectorAll`
+
+Selects all elements that match a CSS selector. Returns a static NodeList of elements.
+
+```js
+const elements = document.querySelectorAll(".myClass"); // Selects all elements with class 'myClass'
+// Iterating over the NodeList
+elements.forEach(function (element) {
+  console.log(element.textContent);
+});
+```
+
+### Manipulating Elements in DOM
+
+Manipulating the DOM (Document Object Model) involves modifying the structure, content, and style of a web document using JavaScript. This can include changing text, adding or removing elements, updating styles, and handling events.
+
+> As we have too many props and methods for manipulating elements, below are some common one. we can't cover all. but we will cover common ones
+
+![Imp Props](./assets/imp.png)
+
+#### 1. Changing Content
+
+- `textContent`: Updates the text content of an element, replacing any HTML tags inside it.
+
+```js
+const element = document.getElementById("myId");
+element.textContent = "New text content";
+```
+
+- `innerHTML`: Updates the HTML content inside an element.
+
+> Be cautious with this method as it can also execute scripts and may introduce security risks if not used properly.
+
+```js
+const element = document.getElementById("myId");
+element.innerHTML = "<strong>New HTML content</strong>";
+```
+
+#### 2. Creating and Inserting Elements
+
+- `createElement(tagName)`: Creates a new element with the specified tag name.
+
+```js
+const newElement = document.createElement("div");
+```
+
+- `appendChild(node)`: Appends a new child node to a specified parent node.
+
+```js
+const parent = document.getElementById("parentId");
+const newElement = document.createElement("p");
+newElement.textContent = "New paragraph";
+parent.appendChild(newElement);
+```
+
+#### 3. Removing Elements
+
+- `removeChild(childNode)`: Removes a child node from its parent node.
+
+```js
+const parent = document.getElementById("parentId");
+const child = document.getElementById("childId");
+parent.removeChild(child);
+```
+
+- `remove()`: Directly removes the element from the DOM.
+
+```js
+const element = document.getElementById("myId");
+element.remove();
+```
+
+#### 4. Modifying Attributes
+
+- `setAttribute(name, value)`: Sets a new attribute or updates an existing one on an element.
+
+```js
+const element = document.getElementById("myId");
+element.setAttribute("class", "newClass");
+```
+
+- `getAttribute(name)`: Retrieves the value of an attribute.
+
+```js
+const className = element.getAttribute("class");
+```
+
+- `removeAttribute(name)`: Removes an attribute from an element.
+
+```js
+element.removeAttribute("class");
+```
+
+#### 5. Changing Styles
+
+- `style`: Modifies inline styles of an element.
+
+```js
+const element = document.getElementById("myId");
+element.style.color = "blue";
+element.style.fontSize = "20px";
+```
+
+#### 6. `classList`
+
+Provides methods to manipulate CSS classes.
+
+- `add(className)`: Adds a class
+
+```js
+element.classList.add("newClass");
+```
+
+- `remove(className)`: Removes a clas
+
+```js
+element.classList.remove("oldClass");
+```
+
+- `toggle(className)`: Toggles a class on and off
+
+```js
+element.classList.toggle("active");
+```
+
+- `contains(className)`: Checks if a class is present.
+
+```js
+const hasClass = element.classList.contains("newClass");
+```
