@@ -337,3 +337,89 @@ console.log(first); // Output: 1
 console.log(second); // Output: 2
 console.log(rest); // Output: [3, 4, 5]
 ```
+
+## `BOM` and `DOM`
+
+BOM `(Browser Object Model)` and DOM `(Document Object Model)` are two key concepts in web development that interact with the web browser environment and the web page content. They serve different purposes but are closely related in the context of web programming.
+
+## BOM (Browser Object Model)
+
+The BOM provides the objects and methods for interacting with the web browser itself. It includes functionality for handling the browser window, history, navigation, and other browser-specific tasks.
+
+### 1. `window` Object
+
+The `window` object represents the browser window and is the top-level object in the BOM hierarchy. It contains methods for managing the browser environment and interacting with the document.
+
+#### Methods
+
+- `alert(message)`: Displays an alert dialog with a message.
+
+- `confirm(message)`: Displays a confirmation dialog with "OK" and "Cancel"
+
+- `prompt(message, default)`: Displays a prompt dialog that asks the user for input. Returns the input value or null if canceled.
+
+- `setTimeout(callback, delay)`: Executes a function after a specified delay (in milliseconds).
+
+- `setInterval(callback, interval)`: Repeatedly executes a function at specified intervals (in milliseconds).
+
+- `clearTimeout(timeoutId)`: Cancels a timeout previously set by setTimeout.
+
+- `clearInterval(intervalId)`: Cancels an interval previously set by setInterval.
+
+- `location`: Provides access to the URL of the current document and allows navigation.
+
+- `history`: Provides access to the browser's session history.
+
+```js
+window.alert("This is an alert message.");
+window.confirm("Do you confirm this action?");
+prompt("What is your name?", "Guest");
+
+// Define a function to be executed
+function showMessage() {
+  console.log("This message is shown after 3 seconds.");
+}
+
+// Set a timeout to execute the function after 3000 milliseconds (3 seconds)
+const timeoutId = setTimeout(showMessage, 3000);
+
+// Optionally, you can cancel the timeout if needed
+// clearTimeout(timeoutId);
+
+// Define a function to be executed repeatedly
+function updateClock() {
+  const now = new Date();
+  console.log(`Current time: ${now.toLocaleTimeString()}`);
+}
+
+// Set an interval to execute the function every 1000 milliseconds (1 second)
+const intervalId = setInterval(updateClock, 1000);
+
+// Optionally, you can cancel the interval if needed
+// clearInterval(intervalId);
+
+console.log(`Current URL: ${location.href}`);
+
+// Go back one page in the history
+
+history.back();
+history.go(-2);
+```
+
+### 2. screen object
+
+The screen object provides information about the screen's dimensions and color depth.
+
+#### Methods
+
+- `width`: Returns the width of the screen in pixels.
+- `height`: Returns the height of the screen in pixels.
+
+```js
+console.log(`Screen width: ${screen.width}`);
+console.log(`Screen height: ${screen.height}`);
+```
+
+### DOM (Document Object Model)
+
+The DOM represents the structure of an HTML document as a tree of objects. It allows programs to manipulate the content, structure, and style of web pages dynamically.
