@@ -262,3 +262,78 @@ const sum = numbers.reduce(
 );
 console.log(sum); // Output: 10
 ```
+
+## Newer JavaScript Features
+
+### 1. Spread Operator
+
+The spread operator is used to expand an iterable (like an array or object) into individual elements.
+
+```js
+const numbers = [1, 2, 3];
+const moreNumbers = [0, ...numbers, 4];
+console.log(moreNumbers); // Output: [0, 1, 2, 3, 4]
+
+Math.max(...moreNumbers);
+
+const person = { name: "Alice", age: 25 };
+const updatedPerson = { ...person, age: 26 };
+console.log(updatedPerson); // Output: { name: 'Alice', age: 26 }
+```
+
+### 2. Rest params
+
+The rest operator collects multiple elements into a single array or object.
+
+> It looks like spread but it's not
+
+> In JavaScript, the `arguments` object is an array-like object available within all `non-arrow` functions that contains the values of the arguments passed to that function. It provides a way to access and manipulate the arguments of a function dynamically, especially when you don’t know the number of arguments ahead of time.
+
+```js
+function sum(...numbers) {
+  return numbers.reduce((acc, num) => acc + num, 0);
+}
+
+console.log(sum(1, 2, 3, 4)); // Output: 10
+```
+
+#### The difference between rest parameters and the arguments object
+
+There are three main differences between rest parameters and the arguments object:
+
+1. The arguments object is not a real array, while rest parameters are Array instances, meaning methods like sort(), map(), forEach() or pop() can be applied on it directly.
+
+2. In a `non-strict` function with simple parameters, the arguments object syncs its indices with the values of parameters. The rest parameter array never updates its value when the named parameters are re-assigned.
+
+3. The rest parameter bundles all the extra parameters into a single array, but does not contain any named argument defined before the ...restParam. The arguments object contains all of the parameters — including the parameters in the ...restParam array — bundled into one array-like object.
+
+### 3. Destructuring
+
+Destructuring allows you to unpack values from arrays or properties from objects into distinct variables.
+
+```js
+const [a, b, c] = [1, 2, 3];
+console.log(a); // Output: 1
+console.log(b); // Output: 2
+console.log(c); // Output: 3
+
+const person = { name: "Alice", age: 25, city: "Wonderland" };
+const { name, age } = person;
+console.log(name); // Output: Alice
+console.log(age); // Output: 25
+
+const values = [10, 20, 30, 40];
+const [, , third, fourth] = values;
+
+console.log(third); // Output: 30
+console.log(fourth); // Output: 40
+
+const numbers = [1, 2, 3, 4, 5];
+
+// Destructure first two elements and gather the rest
+const [first, second, ...rest] = numbers;
+
+console.log(first); // Output: 1
+console.log(second); // Output: 2
+console.log(rest); // Output: [3, 4, 5]
+```
