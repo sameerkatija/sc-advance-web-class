@@ -1,8 +1,29 @@
-# Day 11
+# Introduction to JavaScript: Compilers, Typing Systems, and Variable Fundamentals
 
-## Code
-
-- [Javascript Code](./main.js)
+- [Introduction to JavaScript: Compilers, Typing Systems, and Variable Fundamentals](#introduction-to-javascript-compilers-typing-systems-and-variable-fundamentals)
+  - [What is a Compiler?](#what-is-a-compiler)
+  - [What is Interpreter?](#what-is-interpreter)
+  - [What is JavaScript?](#what-is-javascript)
+  - [Dynamic vs. Static Typing.](#dynamic-vs-static-typing)
+    - [Dynamic Typing](#dynamic-typing)
+    - [Static Typing.](#static-typing)
+  - [Strong Type vs. Weak Type](#strong-type-vs-weak-type)
+    - [Strongly Typed](#strongly-typed)
+    - [Weakly Typed](#weakly-typed)
+  - [JavaScript Environments](#javascript-environments)
+  - [Variable](#variable)
+  - [Constant](#constant)
+  - [Variable naming conventions](#variable-naming-conventions)
+    - [1. CamelCase](#1-camelcase)
+    - [2. Cannot Be a Reserved Keyword](#2-cannot-be-a-reserved-keyword)
+    - [3. Cannot Start with a Number](#3-cannot-start-with-a-number)
+    - [4. Cannot Contain Special Characters](#4-cannot-contain-special-characters)
+    - [5. Case-Sensitive](#5-case-sensitive)
+    - [6. No Spaces](#6-no-spaces)
+  - [Variable Declaration and Initialization](#variable-declaration-and-initialization)
+    - [Variable Declaration](#variable-declaration)
+    - [Variable Initialization](#variable-initialization)
+  - [Basic Operators](#basic-operators)
 
 ## What is a Compiler?
 
