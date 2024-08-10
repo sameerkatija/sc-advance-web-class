@@ -1,6 +1,44 @@
-# Day 12
+# JavaScript Essentials: Data Types, Operators, and ECMAScript Overview
 
-## Code
+- [JavaScript Essentials: Data Types, Operators, and ECMAScript Overview](#javascript-essentials-data-types-operators-and-ecmascript-overview)
+  - [Practise Code](#practise-code)
+  - [Most popular technologies](#most-popular-technologies)
+  - [ECMAScript](#ecmascript)
+    - [Key Points About ECMAScript:](#key-points-about-ecmascript)
+  - [Data Type](#data-type)
+  - [Primitive Data Types](#primitive-data-types)
+    - [1. Number](#1-number)
+    - [2. String](#2-string)
+    - [3. Boolean](#3-boolean)
+    - [4. Undefined](#4-undefined)
+    - [5. Null](#5-null)
+    - [6. Symbol](#6-symbol)
+    - [7. BigInt](#7-bigint)
+  - [Non-Primitive (Reference) Data Types](#non-primitive-reference-data-types)
+    - [1. Object](#1-object)
+    - [2. Array (a special type of object)](#2-array-a-special-type-of-object)
+    - [3. Function (a special type of object)](#3-function-a-special-type-of-object)
+  - [Input](#input)
+  - [Output](#output)
+  - [Processing](#processing)
+  - [Source Code](#source-code)
+  - [Machine Code](#machine-code)
+  - [Algorithm](#algorithm)
+    - [Finding the Largest Number in List (Example)](#finding-the-largest-number-in-list-example)
+  - [Js Output Statement](#js-output-statement)
+    - [1. `console.log()`](#1-consolelog)
+    - [2. `alert()`](#2-alert)
+  - [Js Input Statement](#js-input-statement)
+    - [1. `prompt()`](#1-prompt)
+  - [Operators in Js](#operators-in-js)
+    - [1. Arithmetic Operators](#1-arithmetic-operators)
+    - [2. Assignment Operators](#2-assignment-operators)
+    - [3. Comparison (Relational) Operators](#3-comparison-relational-operators)
+  - [4. Logical Operators](#4-logical-operators)
+  - [5. ### Unary Operators](#5--unary-operators)
+  - [NaN in JavaScript](#nan-in-javascript)
+
+## Practise Code
 
 - [Javascript](./main.js)
 
