@@ -1,6 +1,16 @@
-# Day 6
+# Advanced CSS Layout: Flex Properties, Libraries, and Frameworks
 
-## Code
+- [Advanced CSS Layout: Flex Properties, Libraries, and Frameworks](#advanced-css-layout-flex-properties-libraries-and-frameworks)
+  - [Practise Code](#practise-code)
+  - [Flex properties (Continued.)](#flex-properties-continued)
+    - [1. flex-basis](#1-flex-basis)
+    - [2. flex-grow](#2-flex-grow)
+    - [3. flex-shrink](#3-flex-shrink)
+    - [4. order](#4-order)
+  - [Library](#library)
+  - [Framework](#framework)
+
+## Practise Code
 
 - [html code](./index.html)
 - [CSS code](./main.css)
