@@ -1,6 +1,22 @@
-# Day 2
+# Exploring HTML Semantics, HTTP Basics, and CSS Styling
 
-## Code
+- [Exploring HTML Semantics, HTTP Basics, and CSS Styling](#exploring-html-semantics-http-basics-and-css-styling)
+  - [Code for Day 2](#code-for-day-2)
+  - [HTML Semantic Elements](#html-semantic-elements)
+  - [HTTP](#http)
+    - [1. Communication:](#1-communication)
+    - [2. Stateless Protocol:](#2-stateless-protocol)
+    - [3. Request-Response Model:](#3-request-response-model)
+    - [4. URLs:](#4-urls)
+    - [5. Methods:](#5-methods)
+    - [6. Headers:](#6-headers)
+    - [7. Versions:](#7-versions)
+  - [HTTPS](#https)
+  - [href](#href)
+  - [CSS (Cascading Style Sheets)](#css-cascading-style-sheets)
+  - [CSS Inline-styling](#css-inline-styling)
+
+## Code for Day 2
 
 - [index.html](./index.html)
 - [about.html](./about.html)
