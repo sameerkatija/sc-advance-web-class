@@ -1,4 +1,19 @@
-# Day 1
+# Introduction to HTML: Elements, Tags, and Boilerplate
+
+- [Introduction to HTML: Elements, Tags, and Boilerplate](#introduction-to-html-elements-tags-and-boilerplate)
+  - [Code](#code)
+  - [Front-end:](#front-end)
+  - [HTML (Hypertext Markup Language):](#html-hypertext-markup-language)
+  - [HTML Elements](#html-elements)
+    - [Types of Elements](#types-of-elements)
+      - [1. Block-level Elements](#1-block-level-elements)
+      - [2. Inline Elements](#2-inline-elements)
+  - [Tags:](#tags)
+  - [Attributes:](#attributes)
+    - [Common HTML attributes include:](#common-html-attributes-include)
+  - [HTML Boilerplate](#html-boilerplate)
+
+<hr>
 
 ## Code
 
