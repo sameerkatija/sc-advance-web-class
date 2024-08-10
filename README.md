@@ -1,6 +1,25 @@
-# Day 3
+# CSS Styling Techniques, Compilers vs. Interpreters, and Introduction to JavaScript
 
-## Today's Code
+- [CSS Styling Techniques, Compilers vs. Interpreters, and Introduction to JavaScript](#css-styling-techniques-compilers-vs-interpreters-and-introduction-to-javascript)
+  - [Practise Code](#practise-code)
+  - [CSS Internal styling](#css-internal-styling)
+  - [CSS External Styling](#css-external-styling)
+  - [What is a Compiler?](#what-is-a-compiler)
+    - [How a Compiler Works:](#how-a-compiler-works)
+  - [What is Interpreter?](#what-is-interpreter)
+    - [How an Interpreter Works:](#how-an-interpreter-works)
+  - [3. What is Javascript?](#3-what-is-javascript)
+  - [Form](#form)
+    - [Method Attribute](#method-attribute)
+      - [1. `GET`](#1-get)
+      - [2. `POST`](#2-post)
+      - [3. PUT Method](#3-put-method)
+      - [4. DELETE Method](#4-delete-method)
+  - [Status Code](#status-code)
+    - [List of most used status codes](#list-of-most-used-status-codes)
+  - [Important Points](#important-points)
+
+## Practise Code
 
 - [Index.html](./index.html) - Main File
 - [about.html](./about.html) /about
