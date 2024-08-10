@@ -1,6 +1,21 @@
-# Day 5
+# Understanding CSS Layout: Box Model and Flexbox Fundamentals
 
-## Code
+- [Understanding CSS Layout: Box Model and Flexbox Fundamentals](#understanding-css-layout-box-model-and-flexbox-fundamentals)
+  - [Practise Code](#practise-code)
+  - [BOX Model in CSS](#box-model-in-css)
+    - [1 Content:](#1-content)
+    - [2. Padding:](#2-padding)
+    - [3. Border:](#3-border)
+    - [4. Margin:](#4-margin)
+  - [Width Calculation:](#width-calculation)
+  - [Height Calculation:](#height-calculation)
+  - [CSS Flex Box](#css-flex-box)
+    - [Basics of `display: flex;`:](#basics-of-display-flex)
+      - [1. Flex Container:](#1-flex-container)
+      - [2. Main Axis and Cross Axis:](#2-main-axis-and-cross-axis)
+      - [3. Flex Properties:](#3-flex-properties)
+
+## Practise Code
 
 - [html code](./index.html)
 - [CSS code](./main.css)
