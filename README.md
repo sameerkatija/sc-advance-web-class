@@ -34,8 +34,8 @@
     - [1. Arithmetic Operators](#1-arithmetic-operators)
     - [2. Assignment Operators](#2-assignment-operators)
     - [3. Comparison (Relational) Operators](#3-comparison-relational-operators)
-  - [4. Logical Operators](#4-logical-operators)
-  - [5. ### Unary Operators](#5--unary-operators)
+    - [4. Logical Operators](#4-logical-operators)
+    - [5. Unary Operators](#5-unary-operators)
   - [NaN in JavaScript](#nan-in-javascript)
 
 ## Practise Code
@@ -316,7 +316,7 @@ Compare two values and return a boolean result.
 | `>=`     | Greater than or equal to | `5 >= 5` -> `true`     |
 | `<=`     | Less than or equal to    | `5 <= 6` -> `true`     |
 
-## 4. Logical Operators
+### 4. Logical Operators
 
 Perform logical operations and return a boolean result.
 
@@ -326,7 +326,7 @@ Perform logical operations and return a boolean result.
 | `\|\|`   | Logical OR  | `true \|\| false` -> `true` |
 | `!`      | Logical NOT | `!true` -> `false`          |
 
-## 5. ### Unary Operators
+### 5. Unary Operators
 
 Operate on a single operand.
 | Operator | Description | Example |
