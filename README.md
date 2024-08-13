@@ -226,6 +226,8 @@ setTimeout(() => {
 console.log("End"); // 2
 ```
 
+> Use this link to visualize [Event Loop](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gbXVsdGlwbHkoeCx5KSB7CiAgICByZXR1cm4geCAqIHk7Cn0KCmZ1bmN0aW9uIHNxdWFyZSh4KSB7CiAgICByZXR1cm4gbXVsdGlwbHkoeCx4KTsKfQoKZnVuY3Rpb24gaXNSaWdodFRyaWFuZ2xlKGEsYixjKXsKICAgIHJldHVybiBzcXVhcmUoYSkgKyBzcXVhcmUoYikgPT09IHNxdWFyZShjKTsKfQoKaXNSaWdodFRyaWFuZ2xlKDMsNCw1KQ%3D%3D!!!)
+
 ### 2. Web APIs in Browsers
 
 In a web browser, JavaScript interacts with various Web APIs that provide functionality beyond the core language. Web APIs (Application Programming Interfaces) are built-in browser APIs that allow JavaScript to perform operations that are not natively supported in the JavaScript language itself. These APIs provide functionality such as manipulating the DOM, handling HTTP requests, or dealing with timers. Here are some key Web APIs:
