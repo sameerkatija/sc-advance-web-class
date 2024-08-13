@@ -8,6 +8,8 @@ Here’s how callbacks assist in asynchronous programming:
 
 A callback is a function that you pass as an argument to another function. This callback function is intended to be executed after the completion of some operation or event. Essentially, it provides a way to "call back" to the original function once a task is done.
 
+> Synchronous callbacks are handled directly by the call stack. Asynchronous callbacks (e.g., from setTimeout) are managed by the event loop and task queue, and executed by the call stack when the queue is processed.
+
 ### 2. How Callbacks Work
 
 1. **Initiating an Asynchronous Operation:** You start an asynchronous task by calling a function and passing a callback function as an argument.
