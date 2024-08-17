@@ -27,6 +27,7 @@
     - [8. Summary](#8-summary)
   - [Configuring Git](#configuring-git)
   - [Common Git Commands](#common-git-commands)
+  - [What is MarkDown and Github Markdown Cheat Sheet](#what-is-markdown-and-github-markdown-cheat-sheet)
 
 ## What is Version Control System?
 
@@ -243,3 +244,7 @@ git config — global user.email youremail@example.com
 - **`git push`:** Push local changes to a remote repository.
 - **`git diff`:** Shows the differences between your working directory and the index, or between different commits or branches.
 - **`git revert`:** Creates a new commit that reverses the changes made by a specified commit, preserving the commit history.
+
+## What is MarkDown and Github Markdown Cheat Sheet
+
+I have explained it in this [article](https://javascript.plainenglish.io/github-markdown-cheat-sheet-everything-you-need-to-know-to-write-readme-md-ce40369da21f).
