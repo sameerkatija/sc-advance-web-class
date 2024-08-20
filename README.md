@@ -227,7 +227,7 @@ If you are using git for the first time, on your pc you need some configuration.
 
 ```cmd
 git config -- global user.name “Your Name”
-git config -- global user.email youremail@example.com
+git config -- global user.email "youremail@example.com"
 ```
 
 ## Common Git Commands
