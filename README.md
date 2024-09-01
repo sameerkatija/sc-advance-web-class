@@ -1,3 +1,47 @@
+# Comprehensive Guide to JavaScript Object-Oriented Programming (OOP)
+
+- [Comprehensive Guide to JavaScript Object-Oriented Programming (OOP)](#comprehensive-guide-to-javascript-object-oriented-programming-oop)
+  - [Object Oriented Programming](#object-oriented-programming)
+    - [Core Components of OOP](#core-components-of-oop)
+      - [1. Class:](#1-class)
+      - [2. Object:](#2-object)
+      - [3. Attribute:](#3-attribute)
+      - [4. Method:](#4-method)
+    - [Key Principles of OOP](#key-principles-of-oop)
+      - [1. Encapsulation:](#1-encapsulation)
+      - [2. Inheritance:](#2-inheritance)
+      - [3. Polymorphism:](#3-polymorphism)
+      - [4. Abstraction:](#4-abstraction)
+    - [Benefits of OOP](#benefits-of-oop)
+      - [1. Modularity:](#1-modularity)
+      - [2. Reusability:](#2-reusability)
+      - [3. Maintainability:](#3-maintainability)
+      - [4. Flexibility:](#4-flexibility)
+  - [Constructor](#constructor)
+  - [Destructor](#destructor)
+  - [`this` keyword](#this-keyword)
+    - [How `this` Works?](#how-this-works)
+      - [1. Global Context:](#1-global-context)
+      - [2. Object Method:](#2-object-method)
+      - [3. Constructor Function:](#3-constructor-function)
+      - [4. Arrow Functions:](#4-arrow-functions)
+      - [5. Event Handlers:](#5-event-handlers)
+      - [6. `bind`, `call`, and `apply`:](#6-bind-call-and-apply)
+    - [Arrow Functions and `this`](#arrow-functions-and-this)
+    - [Summary](#summary)
+  - [OOP in JS](#oop-in-js)
+  - [Inheritance in Js](#inheritance-in-js)
+    - [`extends` keyword](#extends-keyword)
+    - [`super` keyword](#super-keyword)
+  - [Polymorphism in Js](#polymorphism-in-js)
+    - [Types of Polymorphism in JavaScript](#types-of-polymorphism-in-javascript)
+      - [1. Method Overriding:](#1-method-overriding)
+      - [2. Method Overloading (Simulated in JavaScript):](#2-method-overloading-simulated-in-javascript)
+  - [Access Modifiers in JavaScript](#access-modifiers-in-javascript)
+    - [Private Fields and Methods:](#private-fields-and-methods)
+  - [Object prototypes](#object-prototypes)
+    - [Prototype-Based Inheritance](#prototype-based-inheritance)
+
 ## Object Oriented Programming
 
 Object-Oriented Programming (OOP) is a programming paradigm centered around the concept of "objects." It is a way of organizing and structuring code to model real-world entities and their interactions in a way that is intuitive and modular. OOP is built on several key principles and concepts:
@@ -9,6 +53,10 @@ Object-Oriented Programming (OOP) is a programming paradigm centered around the 
 A class is a blueprint for creating `objects`. It defines a type of `object` by specifying its `attributes` (data) and `methods` (functions).
 
 ```js
+
+  class Car {
+    ...
+  }
 
 ```
 
@@ -65,10 +113,6 @@ Abstraction involves creating classes that are not instantiated directly but ser
 It helps manage complexity by breaking down the problem into simpler, more manageable parts.
 
 **Example:** An abstract Shape class with abstract methods like `draw()` that must be implemented by subclasses like `Circle` and `Rectangle`.
-
-## Object prototypes
-
-Prototypes are the mechanism by which JavaScript objects inherit features from one another.
 
 ### Benefits of OOP
 
@@ -187,6 +231,8 @@ document.getElementById("myButton").addEventListener("click", function () {
   greetPerson(); // Outputs: "Hello, my name is David"
   ```
 
+  class
+
 - `call` and `apply`: Immediately invoke a function with a specified this value.
 
   ```js
@@ -239,3 +285,170 @@ const myCar = new Car("Toyota", "Corolla");
 // Use the instance
 myCar.startEngine(); // Outputs: "Toyota Corolla engine started."
 ```
+
+## Inheritance in Js
+
+Inheritance in JavaScript is a way to create a new class or object based on an existing class or object, allowing the new class or object to inherit properties and methods from the existing one. JavaScript uses prototype-based inheritance, but ECMAScript 6 (ES6) introduced a class-based syntax that simplifies working with inheritance.
+
+### `extends` keyword
+
+The `extends` keyword is used to create a subclass that inherits properties and methods from a superclass (parent class). It establishes an inheritance relationship between classes.
+
+```js
+class Subclass extends Superclass {
+  // Subclass-specific methods and properties
+}
+```
+
+### `super` keyword
+
+The `super` keyword is used within a subclass to call methods and access properties of the superclass (parent class). It is essential for accessing and invoking the parent class's methods from within the subclass.
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name); // Calls the constructor of Animal
+    this.breed = breed;
+  }
+}
+```
+
+## Polymorphism in Js
+
+Polymorphism is a core concept in object-oriented programming (OOP) that allows objects of different classes to be treated as objects of a common superclass. It enables a single function or method to work in different ways depending on the object it is operating on. JavaScript, being a prototype-based language with ES6 class syntax, supports polymorphism in a way that aligns with its object-oriented features.
+
+### Types of Polymorphism in JavaScript
+
+#### 1. Method Overriding:
+
+This is when a subclass provides a specific implementation of a method that is already defined in its superclass. The subclass method overrides the superclass method, allowing different behaviors based on the subclass.
+
+```js
+class Animal {
+  speak() {
+    console.log("Animal makes a noise.");
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log("Dog barks.");
+  }
+}
+
+class Cat extends Animal {
+  speak() {
+    console.log("Cat meows.");
+  }
+}
+
+const animals = [new Dog(), new Cat()];
+animals.forEach((animal) => animal.speak());
+// Outputs:
+// Dog barks.
+// Cat meows.
+```
+
+#### 2. Method Overloading (Simulated in JavaScript):
+
+In languages with method overloading, multiple methods with the same name but different parameters can exist. JavaScript does not support traditional method overloading, but you can simulate it by using parameter handling within a method.
+
+```js
+class Printer {
+  print(message, times = 1) {
+    if (typeof times === "number") {
+      for (let i = 0; i < times; i++) {
+        console.log(message);
+      }
+    } else {
+      console.log("Invalid parameter.");
+    }
+  }
+}
+
+const printer = new Printer();
+printer.print("Hello"); // Outputs: Hello
+printer.print("Hello", 3); // Outputs: Hello (three times)
+```
+
+## Access Modifiers in JavaScript
+
+In JavaScript, access modifiers are used to control the visibility and accessibility of class properties and methods. As of ECMAScript 2022 (ES13), JavaScript supports several access control features, primarily through private class fields and methods. While JavaScript does not have traditional access modifiers like `public`, `private`, and `protected` seen in some other languages, it provides ways to achieve similar results.
+
+### Private Fields and Methods:
+
+Private fields and methods are used to encapsulate data within a class, making it inaccessible from outside the class. They are denoted by a `#` prefix.
+
+```js
+class Person {
+  #name; // Private field
+  #age; // Another private field
+
+  constructor(name, age) {
+    this.#name = name;
+    this.#age = age;
+  }
+
+  #calculateBirthYear() {
+    // Private method
+    return new Date().getFullYear() - this.#age;
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  getBirthYear() {
+    return this.#calculateBirthYear();
+  }
+}
+
+const person = new Person("Alice", 30);
+console.log(person.getName()); // Outputs: Alice
+console.log(person.getBirthYear()); // Outputs: (current year - 30)
+console.log(person.#name); // SyntaxError: Private field '#name' must be declared in an enclosing class
+console.log(person.#calculateBirthYear()); // SyntaxError: Private method '#calculateBirthYear' must be declared in an enclosing class
+```
+
+## Object prototypes
+
+Prototypes are the mechanism by which JavaScript objects inherit features from one another.
+
+### Prototype-Based Inheritance
+
+Before ES6, JavaScript used prototype-based inheritance. Each object in JavaScript has a prototype, which is another object that it inherits properties and methods from.
+
+```js
+function Animal(name) {
+  this.name = name;
+}
+
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a noise.`);
+};
+
+function Dog(name, breed) {
+  Animal.call(this, name); // Call the parent constructor
+  this.breed = breed;
+}
+
+// Set up inheritance
+Dog.prototype = Object.create(Animal.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.bark = function () {
+  console.log(`${this.name} barks.`);
+};
+
+const dog = new Dog("Rex", "Labrador");
+dog.speak(); // Outputs: Rex makes a noise.
+dog.bark(); // Outputs: Rex barks.
+```
+
+> In JavaScript, traditional OOP concepts are emulated using objects and prototypes. Primitives like strings and numbers behave like objects through temporary boxing. Functions and arrays are also objects with properties and methods, showcasing JavaScript's flexible, object-oriented approach.
