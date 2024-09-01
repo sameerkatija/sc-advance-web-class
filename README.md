@@ -1,761 +1,223 @@
-# Advance Web Development - From 0 to 100
+# Getting Started with Node.js: Key Concepts, Modules, and npm Essentials
 
-## Complete Web Development Bootcamp
+- [Getting Started with Node.js: Key Concepts, Modules, and npm Essentials](#getting-started-with-nodejs-key-concepts-modules-and-npm-essentials)
+  - [What is Node.js?](#what-is-nodejs)
+  - [What you can build with Node?](#what-you-can-build-with-node)
+  - [Key Concepts Before Learning Node.js Development](#key-concepts-before-learning-nodejs-development)
+    - [1. Directory](#1-directory)
+    - [2. Package](#2-package)
+    - [3. Package Manager](#3-package-manager)
+    - [4. Dependency](#4-dependency)
+    - [5. `package.json`](#5-packagejson)
+  - [What is a Module and Modular Programming?](#what-is-a-module-and-modular-programming)
+    - [Module:](#module)
+    - [Modular Programming:](#modular-programming)
+      - [Benefits:](#benefits)
+  - [CommonJS Modules vs ES6 Modules](#commonjs-modules-vs-es6-modules)
+    - [CommonJS Modules](#commonjs-modules)
+    - [ES6 Modules](#es6-modules)
+    - [Comparison Summary](#comparison-summary)
+  - [Getting started with NPM](#getting-started-with-npm)
+    - [1. Initializing a Project](#1-initializing-a-project)
+    - [2. Installing Packages](#2-installing-packages)
+    - [3. Uninstalling Packages](#3-uninstalling-packages)
+    - [4. Updating Packages](#4-updating-packages)
+    - [5. Checking Package Information](#5-checking-package-information)
+    - [6. Running Scripts](#6-running-scripts)
+  - [What is a Backend Server?](#what-is-a-backend-server)
 
-- [1. Introduction to HTML: Elements, Tags, and Boilerplate](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#introduction-to-html-elements-tags-and-boilerplate)
+## What is Node.js?
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#code)
-  - [Front-end:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#front-end)
-  - [HTML (Hypertext Markup Language):](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#html-hypertext-markup-language)
-  - [HTML Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#html-elements)
-    - [Types of Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#types-of-elements)
-      - [1. Block-level Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#1-block-level-elements)
-      - [2. Inline Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#2-inline-elements)
-  - [Tags:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#tags)
-  - [Attributes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#attributes)
-    - [Common HTML attributes include:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#common-html-attributes-include)
-  - [HTML Boilerplate](https://github.com/sameerkatija/sc-advance-web-class/tree/day-1?tab=readme-ov-file#html-boilerplate)
+Node.js is a `runtime environment` that allows you to execute JavaScript code on the server side.
 
-- [2. Exploring HTML Semantics, HTTP Basics, and CSS Styling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#exploring-html-semantics-http-basics-and-css-styling)
+- **Built on V8 Engine:** Node.js uses Google's V8 JavaScript engine, which compiles JavaScript code into machine code for fast execution.
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#code-for-day-2)
-  - [HTML Semantic Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#html-semantic-elements)
-  - [HTTP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#http)
-    - [1. Communication:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#1-communication)
-    - [2. Stateless Protocol:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#2-stateless-protocol)
-    - [3. Request-Response Model:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#3-request-response-model)
-    - [4. URLs:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#4-urls)
-    - [5. Methods:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#5-methods)
-    - [6. Headers:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#6-headers)
-    - [7. Versions:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#7-versions)
-  - [HTTPS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#https)
-  - [href](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#href)
-  - [CSS (Cascading Style Sheets)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#css-cascading-style-sheets)
-  - [CSS Inline-styling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-2?tab=readme-ov-file#css-inline-styling)
+- **Asynchronous and Event-Driven:** Node.js is designed for building scalable network applications. It handles multiple operations concurrently using a non-blocking, event-driven architecture, which makes it well-suited for I/O-intensive tasks.
 
-- [3. CSS Styling Techniques, Compilers vs. Interpreters, and Introduction to JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#css-styling-techniques-compilers-vs-interpreters-and-introduction-to-javascript)
+- **Single-Threaded with Event Loop:** Although Node.js operates on a single thread, it uses an event loop to manage multiple operations efficiently without blocking. This design helps in handling a large number of simultaneous connections with minimal overhead.
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#practise-code)
-  - [CSS Internal styling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#css-internal-styling)
-  - [CSS External Styling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#css-external-styling)
-  - [What is a Compiler?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#what-is-a-compiler)
-    - [How a Compiler Works:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#how-a-compiler-works)
-  - [What is Interpreter?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#what-is-interpreter)
-    - [How an Interpreter Works:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#how-an-interpreter-works)
-  - [3. What is Javascript?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#3-what-is-javascript)
-  - [Form](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#form)
-    - [Method Attribute](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#method-attribute)
-      - [1. `GET`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#1-get)
-      - [2. `POST`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#2-post)
-      - [3. PUT Method](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#3-put-method)
-      - [4. DELETE Method](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#4-delete-method)
-  - [Status Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#status-code)
-    - [List of most used status codes](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#list-of-most-used-status-codes)
-  - [Important Points](https://github.com/sameerkatija/sc-advance-web-class/tree/day-3?tab=readme-ov-file#important-points)
+- **Package Management:** Node.js comes with npm (Node Package Manager), a vast repository of libraries and tools, allowing developers to easily manage dependencies and packages.
 
-- [4. Deep Dive into CSS: Selectors, Combinators, Colors, and Fonts](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#deep-dive-into-css-selectors-combinators-colors-and-fonts)
+- **Use Cases:** Node.js is commonly used for building web servers, APIs, real-time applications (such as chat applications), and microservices.
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#practise-code)
-  - [CSS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#css)
-  - [CSS Selectors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#css-selectors)
-    - [1. Element Selector:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#1-element-selector)
-    - [2. Class Selector:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#2-class-selector)
-    - [3. ID Selector](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#3-id-selector)
-    - [4 Attribute Selector:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#4-attribute-selector)
-    - [5. Descendant Selector:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#5-descendant-selector)
-    - [6. Adjacent Sibling Selector:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#6-adjacent-sibling-selector)
-    - [7. Pseudo-classes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#7-pseudo-classes)
-    - [8. Pseudo-elements:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#8-pseudo-elements)
-    - [9. Universal Selectors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#9-universal-selectors)
-  - [CSS combinators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#css-combinators)
-    - [1 Descendant Combinator (Space) `" "`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#1-descendant-combinator-space--)
-      - [What it looks like:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-looks-like)
-      - [What it means:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-means)
-    - [2. Child Combinator (\>)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#2-child-combinator-)
-      - [What it looks like:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-looks-like-1)
-      - [What it means:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-means-1)
-    - [3. Adjacent Sibling Combinator (+)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#3-adjacent-sibling-combinator-)
-      - [What it looks like:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-looks-like-2)
-      - [What it means:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-means-2)
-    - [4. General Sibling Combinator (~)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#4-general-sibling-combinator-)
-      - [What it looks like:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-looks-like-3)
-      - [What it means:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-it-means-3)
-  - [CSS Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#css-colors)
-    - [CSS Color Names](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#css-color-names)
-    - [Other ways to represnt colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#other-ways-to-represnt-colors)
-  - [Units](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#units)
-    - [Pixal](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#pixal)
-    - [Default Values:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#default-values)
-  - [Font](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#font)
-    - [Basic Font Properties](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#basic-font-properties)
-      - [Font Family:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#font-family)
-      - [Font Size:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#font-size)
-      - [Font Weight:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#font-weight)
-      - [Font Style:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#font-style)
-      - [Text Transform:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#text-transform)
-      - [Text Decoration:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#text-decoration)
-    - [Advanced Font Properties](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#advanced-font-properties)
-      - [Line Height:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#line-height)
-      - [Letter Spacing:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#letter-spacing)
-      - [Word Spacing:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#word-spacing)
-      - [Text-align](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#text-align)
-  - [Using Google Fonts](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#using-google-fonts)
-    - [1. Importing google font using `LINK` TAG](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#1-importing-google-font-using-link-tag)
-    - [1. Importing google font using CSS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#1-importing-google-font-using-css)
-  - [What is Inheritance?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#what-is-inheritance)
-  - [CSS Specificity](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#css-specificity)
-    - [How Specificity is Calculated](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#how-specificity-is-calculated)
-    - [Specificity Calculation Rules](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#specificity-calculation-rules)
-  - [The `height` and `width` Properties:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#the-height-and-width-properties)
-  - [The display Property](https://github.com/sameerkatija/sc-advance-web-class/tree/day-4?tab=readme-ov-file#the-display-property)
+In essence, Node.js extends JavaScript's reach beyond the browser, enabling server-side scripting and providing a powerful platform for developing high-performance applications.
 
-- [5. Understanding CSS Layout: Box Model and Flexbox Fundamentals](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#understanding-css-layout-box-model-and-flexbox-fundamentals)
+## What you can build with Node?
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#practise-code)
-  - [BOX Model in CSS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#box-model-in-css)
-    - [1 Content:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#1-content)
-    - [2. Padding:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#2-padding)
-    - [3. Border:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#3-border)
-    - [4. Margin:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#4-margin)
-  - [Width Calculation:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#width-calculation)
-  - [Height Calculation:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#height-calculation)
-  - [CSS Flex Box](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#css-flex-box)
-    - [Basics of `display: flex;`:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#basics-of-display-flex)
-      - [1. Flex Container:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#1-flex-container)
-      - [2. Main Axis and Cross Axis:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#2-main-axis-and-cross-axis)
-      - [3. Flex Properties:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-5?tab=readme-ov-file#3-flex-properties)
+- Web Servers (We will mostly focus this)
+- Cli Tools
+- Desktop Apps (eg. VSCode)
+- Games
+- IOT ....
 
-- [6. Advanced CSS Layout: Flex Properties, Libraries, and Frameworks](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#advanced-css-layout-flex-properties-libraries-and-frameworks)
+## Key Concepts Before Learning Node.js Development
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#practise-code)
-  - [Flex properties (Continued.)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#flex-properties-continued)
-    - [1. flex-basis](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#1-flex-basis)
-    - [2. flex-grow](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#2-flex-grow)
-    - [3. flex-shrink](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#3-flex-shrink)
-    - [4. order](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#4-order)
-  - [Library](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#library)
-  - [Framework](https://github.com/sameerkatija/sc-advance-web-class/tree/day-6?tab=readme-ov-file#framework)
+### 1. Directory
 
-- [7. Exploring Web Design Principles: Typography, Color Theory, and CSS Techniques](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#exploring-web-design-principles-typography-color-theory-and-css-techniques)
+A directory is a `folder` in a file system that can contain files and other directories. In the context of Node.js, it usually refers to the structure of files and folders within a project.
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#practise-code)
-  - [Web Design Fundamentals](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#web-design-fundamentals)
-  - [CRAP (Principles of Design)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#crap-principles-of-design)
-    - [1. Contrast:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#1-contrast)
-    - [2. Repetition:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#2-repetition)
-    - [3. Alignment:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#3-alignment)
-    - [4. Proximity:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#4-proximity)
-  - [Typography](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#typography)
-  - [Design Related Games](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#design-related-games)
-  - [Color Theory in web design](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#color-theory-in-web-design)
-    - [1. Color Wheel Basics](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#1-color-wheel-basics)
-    - [2. Color Harmonies](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#2-color-harmonies)
-    - [3. Color Psychology](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#3-color-psychology)
-  - [Theme and palette](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#theme-and-palette)
-    - [1. Theme](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#1-theme)
-    - [2. Color Palette](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#2-color-palette)
-  - [Variable](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#variable)
-  - [CSS Variable](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-variable)
-  - [Font-Awesome CDN](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#font-awesome-cdn)
-  - [Css Position](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-position)
-  - [CSS transition](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-transition)
-    - [Basic Syntax](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#basic-syntax)
-  - [CSS filter](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-filter)
-  - [Css box-sizing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-box-sizing)
-    - [1. content-box (Default)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#1-content-box-default)
-    - [2. border-box](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#2-border-box)
-  - [Css transform property](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-transform-property)
-    - [Common Transform Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#common-transform-functions)
-      - [1. `translate(x, y)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#1-translatex-y)
-      - [2. `rotate(angle)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#2-rotateangle)
-      - [3. `scale(x, y)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#3-scalex-y)
-      - [4. `skew(x-angle, y-angle)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#4-skewx-angle-y-angle)
-    - [Chaining Transformations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#chaining-transformations)
-  - [Css Animation and keyframe](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#css-animation-and-keyframe)
-    - [1. Defining Keyframes](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#1-defining-keyframes)
-    - [2. Applying Animations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-8?tab=readme-ov-file#2-applying-animations)
+**Example:** A Node.js project directory might include folders like `src`, `lib`, and `node_modules`.
 
-- [8. Comprehensive Guide to CSS Grid Layout](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#comprehensive-guide-to-css-grid-layout)
+### 2. Package
 
-  - [CSS GRID](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#css-grid)
-    - [1. Key Terminologies of CSS Grid](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#1-key-terminologies-of-css-grid)
-    - [2. Key Properties](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#2-key-properties)
-      - [2.1 Grid Template Columns and Rows:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#21-grid-template-columns-and-rows)
-      - [2.2 Grid Gap:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#22-grid-gap)
-      - [2.3 Grid Area:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#23-grid-area)
-      - [2.4 Grid Column and Row Span:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#24-grid-column-and-row-span)
-      - [2.5 Implicit Grid:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#25-implicit-grid)
-  - [CSS Grid Alignment](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#css-grid-alignment)
-    - [1. `justify-items`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#1-justify-items)
-    - [2. `align-items`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#2-align-items)
-    - [3. `place-items`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#3-place-items)
-    - [4. `justify-content`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#4-justify-content)
-    - [5. `align-content`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#5-align-content)
-    - [6. `place-content`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#6-place-content)
-    - [7. Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#7-summary)
-  - [Implicit Grid Properties in CSS Grid Layout](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#implicit-grid-properties-in-css-grid-layout)
-    - [1. `grid-auto-flow`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#1-grid-auto-flow)
-      - [1.1 Values:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#11-values)
-    - [2. `grid-auto-columns`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#2-grid-auto-columns)
-    - [4. `grid-auto-rows`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#4-grid-auto-rows)
-  - [Understanding the `fr` Unit](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#understanding-the-fr-unit)
-    - [1. Combining with Fixed Sizes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#1-combining-with-fixed-sizes)
-  - [Advanced CSS Grid Functions and Keywords](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#advanced-css-grid-functions-and-keywords)
-    - [1. `repeat()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#1-repeat)
-    - [2. `minmax()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#2-minmax)
-    - [3. `auto-fit` and `auto-fill`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-20?tab=readme-ov-file#3-auto-fit-and-auto-fill)
+A package is a bundle of code, typically including a library or module that can be reused across projects. It often includes metadata and dependencies.
 
-- [9. Introduction to JavaScript: Compilers, Typing Systems, and Variable Fundamentals](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#introduction-to-javascript-compilers-typing-systems-and-variable-fundamentals)
+**Example:** Libraries like `express` or `lodash` are examples of packages that can be installed and used in Node.js projects.
 
-  - [What is a Compiler?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#what-is-a-compiler)
-  - [What is Interpreter?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#what-is-interpreter)
-  - [What is JavaScript?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#what-is-javascript)
-  - [Dynamic vs. Static Typing.](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#dynamic-vs-static-typing)
-    - [Dynamic Typing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#dynamic-typing)
-    - [Static Typing.](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#static-typing)
-  - [Strong Type vs. Weak Type](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#strong-type-vs-weak-type)
-    - [Strongly Typed](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#strongly-typed)
-    - [Weakly Typed](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#weakly-typed)
-  - [JavaScript Environments](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#javascript-environments)
-  - [Variable](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#variable)
-  - [Constant](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#constant)
-  - [Variable naming conventions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#variable-naming-conventions)
-    - [1. CamelCase](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#1-camelcase)
-    - [2. Cannot Be a Reserved Keyword](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#2-cannot-be-a-reserved-keyword)
-    - [3. Cannot Start with a Number](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#3-cannot-start-with-a-number)
-    - [4. Cannot Contain Special Characters](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#4-cannot-contain-special-characters)
-    - [5. Case-Sensitive](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#5-case-sensitive)
-    - [6. No Spaces](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#6-no-spaces)
-  - [Variable Declaration and Initialization](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#variable-declaration-and-initialization)
-    - [Variable Declaration](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#variable-declaration)
-    - [Variable Initialization](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#variable-initialization)
-  - [Basic Operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-11?tab=readme-ov-file#basic-operators)
+### 3. Package Manager
 
-- [10. JavaScript Essentials: Data Types, Operators, and ECMAScript Overview](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#javascript-essentials-data-types-operators-and-ecmascript-overview)
+A package manager is a tool that automates the process of installing, updating, and managing software packages. In the `Node.js` ecosystem, the most common package managers are `npm` (Node Package Manager) and `yarn`.
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#practise-code)
-  - [Most popular technologies](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#most-popular-technologies)
-  - [ECMAScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#ecmascript)
-    - [Key Points About ECMAScript:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#key-points-about-ecmascript)
-  - [Data Type](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#data-type)
-  - [Primitive Data Types](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#primitive-data-types)
-    - [1. Number](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#1-number)
-    - [2. String](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#2-string)
-    - [3. Boolean](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#3-boolean)
-    - [4. Undefined](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#4-undefined)
-    - [5. Null](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#5-null)
-    - [6. Symbol](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#6-symbol)
-    - [7. BigInt](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#7-bigint)
-  - [Non-Primitive (Reference) Data Types](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#non-primitive-reference-data-types)
-    - [1. Object](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#1-object)
-    - [2. Array (a special type of object)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#2-array-a-special-type-of-object)
-    - [3. Function (a special type of object)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#3-function-a-special-type-of-object)
-  - [Input](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#input)
-  - [Output](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#output)
-  - [Processing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#processing)
-  - [Source Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#source-code)
-  - [Machine Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#machine-code)
-  - [Algorithm](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#algorithm)
-    - [Finding the Largest Number in List (Example)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#finding-the-largest-number-in-list-example)
-  - [Js Output Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#js-output-statement)
-    - [1. `console.log()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#1-consolelog)
-    - [2. `alert()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#2-alert)
-  - [Js Input Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#js-input-statement)
-    - [1. `prompt()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#1-prompt)
-  - [Operators in Js](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#operators-in-js)
-    - [1. Arithmetic Operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#1-arithmetic-operators)
-    - [2. Assignment Operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#2-assignment-operators)
-    - [3. Comparison (Relational) Operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#3-comparison-relational-operators)
-    - [4. Logical Operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#4-logical-operators)
-    - [5. Unary Operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#5-unary-operators)
-  - [NaN in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-12?tab=readme-ov-file#nan-in-javascript)
+**Example:** `npm install express` installs the express package and its dependencies into your project.
 
-- [11. JavaScript Functions and String Methods: A Comprehensive Guide](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#javascript-functions-and-string-methods-a-comprehensive-guide)
+### 4. Dependency
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#practise-code)
-  - [Index](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#index)
-  - [function](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#function)
-  - [methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#methods)
-    - [1. Built-In Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#1-built-in-methods)
-    - [2. User-Defined Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#2-user-defined-methods)
-    - [1. Zero-Based Indexing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#1-zero-based-indexing)
-    - [2. One-Based Indexing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#2-one-based-indexing)
-  - [Note on String Methods in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#note-on-string-methods-in-javascript)
-  - [Strings in `JS`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#strings-in-js)
-    - [1. Creating Strings](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#1-creating-strings)
-    - [2. Strings are indexed in JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#2-strings-are-indexed-in-js)
-    - [Length of String](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#length-of-string)
-    - [String Concatenation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#string-concatenation)
-    - [String Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#string-methods)
-      - [1. `toUpperCase()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#1-touppercase)
-      - [2. `toLowerCase()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#2-tolowercase)
-      - [3. `trim()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#3-trim)
-      - [4. `slice(start, end)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#4-slicestart-end)
-      - [5. `replace(searchValue, newValue)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#5-replacesearchvalue-newvalue)
-      - [6. `split(separator)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#6-splitseparator)
-      - [7. `includes()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#7-includes)
-    - [Template Literals](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#template-literals)
-    - [Immutability](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#immutability)
-  - [Special Characters (Escape Sequences)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#special-characters-escape-sequences)
-  - [Math Object](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#math-object)
-    - [Key Properties (Attributes)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#key-properties-attributes)
-      - [1. `Math.PI`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#1-mathpi)
-      - [2. `Math.E`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#2-mathe)
-    - [Key Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#key-methods)
-      - [1. `Math.abs(x)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#1-mathabsx)
-      - [2. `Math.ceil(x)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#2-mathceilx)
-      - [3. `Math.floor(x)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#3-mathfloorx)
-      - [4. `Math.round(x)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#4-mathroundx)
-      - [5. `Math.max(a, b, ...)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#5-mathmaxa-b-)
-      - [5. `Math.min(a, b, ...)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#5-mathmina-b-)
-      - [6. `Math.random()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#6-mathrandom)
-      - [7. `Math.pow(base, exponent)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#7-mathpowbase-exponent)
-      - [8. `Math.sqrt(x)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#8-mathsqrtx)
-  - [Method Chaining](https://github.com/sameerkatija/sc-advance-web-class/tree/day-13?tab=readme-ov-file#method-chaining)
+A dependency is a package or library that a project relies on to function correctly. Dependencies are listed in a project’s `package.json` file and are automatically managed by the package manager.
 
-- [12. JavaScript Control Structures and Data Structures: Arrays and Objects](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#javascript-control-structures-and-data-structures-arrays-and-objects)
+**Example:** If your `Node.js` project uses `express`, then `express` is a dependency.
 
-  - [Practise Code](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#practise-code)
-  - [What is Decision Making?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#what-is-decision-making)
-  - [Decision-Making in JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#decision-making-in-js)
-  - [Role of Comparison operators](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#role-of-comparison-operators)
-  - [`if` Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#if-statement)
-  - [`if...else` Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#ifelse-statement)
-  - [`if...else if...else` Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#ifelse-ifelse-statement)
-  - [`switch` Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#switch-statement)
-  - [Conditional (Ternary) Operator](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#conditional-ternary-operator)
-  - [`break` statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#break-statement)
-  - [What is Data Structure](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#what-is-data-structure)
-  - [Array in JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#array-in-js)
-  - [Common Operations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#common-operations)
-    - [1. Creating an Array](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#1-creating-an-array)
-    - [2. Accessing Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#2-accessing-elements)
-    - [3. Adding Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#3-adding-elements)
-    - [4. Removing Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#4-removing-elements)
-    - [5. Finding the Length:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#5-finding-the-length)
-    - [6. Modifying elements:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#6-modifying-elements)
-  - [Array Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#array-methods)
-    - [1. `concat()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#1-concat)
-    - [2. `includes()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#2-includes)
-    - [3. `indexOf()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#3-indexof)
-    - [4. `join()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#4-join)
-    - [5. `reverse()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#5-reverse)
-    - [6. `slice()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#6-slice)
-    - [7. `splice()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#7-splice)
-    - [8. `sort()`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#8-sort)
-  - [Store by Reference and Store by Value](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#store-by-reference-and-store-by-value)
-    - [1. Store by Value](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#1-store-by-value)
-    - [2. Store by Reference](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#2-store-by-reference)
-  - [Why Use `const` with Arrays](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#why-use-const-with-arrays)
-  - [Dereference an Array](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#dereference-an-array)
-  - [A Multi-Dimensional array](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#a-multi-dimensional-array)
-    - [1. Creating Multi-Dimensional Arrays](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#1-creating-multi-dimensional-arrays)
-      - [Two-Dimensional Array](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#two-dimensional-array)
-      - [Three-Dimensional Array](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#three-dimensional-array)
-  - [Introduction to Objects and Object Literals in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#introduction-to-objects-and-object-literals-in-javascript)
-  - [Object Literal `{}`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#object-literal-)
-    - [Accessing and Modifying Properties](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#accessing-and-modifying-properties)
-      - [Dot Notation `.`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#dot-notation-)
-      - [Bracket Notation `[]`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#bracket-notation-)
-  - [Nested Objects](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#nested-objects)
-  - [Common Object built-in Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#common-object-built-in-methods)
-    - [1. `Object.hasOwnProperty(prop)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#1-objecthasownpropertyprop)
-    - [2. `Object.keys(obj)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#2-objectkeysobj)
-    - [3. `Object.values(obj)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#3-objectvaluesobj)
-    - [4. `Object.entries(obj)`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-14?tab=readme-ov-file#4-objectentriesobj)
+### 5. `package.json`
 
-- [13. JavaScript Control Flow: Loops, Functions, and Scope Basics](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#javascript-control-flow-loops-functions-and-scope-basics)
+`package.json` is a JSON file that contains metadata about a Node.js project. It includes information such as the `project's name`, `version`, `main entry point`, `scripts`, and a `list of dependencies` and `their versions`.
 
-  - [Loops](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#loops)
-    - [Why We Need Loops](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#why-we-need-loops)
-  - [Categories of Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#categories-of-loop)
-    - [1. Counter Loops](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#1-counter-loops)
-    - [2. Conditional Loops](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#2-conditional-loops)
-  - [Types of Loops in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#types-of-loops-in-javascript)
-    - [1. `for` Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#1-for-loop)
-    - [2. `while` Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#2-while-loop)
-    - [3. `do...while` Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#3-dowhile-loop)
-    - [4. `for...in` Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#4-forin-loop)
-    - [5. `for...of` Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#5-forof-loop)
-  - [Nested loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#nested-loop)
-  - [Infinite loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#infinite-loop)
-  - [`continue` statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#continue-statement)
-  - [Introduction to Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#introduction-to-functions)
-    - [Defining Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#defining-functions)
-      - [1. Function Declarations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#1-function-declarations)
-      - [2 Function Expressions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#2-function-expressions)
-      - [3. Arrow Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#3-arrow-functions)
-      - [4. Function Constructor](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#4-function-constructor)
-    - [Invoking (calling) Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#invoking-calling-functions)
-    - [Parameters and Arguments](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#parameters-and-arguments)
-      - [1 Parameters](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#1-parameters)
-      - [2 Arguments](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#2-arguments)
-    - [3 Default Parameters](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#3-default-parameters)
-    - [`Return` Statement](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#return-statement)
-  - [Scope in programming](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#scope-in-programming)
-    - [1. Types of Scope](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#1-types-of-scope)
-      - [1.1 Global Scope](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#11-global-scope)
-      - [1.2 Function Scope](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#12-function-scope)
-      - [1.3 Block Scope](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#13-block-scope)
-      - [1.4 Lexical Scope (Static Scope)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-15?tab=readme-ov-file#14-lexical-scope-static-scope)
+## What is a Module and Modular Programming?
 
-- [14. Mastering Core/Newer JavaScript Concepts and DOM Manipulation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#introduction-to-html-elements-tags-and-boilerplate)
+### Module:
 
-  - [Type Casting](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#type-casting)
-    - [Implicit Type Conversion](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#implicit-type-conversion)
-    - [Explicit Type Conversion](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#explicit-type-conversion)
-      - [Type Conversion Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#type-conversion-functions)
-  - [Truthy Values](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#truthy-values)
-  - [Falsy Values](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#falsy-values)
-    - [Values](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#values)
-  - [Method](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#method)
-  - [Higher Order Functions](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#higher-order-functions)
-    - [FUNCTIONS AS ARGUMENTS (Callback functions)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#functions-as-arguments-callback-functions)
-    - [RETURNING FUNCTIONS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#returning-functions)
-  - [Error](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#error)
-  - [Exception](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#exception)
-  - [Arrow function](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#arrow-function)
-  - [Some more Array Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#some-more-array-methods)
-    - [1. `forEach`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#1-foreach)
-    - [2. `map`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#2-map)
-    - [3. `filter`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#3-filter)
-    - [4. `find`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#4-find)
-    - [5. `some`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#5-some)
-    - [6. `every`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#6-every)
-    - [7. `reduce`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#7-reduce)
-  - [Newer JavaScript Features](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#newer-javascript-features)
-    - [1. Spread Operator](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#1-spread-operator)
-    - [2. Rest params](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#2-rest-params)
-      - [The difference between rest parameters and the arguments object](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#the-difference-between-rest-parameters-and-the-arguments-object)
-    - [3. Destructuring](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#3-destructuring)
-  - [`BOM` and `DOM`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#bom-and-dom)
-  - [BOM (Browser Object Model)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#bom-browser-object-model)
-    - [1. `window` Object](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#1-window-object)
-      - [Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#methods)
-    - [2. screen object](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#2-screen-object)
-      - [Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#methods-1)
-  - [DOM (Document Object Model)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#dom-document-object-model)
-    - [DOM Tree Structure](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#dom-tree-structure)
-      - [Root Node:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#root-node)
-      - [Element Nodes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#element-nodes)
-      - [Text Nodes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#text-nodes)
-      - [Attribute Nodes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#attribute-nodes)
-    - [`document` object](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#document-object)
-    - [Selecting Elements in DOM](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#selecting-elements-in-dom)
-      - [1. `getElementById`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#1-getelementbyid)
-      - [2. `getElementsByClassName`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#2-getelementsbyclassname)
-      - [3. `getElementsByTagName`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#3-getelementsbytagname)
-      - [4. `querySelector`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#4-queryselector)
-      - [5. `querySelectorAll`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#5-queryselectorall)
-    - [Manipulating Elements in DOM](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#manipulating-elements-in-dom)
-      - [1. Changing Content](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#1-changing-content)
-      - [2. Creating and Inserting Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#2-creating-and-inserting-elements)
-      - [3. Removing Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#3-removing-elements)
-      - [4. Modifying Attributes](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#4-modifying-attributes)
-      - [5. Changing Styles](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#5-changing-styles)
-      - [6. `classList`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#6-classlist)
-      - [6. Handling Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-16?tab=readme-ov-file#6-handling-events)
+A module is a self-contained piece of code that encapsulates specific functionality. It typically includes functions, classes, or variables that are related to a particular task or feature. In JavaScript, modules help in organizing code into reusable and manageable components.
 
-- [15. Decoding JavaScript Events: Guide to Bubbling, Capturing, and Delegation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#decoding-javascript-events-guide-to-bubbling-capturing-and-delegation)
+**Example:** In Node.js, a module can be a file that exports functionality to be used in other parts of an application.
 
-  - [Events in JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#events-in-js)
-    - [1. Key Concepts of JavaScript Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#1-key-concepts-of-javascript-events)
-    - [2. Types of Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#2-types-of-events)
-      - [2.1 User Interface Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#21-user-interface-events)
-      - [2.2 Keyboard Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#22-keyboard-events)
-      - [2.3 Form Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#23-form-events)
-      - [2.4 Mouse Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#24-mouse-events)
-      - [2.5 Window Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#25-window-events)
-    - [3. Working with Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#3-working-with-events)
-      - [3.1 Adding Event Listeners](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#31-adding-event-listeners)
-      - [3.2 Event Object Properties](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#32-event-object-properties)
-      - [3.3 Removing Event Listeners](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#33-removing-event-listeners)
-  - [Form Events and Prevent Default](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#form-events-and-prevent-default)
-    - [1. Common Form Events](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#1-common-form-events)
-    - [2. Preventing Default Form Submission](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#2-preventing-default-form-submission)
-  - [Event bubbling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#event-bubbling)
-    - [1. How Event Bubbling Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#1-how-event-bubbling-works)
-    - [2. Controlling Event Bubbling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#2-controlling-event-bubbling)
-      - [2.1 Stopping Bubbling:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#21-stopping-bubbling)
-      - [2.2 Using Capture Phase:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#22-using-capture-phase)
-  - [Event Capturing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#event-capturing)
-    - [1. How Event Capturing Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#1-how-event-capturing-works)
-    - [2. Controlling Event Capturing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#2-controlling-event-capturing)
-      - [2.1 Enable Capturing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#21-enable-capturing)
-      - [2.2 Disable Capturing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#22-disable-capturing)
-      - [2.3 Use Cases for Event Capturing](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#23-use-cases-for-event-capturing)
-        - [2.3.1 Handling Events on Parent Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#231-handling-events-on-parent-elements)
-        - [2.3.2 Implementing Custom Behavior](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#232-implementing-custom-behavior)
-  - [Event delegation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#event-delegation)
-    - [1. Why Use Event Delegation?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#1-why-use-event-delegation)
-      - [1.1 Performance](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#11-performance)
-      - [1.2 Dynamic Content](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#12-dynamic-content)
-      - [1.3 Code Maintainability](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#13-code-maintainability)
-    - [2. How Event Delegation Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#2-how-event-delegation-works)
-    - [3. Advanced Use Cases](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#3-advanced-use-cases)
-      - [3.1 Handling Dynamic Elements](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#31-handling-dynamic-elements)
-      - [3.2 Event Filtering](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#32-event-filtering)
-      - [3.3 Multiple Event Types](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#33-multiple-event-types)
-    - [4. Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#4-summary)
-  - [Event Simulation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#event-simulation)
-    - [1. How it Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#1-how-it-works)
-      - [1.1 Create an Event Object:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#11-create-an-event-object)
-      - [1.2 Dispatch the Event:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-17?tab=readme-ov-file#12-dispatch-the-event)
+```js
+// math.js (Module)
+function add(a, b) {
+  return a + b;
+}
 
-- [16. Bootstrap : A Comprehensive Guide](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#bootstrap--a-comprehensive-guide)
+module.exports = { add };
+```
 
-  - [Bootstrap Vs. Tailwindcss](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#bootstrap-vs-tailwindcss)
-    - [Tailwind CSS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#tailwind-css)
-      - [Pros:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#pros)
-      - [Cons:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#cons)
-    - [Bootstrap](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#bootstrap)
-      - [Pros:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#pros-1)
-      - [Cons:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#cons-1)
-    - [Choosing Between Them](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#choosing-between-them)
-  - [Get started with Bootstrap](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#get-started-with-bootstrap)
-  - [BootStrap Grid System](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#bootstrap-grid-system)
-    - [1. Basic Structure](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#1-basic-structure)
-    - [2. Responsive Breakpoints](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#2-responsive-breakpoints)
-    - [3. Key Points](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#3-key-points)
-  - [BootStrap Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#bootstrap-colors)
-    - [1. Predefined Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#1-predefined-colors)
-    - [2. Background Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#2-background-colors)
-    - [3. Text Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#3-text-colors)
-    - [4. Border Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#4-border-colors)
-    - [5. Customizing Colors](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#5-customizing-colors)
-    - [6. Color Shades and Variants](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#6-color-shades-and-variants)
-    - [7. Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#7-summary)
-  - [Note on Bootstrap Updates](https://github.com/sameerkatija/sc-advance-web-class/tree/day-21?tab=readme-ov-file#note-on-bootstrap-updates)
+```js
+// app.js
+const math = require("./math");
+console.log(math.add(2, 3)); // Outputs: 5
+```
 
-- [17. Essential Git Concepts for Deverlopers](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#essential-git-concepts-for-deverlopers)
+### Modular Programming:
 
-  - [What is Version Control System?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#what-is-version-control-system)
-    - [1. Key Concepts of Version Control](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#1-key-concepts-of-version-control)
-    - [2. Types of Version Control Systems](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#2-types-of-version-control-systems)
-    - [3. Common Version Control Systems](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#3-common-version-control-systems)
-  - [What is Git: A detailed Explaination.](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#what-is-git-a-detailed-explaination)
-    - [1. Basic Git Concepts](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#1-basic-git-concepts)
-      - [1.1 Repository:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#11-repository)
-      - [1.2 Commit:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#12-commit)
-      - [1.3 Branch:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#13-branch)
-      - [1.4 Merge:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#14-merge)
-      - [1.5 Clone:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#15-clone)
-      - [1.6 Push and Pull:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#16-push-and-pull)
-      - [1.7 Fork:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#17-fork)
-    - [2. Why Use Git?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#2-why-use-git)
-  - [What is GitHub?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#what-is-github)
-  - [How Git Works: Staging Area, Local and Remote Repositories](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#how-git-works-staging-area-local-and-remote-repositories)
-    - [1. Git Repositories](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#1-git-repositories)
-    - [2. Working Directory](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#2-working-directory)
-    - [3. Staging Area (Index)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#3-staging-area-index)
-    - [4. Local Repository](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#4-local-repository)
-    - [5. Remote Repository](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#5-remote-repository)
-    - [6. Branching and Merging](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#6-branching-and-merging)
-    - [7. Common Workflow](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#7-common-workflow)
-    - [8. Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#8-summary)
-  - [Configuring Git](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#configuring-git)
-  - [Common Git Commands](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#common-git-commands)
-  - [What is MarkDown and Github Markdown Cheat Sheet](https://github.com/sameerkatija/sc-advance-web-class/tree/day-22?tab=readme-ov-file#what-is-markdown-and-github-markdown-cheat-sheet)
+Modular programming is a design paradigm that divides a program into distinct, interchangeable modules, each responsible for a specific piece of functionality. This approach promotes separation of concerns, making code easier to manage, maintain, and test.
 
-- [18. Comprehensive Guide to JavaScript Execution: From Data Structures to Runtime Environments](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#comprehensive-guide-to-javascript-execution-from-data-structures-to-runtime-environments)
+#### Benefits:
 
-  - [How JavaScript Uses Just-In-Time (JIT) Compilation for Enhanced Performance](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#how-javascript-uses-just-in-time-jit-compilation-for-enhanced-performance)
-    - [1. Understanding JavaScript Execution](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-understanding-javascript-execution)
-      - [1.1 Initial Interpretation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#11-initial-interpretation)
-      - [1.2 Hot Code Detection](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#12-hot-code-detection)
-      - [1.3 JIT Compilation](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#13-jit-compilation)
-      - [1.4 Optimizations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#14-optimizations)
-      - [1.5 De-optimization](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#15-de-optimization)
-    - [2. The Hybrid Approach](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#2-the-hybrid-approach)
-    - [3. Conclusion](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#3-conclusion)
-  - [LIFO Principle: Mastering the `Last-In, First-Out` Paradigm](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#lifo-principle-mastering-the-last-in-first-out-paradigm)
-    - [1. STACK: Fundamental Data Structure](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-stack-fundamental-data-structure)
-      - [1.1 Common Uses of Stacks](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#11-common-uses-of-stacks)
-  - [The JavaScript Call Stack](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#the-javascript-call-stack)
-    - [What is the Call Stack?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#what-is-the-call-stack)
-  - [Synchronous Vs. Asynchronous](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#synchronous-vs-asynchronous)
-    - [1. Synchronous](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-synchronous)
-    - [2. Asynchronous](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#2-asynchronous)
-  - [Multithreading vs. Single Thread](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#multithreading-vs-single-thread)
-    - [1. Single-Threaded](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-single-threaded)
-      - [1.1 Characteristics:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#11-characteristics)
-    - [2. Multithreading](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#2-multithreading)
-      - [2.1 Characteristics:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#21-characteristics)
-  - [Concurrency Vs. Parallelism](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#concurrency-vs-parallelism)
-    - [1. Concurrency](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-concurrency)
-    - [2. Parallelism](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#2-parallelism)
-    - [3. Comparison](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#3-comparison)
-    - [4. In Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#4-in-summary)
-  - [JavaScript is single-threaded](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#javascript-is-single-threaded)
-    - [1. Limitations and Challenges of Single-Threaded Execution in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-limitations-and-challenges-of-single-threaded-execution-in-javascript)
-      - [1.1 Blocking Operations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#11-blocking-operations)
-      - [1.2 Concurrency Limitations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#12-concurrency-limitations)
-      - [1.3 Difficulty Handling Asynchronous Operations](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#13-difficulty-handling-asynchronous-operations)
-      - [1.4 Mitigating the Challenges](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#14-mitigating-the-challenges)
-    - [2. Conclusion](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#2-conclusion)
-  - [FIFO Principle: Mastering the First-In, First-Out Paradigm](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#fifo-principle-mastering-the-first-in-first-out-paradigm)
-    - [1. Queue: Fundamental Data Structure](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-queue-fundamental-data-structure)
-      - [1.1 Common Uses of Queue](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#11-common-uses-of-queue)
-  - [Understanding JavaScript's Execution: The Role of the Runtime Environments](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#understanding-javascripts-execution-the-role-of-the-runtime-environments)
-    - [1. The Event Loop](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#1-the-event-loop)
-    - [2. Web APIs in Browsers](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#2-web-apis-in-browsers)
-    - [3. Node.js Environment](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#3-nodejs-environment)
-    - [4. Conclusion](https://github.com/sameerkatija/sc-advance-web-class/tree/day-18?tab=readme-ov-file#4-conclusion)
+- **Reusability:** Modules can be reused across different projects or parts of an application.
+- **Maintainability:** Code is organized into logical sections, making it easier to update and debug.
+- **Scalability:** Modular design facilitates collaboration and allows for the gradual expansion of functionality.
 
-- [19. Mastering Asynchronous JavaScript: A Comprehensive Guide to Non-Blocking Paradigm](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#mastering-asynchronous-javascript-a-comprehensive-guide-to-non-blocking-paradigm)
+In a modular Node.js application, you might have separate files for different functionalities, such as `math.js` for mathematical operations and `database.js` for database interactions. Each module encapsulates its own logic and can be imported where needed, promoting clean and organized code.
 
-  - [Callbacks](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#callbacks)
-    - [1. What is a Callback?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#1-what-is-a-callback)
-    - [2. How Callbacks Work](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#2-how-callbacks-work)
-    - [3. Benefits of Callbacks](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#3-benefits-of-callbacks)
-    - [4. Callback Hell](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#4-callback-hell)
-    - [5. Alternatives to Callbacks](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#5-alternatives-to-callbacks)
-  - [Promise In JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#promise-in-js)
-    - [1. Key Concepts of Promises](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#1-key-concepts-of-promises)
-      - [1.1 States:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#11-states)
-      - [1.2 Creating a Promise:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#12-creating-a-promise)
-      - [1.3 Handling Promises:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#13-handling-promises)
-      - [1.4 Chaining Promises:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#14-chaining-promises)
-      - [1.5 `Promise.all()` and `Promise.race()`:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#15-promiseall-and-promiserace)
-  - [Async/Await in JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#asyncawait-in-js)
-    - [1. `async` Function](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#1-async-function)
-      - [1. Characteristics:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#1-characteristics)
-    - [2. `await` Expression](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#2-await-expression)
-      - [2.1 Characteristics:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#21-characteristics)
-    - [3. Key Points](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#3-key-points)
-    - [4. Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-19?tab=readme-ov-file#4-summary)
+In summary, a **module** is a self-contained unit of code that provides specific functionality, and **modular programming** is the practice of using modules to create organized, maintainable, and scalable software.
 
-- [20. Comprehensive Guide to Web Communication Protocols, Data Formats, and API Technologies](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#comprehensive-guide-to-web-communication-protocols-data-formats-and-api-technologies)
+## CommonJS Modules vs ES6 Modules
 
-  - [What is Protocol?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#what-is-protocol)
-    - [1. Key Aspects of Protocols](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-key-aspects-of-protocols)
-      - [1.1 Rules for Communication:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#11-rules-for-communication)
-      - [1.2 Standardization:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#12-standardization)
-      - [1.3 Error Handling:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#13-error-handling)
-      - [1.4 Data Encoding and Decoding:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#14-data-encoding-and-decoding)
-      - [1.5 Session Management:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#15-session-management)
-    - [2. Examples of Protocols](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-examples-of-protocols)
-      - [2.1 Network Protocols:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#21-network-protocols)
-      - [2.2 Communication Protocols:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#22-communication-protocols)
-      - [2.3 Security Protocols:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#23-security-protocols)
-      - [2.4 Application Protocols:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#24-application-protocols)
-  - [HTTP (Hypertext Transfer Protocol)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#http-hypertext-transfer-protocol)
-    - [1. Key Features of HTTP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-key-features-of-http)
-      - [1.1 Application Layer Protocol:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#11-application-layer-protocol)
-      - [1.2 Request-Response Model:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#12-request-response-model)
-      - [1.3 Stateless Protocol:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#13-stateless-protocol)
-      - [1.4 Text-Based:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#14-text-based)
-    - [2. Components of HTTP Communication](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-components-of-http-communication)
-      - [2.1. HTTP Requests:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#21-http-requests)
-      - [2.2 HTTP Responses:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#22-http-responses)
-    - [3. HTTP Methods](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#3-http-methods)
-    - [4. HTTP Status Codes](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#4-http-status-codes)
-    - [5. Evolution of HTTP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#5-evolution-of-http)
-    - [Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#summary)
-  - [What is `HTTPS` (Hypertext Transfer Protocol Secure)?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#what-is-https-hypertext-transfer-protocol-secure)
-    - [1. Key Features of HTTPS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-key-features-of-https)
-      - [1.1 Encryption](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#11-encryption)
-      - [1.2 Data Integrity](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#12-data-integrity)
-      - [1.3 Authentication](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#13-authentication)
-    - [2. How HTTPS Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-how-https-works)
-      - [2.1 Establishing a Secure Connection](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#21-establishing-a-secure-connection)
-      - [2.2 Encryption and Decryption](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#22-encryption-and-decryption)
-    - [3. HTTPS vs. HTTP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#3-https-vs-http)
-      - [3.1 HTTP:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#31-http)
-      - [3.2 HTTPS:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#32-https)
-    - [Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#summary-1)
-  - [HTTP Communication](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#http-communication)
-  - [XML vs JSON](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#xml-vs-json)
-    - [1. XML](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-xml)
-      - [1.1 Key Features](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#11-key-features)
-        - [1.1.1 Structured Format:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#111-structured-format)
-        - [1.1.2 Self-Descriptive:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#112-self-descriptive)
-        - [1.1.3 Extensibility:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#113-extensibility)
-        - [1.1.4 Attributes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#114-attributes)
-        - [1.1.5 Schema Validation:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#115-schema-validation)
-    - [2. JSON (JavaScript Object Notation)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-json-javascript-object-notation)
-      - [2.1 Key Features](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#21-key-features)
-        - [2.1.1 Compact Format:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#211-compact-format)
-        - [2.1.2 Data Types:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#212-data-types)
-        - [2.1.3 Human-Readable:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#213-human-readable)
-        - [2.1.4 Parsing and Generation:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#214-parsing-and-generation)
-        - [2.1.5 No Attributes:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#215-no-attributes)
-    - [3. Comparison](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#3-comparison)
-    - [Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#summary-2)
-  - [`AJAX` (Asynchronous JavaScript and XML)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#ajax-asynchronous-javascript-and-xml)
-    - [1. Key Features](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-key-features)
-      - [1.1 Asynchronous Requests:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#11-asynchronous-requests)
-      - [1.2 Partial Page Updates:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#12-partial-page-updates)
-      - [1.3 XML and Other Formats:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#13-xml-and-other-formats)
-      - [1.4 JavaScript Integration:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#14-javascript-integration)
-    - [2. How AJAX Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-how-ajax-works)
-      - [2.1 Client-Side Request:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#21-client-side-request)
-      - [2.2 Server-Side Response:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#22-server-side-response)
-      - [2.3 Updating the Web Page:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#23-updating-the-web-page)
-  - [AJAJ (Asynchronous JavaScript and JSON)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#ajaj-asynchronous-javascript-and-json)
-    - [1. Key Features](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-key-features-1)
-      - [1.1 JSON Data Format:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#11-json-data-format)
-      - [1.2 Simplicity:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#12-simplicity)
-      - [1.3 Improved Performance:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#13-improved-performance)
-    - [2. How AJAJ Works](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-how-ajaj-works)
-      - [2.1 Client-Side Request:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#21-client-side-request-1)
-      - [2.2 Server-Side Response:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#22-server-side-response-1)
-      - [2.3 Updating the Web Page:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#23-updating-the-web-page-1)
-  - [Comparison of AJAX and AJAJ](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#comparison-of-ajax-and-ajaj)
-  - [`fetch` vs `XMLHttpRequest`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#fetch-vs-xmlhttprequest)
-    - [1. Modern Syntax and Simplicity](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-modern-syntax-and-simplicity)
-    - [2. Promises and Async/Await](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#2-promises-and-asyncawait)
-    - [3. Better Error Handling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#3-better-error-handling)
-    - [4. Stream Handling](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#4-stream-handling)
-    - [5. Simpler Configuration](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#5-simpler-configuration)
-    - [6. Better Support and Modern Features](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#6-better-support-and-modern-features)
-    - [Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#summary-3)
-  - [`API` (Application Programming Interface)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#api-application-programming-interface)
-    - [1. Key benefits of APIs:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-23?tab=readme-ov-file#1-key-benefits-of-apis)
+### CommonJS Modules
 
-- [21. Comprehensive Guide to JavaScript Object-Oriented Programming (OOP)](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#comprehensive-guide-to-javascript-object-oriented-programming-oop)
-  - [Object Oriented Programming](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#object-oriented-programming)
-    - [Core Components of OOP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#core-components-of-oop)
-      - [1. Class:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#1-class)
-      - [2. Object:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#2-object)
-      - [3. Attribute:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#3-attribute)
-      - [4. Method:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#4-method)
-    - [Key Principles of OOP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#key-principles-of-oop)
-      - [1. Encapsulation:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#1-encapsulation)
-      - [2. Inheritance:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#2-inheritance)
-      - [3. Polymorphism:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#3-polymorphism)
-      - [4. Abstraction:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#4-abstraction)
-    - [Benefits of OOP](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#benefits-of-oop)
-      - [1. Modularity:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#1-modularity)
-      - [2. Reusability:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#2-reusability)
-      - [3. Maintainability:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#3-maintainability)
-      - [4. Flexibility:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#4-flexibility)
-  - [Constructor](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#constructor)
-  - [Destructor](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#destructor)
-  - [`this` keyword](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#this-keyword)
-    - [How `this` Works?](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#how-this-works)
-      - [1. Global Context:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#1-global-context)
-      - [2. Object Method:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#2-object-method)
-      - [3. Constructor Function:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#3-constructor-function)
-      - [4. Arrow Functions:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#4-arrow-functions)
-      - [5. Event Handlers:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#5-event-handlers)
-      - [6. `bind`, `call`, and `apply`:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#6-bind-call-and-apply)
-    - [Arrow Functions and `this`](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#arrow-functions-and-this)
-    - [Summary](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#summary)
-  - [OOP in JS](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#oop-in-js)
-  - [Inheritance in Js](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#inheritance-in-js)
-    - [`extends` keyword](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#extends-keyword)
-    - [`super` keyword](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#super-keyword)
-  - [Polymorphism in Js](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#polymorphism-in-js)
-    - [Types of Polymorphism in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#types-of-polymorphism-in-javascript)
-      - [1. Method Overriding:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#1-method-overriding)
-      - [2. Method Overloading (Simulated in JavaScript):](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#2-method-overloading-simulated-in-javascript)
-  - [Access Modifiers in JavaScript](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#access-modifiers-in-javascript)
-    - [Private Fields and Methods:](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#private-fields-and-methods)
-  - [Object prototypes](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#object-prototypes)
-    - [Prototype-Based Inheritance](https://github.com/sameerkatija/sc-advance-web-class/tree/day-24?tab=readme-ov-file#prototype-based-inheritance)
+CommonJS is traditionally used in Node.js environments. It was the original module system for JavaScript on the server side before ES6 modules were introduced.
 
-## Practise Projects / Demo Projects
+- **Exporting:** Use `module.exports` or `exports`
 
-1. [Css mini Project](https://github.com/sameerkatija/sc-advance-web-class/tree/day-7)
-2. [Dom Mini Project](https://github.com/sameerkatija/sc-advance-web-class/tree/dom-color-guessing-game)
+  ```js
+  // myModule.js
+  const myFunction = () => {
+    /* ... */
+  };
+  module.exports = myFunction;
+  ```
+
+- **Importing:** Use `require()`
+
+  ```js
+  const myFunction = require("./myModule");
+  ```
+
+### ES6 Modules
+
+ES6 (ECMAScript 2015) modules are the standardized module system for JavaScript, and they are supported in both client-side (browsers) and server-side (Node.js) environments.
+
+- **Exporting**
+
+  ```js
+  // myModule.js
+  export const myFunction = () => {
+    /* ... */
+  };
+  // myModule.js
+  const myFunction = () => {
+    /* ... */
+  };
+  export default myFunction;
+  ```
+
+- **Importing**
+  ```js
+  import { myFunction } from "./myModule";
+  import myFunction from "./myModule";
+  ```
+
+### Comparison Summary
+
+- **Loading:** CommonJS is synchronous and designed for server-side environments, while ES6 modules support asynchronous loading and are more versatile for both client and server-side code.
+- **Syntax:** CommonJS uses `require()` and `module.exports`, while ES6 modules use `import` and `export`.
+- **Compatibility:** ES6 modules are the modern standard and are natively supported in browsers and Node.js (**"type": "module"** in package.json).
+
+In modern JavaScript development, ES6 modules are preferred due to their support for static analysis, better performance optimizations, and alignment with the evolving JavaScript standards. However, CommonJS remains important for legacy codebases and some Node.js applications.
+
+## Getting started with NPM
+
+### 1. Initializing a Project
+
+```bash
+npm init
+```
+
+### 2. Installing Packages
+
+```bash
+npm install express
+
+npm install # Installs all dependencies listed in the `package.json` file.
+```
+
+### 3. Uninstalling Packages
+
+```bash
+npm uninstall lodash
+```
+
+### 4. Updating Packages
+
+```bash
+npm update # Updates all the packages listed in `package.json` to their latest versions according to the version range specified.
+
+npm update lodash
+```
+
+### 5. Checking Package Information
+
+```bash
+npm list # Lists all installed packages in the current project.
+npm list -g # Lists globally installed packages.
+npm info lodash #  Displays information about a package.
+
+
+```
+
+### 6. Running Scripts
+
+```bash
+npm run start
+npm run test
+```
+
+## What is a Backend Server?
+
+A backend server is a component of a web application that handles requests from clients, processes them, interacts with databases or other services, and sends responses back to the client. It is responsible for the logic, data processing, and server-side operations that power the front end of an application.
