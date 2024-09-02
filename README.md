@@ -1,3 +1,26 @@
+# Understanding Node.js: From Internals to Event-Driven Architecture
+
+- [Understanding Node.js: From Internals to Event-Driven Architecture](#understanding-nodejs-from-internals-to-event-driven-architecture)
+  - [What is Node Js](#what-is-node-js)
+    - [Key features of Node.js:](#key-features-of-nodejs)
+  - [Node Internals Deep Dive](#node-internals-deep-dive)
+    - [1. V8 JavaScript Engine](#1-v8-javascript-engine)
+      - [Key Features:](#key-features)
+    - [2. Node APIs](#2-node-apis)
+      - [Key APIs:](#key-apis)
+    - [3. Node Bindings](#3-node-bindings)
+      - [Key Concepts:](#key-concepts)
+    - [4. Libuv](#4-libuv)
+      - [Key Features:](#key-features-1)
+    - [Conclusion](#conclusion)
+  - [Observer Design Pattern](#observer-design-pattern)
+    - [Key Components](#key-components)
+    - [How It Works](#how-it-works)
+  - [Node.js Event-Driven Architecture](#nodejs-event-driven-architecture)
+    - [Key Components](#key-components-1)
+    - [How It Works](#how-it-works-1)
+    - [Conclusion](#conclusion-1)
+
 ## What is Node Js
 
 Node.js is a runtime environment that allows you to execute JavaScript code on the server side. It’s built on the V8 JavaScript engine, which is the same engine that powers Google Chrome. Node.js is designed to be lightweight, efficient, and to handle asynchronous operations well, making it suitable for building scalable network applications.
