@@ -1,17 +1,3 @@
-## RESTful APIs
-
-RESTful APIs, or Representational State Transfer APIs, are a popular architectural style for designing networked applications.
-
-### Example Workflow
-
-Suppose you have a RESTful API for managing a collection of books.
-
-- `GET` `/books`: Retrieve a list of books.
-- `GET` `/books/1`: Retrieve details of the book with ID 1.
-- `POST` `/books`: Add a new book to the collection (data would be sent in the request body).
-- `PUT` `/books/1`: Update the book with ID 1 (data would be sent in the request body).
-- `DELETE` `/books/1`: Delete the book with ID 1.
-
 ## Express JS
 
 Express is a popular web application framework for Node.js that simplifies building and managing web servers. It sits on top of Node.js’s built-in HTTP module and provides a higher-level abstraction that makes it easier to handle common tasks in web development.
@@ -107,3 +93,170 @@ While Node.js’s built-in `HTTP` module provides the fundamental capabilities f
   ```bash
   node app.js
   ```
+
+## Express Routing basics
+
+Express.js routing is fundamental for handling HTTP requests and mapping them to specific functionality within your application.
+
+Routes are defined using HTTP methods (e.g., GET, POST) and URL paths. Routes map URLs to specific handlers.
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => res.send("Home Page")); // Handles GET requests to '/'
+app.post("/submit", (req, res) => res.send("Form Submitted")); // Handles POST requests to '/submit'
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+```
+
+- `app.get('/')`: Responds to `GET` requests at the root URL with "Home Page".
+- `app.post('/submit')`: Responds to `POST` requests at `/submit` with "Form Submitted".
+
+Routing maps URLs to responses based on the request method and path.
+
+## Request and Response Objects
+
+In Express.js, a popular web application framework for Node.js, the request and response objects are central to handling HTTP requests and sending responses.
+
+### Request Object (`req`)
+
+The request object represents the HTTP request and contains information about the client's request to the server. Some of the key properties and methods of the `req` object include:
+
+1. `req.body`: Contains data submitted in the body of the request. This is commonly used with `POST` and `PUT` requests. To access req.body, you'll need middleware like `express.json()` or `express.urlencoded()` to parse the request body.
+
+   ```js
+   app.use(express.json()); // For JSON payloads
+   app.use(express.urlencoded({ extended: true })); // For URL-encoded payloads
+   ```
+
+2. `req.params`: Contains route parameters. These are values specified in the URL path.
+
+   ```js
+   app.get("/user/:id", (req, res) => {
+     const userId = req.params.id;
+     // Use userId to fetch user details
+   });
+   ```
+
+3. `req.query`: Contains query string parameters from the URL. These are typically used in GET requests.
+
+   ```js
+   app.get("/search", (req, res) => {
+     const searchTerm = req.query.term;
+     // Use searchTerm to perform a search
+   });
+   ```
+
+4. `req.headers`: Contains HTTP headers sent with the request.
+   ```js
+   app.get("/", (req, res) => {
+     const userAgent = req.headers["user-agent"];
+     // Use userAgent to determine browser type
+   });
+   ```
+   5.`req.url`: The full URL of the request.
+
+```js
+app.get("/", (req, res) => {
+  console.log(req.url);
+  // Logs the URL of the request
+});
+```
+
+### Response Object (`res`)
+
+The response object represents the HTTP response that the server sends back to the client. Some of the key properties and methods of the `res` object include:
+
+1. `res.send()`: Sends a response to the client. The response can be a string, JSON object, or buffer.
+
+   ```js
+   app.get("/", (req, res) => {
+     res.send("Hello, World!");
+   });
+   ```
+
+2. `res.json()`: Sends a JSON response. This method automatically sets the Content-Type header to application/json.
+
+   ```js
+   app.get("/data", (req, res) => {
+     res.json({ message: "Hello, World!" });
+   });
+   ```
+
+3. `res.status()`: Sets the HTTP status code for the response.
+
+   ```js
+   app.get("/notfound", (req, res) => {
+     res.status(404).send("Not Found");
+   });
+   ```
+
+4. `res.redirect()`: Redirects the client to a different URL.
+
+   ```js
+   app.get("/redirect", (req, res) => {
+     res.redirect("https://www.example.com");
+   });
+   ```
+
+````
+
+5. `res.set()`: Sets HTTP headers for the response.
+
+   ```js
+   app.get("/", (req, res) => {
+     res.set("X-Custom-Header", "value");
+     res.send("Header set");
+   });
+````
+
+6. `res.render()`: Renders a view template and sends the result as a response. This is commonly used in server-side rendering scenarios.
+
+   ```js
+   app.get("/view", (req, res) => {
+     res.render("template", { title: "Hello World" });
+   });
+   ```
+
+## Working with Query Strings in Express.js
+
+Query strings are used to pass additional parameters in the URL. You can access these parameters using `req.query`.
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/search", (req, res) => {
+  const query = req.query.q; // Access query string parameter 'q'
+  res.send(`Search query is: ${query}`);
+});
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+```
+
+- **URL:** `/search?q=example`
+- **Response:** `Search query is: example`
+
+This code extracts the `q` parameter from the query string and sends it in the response
+
+## Using Path Parameters in Express.js:
+
+Path parameters are used to capture dynamic values from the URL.
+
+```js
+const express = require("express");
+const app = express();
+
+app.get("/user/:id", (req, res) => {
+  const userId = req.params.id; // Access path parameter 'id'
+  res.send(`User ID is: ${userId}`);
+});
+
+app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+```
+
+- **URL**: `/user/123`
+- **Response**: `User ID is: 123`
+
+This code captures `:id` from the URL and uses it in the response.
