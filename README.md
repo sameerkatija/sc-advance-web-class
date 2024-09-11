@@ -1,276 +1,449 @@
-# Comprehensive Guide to Express.js
+# From Static to Dynamic: The Art of HTML Templating
 
-- [Comprehensive Guide to Express.js](#comprehensive-guide-to-expressjs)
-  - [Express JS](#express-js)
-    - [Why Use Express Instead of Node's Built-in HTTP Module?](#why-use-express-instead-of-nodes-built-in-http-module)
-    - [Conclusion](#conclusion)
-  - [Building your first web server using `express`](#building-your-first-web-server-using-express)
-  - [Express Routing basics](#express-routing-basics)
-  - [Request and Response Objects](#request-and-response-objects)
-    - [Request Object (`req`)](#request-object-req)
-    - [Response Object (`res`)](#response-object-res)
-  - [Working with Query Strings in Express.js](#working-with-query-strings-in-expressjs)
-  - [Using Path Parameters in Express.js:](#using-path-parameters-in-expressjs)
+- [From Static to Dynamic: The Art of HTML Templating](#from-static-to-dynamic-the-art-of-html-templating)
+  - [Serving HTML file](#serving-html-file)
+  - [Enhancing Static HTML with Dynamic Data](#enhancing-static-html-with-dynamic-data)
+    - [Why this approach isn't good?](#why-this-approach-isnt-good)
+  - [Introduction to Templating](#introduction-to-templating)
+  - [EJS (Embedded JavaScript)](#ejs-embedded-javascript)
+    - [Key Features of EJS:](#key-features-of-ejs)
+    - [EJS with Express.js](#ejs-with-expressjs)
+      - [1. Install EJS:](#1-install-ejs)
+      - [2. Configure Express to Use EJS:](#2-configure-express-to-use-ejs)
+      - [3. Create EJS Templates:](#3-create-ejs-templates)
+    - [Passing Data to EJS](#passing-data-to-ejs)
+    - [EJS TAGS](#ejs-tags)
+      - [1. Output Tags `<%= expression %>`](#1-output-tags--expression-)
+      - [2. Unescaped Output Tags `<%- expression %>`](#2-unescaped-output-tags---expression-)
+      - [3. JavaScript Code Tags `<% code %>`](#3-javascript-code-tags--code-)
+      - [4. Comment Tags `<%# comment %>`](#4-comment-tags--comment-)
+    - [Conditions in ejs](#conditions-in-ejs)
+    - [Loops in ejs](#loops-in-ejs)
+  - [EJS Partials](#ejs-partials)
+    - [Using EJS Partials](#using-ejs-partials)
+      - [1. Creating Partials](#1-creating-partials)
+      - [2. Including Partials in Templates](#2-including-partials-in-templates)
+      - [3. Passing Data to Partials](#3-passing-data-to-partials)
+  - [Serving Static Assets in Express](#serving-static-assets-in-express)
+    - [1. Create a Directory for Static Assets](#1-create-a-directory-for-static-assets)
+    - [2. Configure Express to Serve Static Assets](#2-configure-express-to-serve-static-assets)
 
-## Express JS
+## Serving HTML file
 
-Express is a popular web application framework for Node.js that simplifies building and managing web servers. It sits on top of Node.js’s built-in HTTP module and provides a higher-level abstraction that makes it easier to handle common tasks in web development.
+```js
+// app.js
+const express = require('express');
+const path = require('path');
+const app = express();
 
-### Why Use Express Instead of Node's Built-in HTTP Module?
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-1. **Simplified Syntax:** Express abstracts away much of the complexity of handling `HTTP` requests and responses. With Node.js’s built-in `HTTP` module, you’d need to manually handle request and response parsing, routing, and more. Express provides a more intuitive and readable syntax for these tasks.
+// Example route to serve an HTML file
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
-   - Example with Node's HTTP Module:
+// Start the server
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+}
+```
 
-     ```js
-     const http = require("http");
+> If you're serving static HTML files using express.static() or res.sendFile(), you cannot directly inject data.
 
-     const server = http.createServer((req, res) => {
-       if (req.url === "/") {
-         res.writeHead(200, { "Content-Type": "text/plain" });
-         res.end("Hello, world!\n");
-       } else {
-         res.writeHead(404, { "Content-Type": "text/plain" });
-         res.end("Not Found\n");
-       }
-     });
+## Enhancing Static HTML with Dynamic Data
 
-     server.listen(3000, () => {
-       console.log("Server running at http://localhost:3000/");
-     });
-     ```
+```js
+// app.js
+const express = require("express");
+const app = express();
 
-   - Example with Express:
+// Example route
+app.get("/", (req, res) => {
+  // Data to be passed to the HTML
+  const title = "Hello, World!";
+  const message = "Welcome to the dynamic page!";
 
-     ```js
-     const express = require("express");
-     const express = require("express");
-     const app = express();
+  // Construct HTML string with data
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>${title}</title>
+    </head>
+    <body>
+      <h1>${message}</h1>
+    </body>
+    </html>
+  `;
 
-     app.get("/", (req, res) => {
-       res.send("Hello, world!");
-     });
+  // Send the constructed HTML
+  res.send(htmlContent);
+});
 
-     app.use((req, res) => {
-       res.status(404).send("Not Found");
-     });
+// Start the server
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
+```
 
-     app.listen(3000, () => {
-       console.log("Server running at http://localhost:3000/");
-     });
-     ```
+### Why this approach isn't good?
 
-2. **Routing:** Express provides a robust routing system with support for route parameters, query strings, and middleware. This makes it easy to organize routes and handle different types of requests.
-3. **Middleware**: Express supports middleware functions that can be used to process requests and responses. Middleware functions are functions that have access to the request object, response object, and the next middleware function in the stack. This modular approach is great for adding functionality like logging, authentication, and body parsing.
-4. **Error Handling**: Express has built-in mechanisms for error handling, making it easier to catch and respond to errors in a consistent way.
-5. **Template Engines**: Express integrates easily with various template engines (like Pug, EJS, or Handlebars), which simplifies rendering dynamic HTML.
-6. **Community and Ecosystem**: Express has a large and active community, which means there are numerous plugins and extensions available to extend its functionality.
-7. **Request and Response Handling**: Express simplifies parsing and handling of incoming data (e.g., URL-encoded forms, JSON bodies) through middleware like body-parser.
+1. Lack of Reusability and Scalability in Hardcoded HTML
+2. Difficulties in Maintaining Hardcoded HTML
+3. Lack of Separation of Concerns
 
-### Conclusion
+## Introduction to Templating
 
-While Node.js’s built-in `HTTP` module provides the fundamental capabilities for handling `HTTP` requests and responses, Express offers a more developer-friendly interface and additional features that streamline web development tasks. It’s especially useful for building RESTful APIs and web applications where you need to manage routing, middleware, and templating more efficiently.
+Templating is a technique used in web development and programming to generate dynamic content by separating the structure of a document from the content that fills it.
 
-## Building your first web server using `express`
+1. **Templates:** These are predefined structures or layouts that include placeholders for dynamic content. Think of a template as a blueprint or skeleton of a webpage or document.
 
-- Step 1: Set Up Your Project
-  1. Create a New Directory
-  2. Create a New File named `app.js` (or `server.js`, if you prefer).
-  3. Initialize a New Node.js Project
-  ```bash
-    npm init -y
-  ```
-  4. Install Express
-  ```js
-    npm install express
-  ```
-- Step 2: Create Your Express Server
+2. **Placeholder Substitution:** Within the template, placeholders (often marked with special syntax) are replaced with actual data or content. For example, a placeholder might be replaced with a user's name, a list of items, or any other dynamic data.
 
-  ```js
-  const express = require("express");
-  const app = express();
-  const port = 3000;
+3. **Dynamic Content:** Instead of hardcoding content directly into the HTML or document, you use templates to define where and how dynamic content should appear. This allows for greater flexibility and reusability.
 
-  // Define a route for the root URL
-  app.get("/", (req, res) => {
-    res.send("Hello, world!");
-  });
+4. **Template Engines:** These are tools or libraries that process templates and inject data into them. Examples include Jinja2 (for Python), EJS (for JavaScript), and Twig (for PHP).
 
-  // Start the server
-  app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-  });
-  ```
+5. **Benefits:** Templating helps to maintain a clean separation between design and data, making it easier to manage and update content. It also promotes code reuse and consistency across different parts of a website or application.
 
-- Step 3: Run Your Server
+In summary, templating is a powerful approach that simplifies the creation of dynamic, data-driven content by allowing developers to define reusable structures and populate them with varying content.
 
-  ```bash
-  node app.js
-  ```
+## EJS (Embedded JavaScript)
 
-## Express Routing basics
+EJS, which stands for Embedded JavaScript, is a simple and flexible templating engine for Node.js that allows you to generate dynamic HTML pages. It is commonly used with Express.js, a popular web framework for Node.js, to render views and manage dynamic content on the server side.
 
-Express.js routing is fundamental for handling HTTP requests and mapping them to specific functionality within your application.
+### Key Features of EJS:
 
-Routes are defined using HTTP methods (e.g., GET, POST) and URL paths. Routes map URLs to specific handlers.
+1. **Embedded JavaScript:** EJS allows you to embed JavaScript code within HTML. This makes it easy to insert dynamic content into your HTML templates. For instance, you can use EJS to loop through arrays, conditionally render content, and include partial templates.
+
+2. **Syntax:** EJS uses a straightforward syntax to integrate JavaScript into HTML.
+
+   ```html
+   <h1>Hello, <%= name %>!</h1>
+   ```
+
+   In this example, `<%= name %>` is a placeholder that will be replaced with the value of the `name` variable when the template is rendered.
+
+3. **Dynamic Content:** EJS allows you to pass data from your Express.js routes to your templates. For example, you can pass an object containing user data to a template, and EJS will render the HTML with that data inserted.
+
+4. **Partials and Layouts:** EJS supports partials (reusable chunks of HTML) and layouts (template structures). This helps in organizing and reusing code across different views, making your application easier to maintain.
+
+### EJS with Express.js
+
+#### 1. Install EJS:
+
+You need to install EJS via npm
+
+```bash
+  npm install ejs
+```
+
+#### 2. Configure Express to Use EJS:
+
+In your Express application, set EJS as the view engine
 
 ```js
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => res.send("Home Page")); // Handles GET requests to '/'
-app.post("/submit", (req, res) => res.send("Form Submitted")); // Handles POST requests to '/submit'
+// Set EJS as the view engine
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views")); // Directory where your EJS templates are located
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+// Example route
+app.get("/", (req, res) => {
+  res.render("index", { name: "John Doe" }); // Render 'index.ejs' template with 'name' variable
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
 ```
 
-- `app.get('/')`: Responds to `GET` requests at the root URL with "Home Page".
-- `app.post('/submit')`: Responds to `POST` requests at `/submit` with "Form Submitted".
+#### 3. Create EJS Templates:
 
-Routing maps URLs to responses based on the request method and path.
+Place your `.ejs` files in the `views` directory.
 
-## Request and Response Objects
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamic HTML with EJS</title>
+  </head>
+  <body>
+    <h1>Hello, <%= name %>!</h1>
+  </body>
+</html>
+```
 
-In Express.js, a popular web application framework for Node.js, the request and response objects are central to handling HTTP requests and sending responses.
+In this setup, when a user visits the root route (`/`), Express will render the `index.ejs` template and replace `<%= name %>` with `"John Doe"`. EJS helps you generate HTML content dynamically based on the data provided by your application, making it a powerful tool for server-side rendering in web applications.
 
-### Request Object (`req`)
+### Passing Data to EJS
 
-The request object represents the HTTP request and contains information about the client's request to the server. Some of the key properties and methods of the `req` object include:
-
-1. `req.body`: Contains data submitted in the body of the request. This is commonly used with `POST` and `PUT` requests. To access req.body, you'll need middleware like `express.json()` or `express.urlencoded()` to parse the request body.
-
-   ```js
-   app.use(express.json()); // For JSON payloads
-   app.use(express.urlencoded({ extended: true })); // For URL-encoded payloads
-   ```
-
-2. `req.params`: Contains route parameters. These are values specified in the URL path.
-
-   ```js
-   app.get("/user/:id", (req, res) => {
-     const userId = req.params.id;
-     // Use userId to fetch user details
-   });
-   ```
-
-3. `req.query`: Contains query string parameters from the URL. These are typically used in GET requests.
-
-   ```js
-   app.get("/search", (req, res) => {
-     const searchTerm = req.query.term;
-     // Use searchTerm to perform a search
-   });
-   ```
-
-4. `req.headers`: Contains HTTP headers sent with the request.
-   ```js
-   app.get("/", (req, res) => {
-     const userAgent = req.headers["user-agent"];
-     // Use userAgent to determine browser type
-   });
-   ```
-   5.`req.url`: The full URL of the request.
+Passing data to an EJS template involves sending data from your Express.js route handler to the EJS view. This allows you to dynamically generate HTML content based on the data provided.
 
 ```js
 app.get("/", (req, res) => {
-  console.log(req.url);
-  // Logs the URL of the request
+  res.render("index", { user });
 });
 ```
 
-### Response Object (`res`)
+- `res.render('index', { user })`:
+  - `'index'` is the name of the EJS template file (e.g., `views/index.ejs`).
+  - `{ user }` is the data object being passed to the template. In this case, `user` is an object with properties like `name` and `notifications`.
 
-The response object represents the HTTP response that the server sends back to the client. Some of the key properties and methods of the `res` object include:
+In your EJS template file (`views/index.ejs`), you can access the properties of the `user` object directly.
 
-1. `res.send()`: Sends a response to the client. The response can be a string, JSON object, or buffer.
+```html
+<h1>Welcome, <%= user.name %>!</h1>
+<p>You have <%= user.notifications.length %> new notifications.</p>
+<ul>
+  <% user.notifications.forEach(function(notification) { %>
+  <li><%= notification %></li>
+  <% }); %>
+</ul>
+```
 
-   ```js
-   app.get("/", (req, res) => {
-     res.send("Hello, World!");
-   });
-   ```
+### EJS TAGS
 
-2. `res.json()`: Sends a JSON response. This method automatically sets the Content-Type header to application/json.
+EJS (Embedded JavaScript) uses various tags to allow embedding JavaScript code within HTML. These tags are used to insert `dynamic content`, `control flow`, and `include partials`.
 
-   ```js
-   app.get("/data", (req, res) => {
-     res.json({ message: "Hello, World!" });
-   });
-   ```
+#### 1. Output Tags `<%= expression %>`
 
-3. `res.status()`: Sets the HTTP status code for the response.
+- Outputs the value of `expression` as HTML.
+- Escapes the HTML content to prevent XSS (Cross-Site Scripting) attacks.
 
-   ```js
-   app.get("/notfound", (req, res) => {
-     res.status(404).send("Not Found");
-   });
-   ```
+```html
+<p>Hello, <%= name %>!</p>
+```
 
-4. `res.redirect()`: Redirects the client to a different URL.
+#### 2. Unescaped Output Tags `<%- expression %>`
 
-   ```js
-   app.get("/redirect", (req, res) => {
-     res.redirect("https://www.example.com");
-   });
-   ```
+- Outputs the value of `expression` without escaping it.
+- Useful for rendering `HTML` content directly.
 
-````
+> EJS FILE
 
-5. `res.set()`: Sets HTTP headers for the response.
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- link %>
+  </body>
+</html>
+```
 
-   ```js
-   app.get("/", (req, res) => {
-     res.set("X-Custom-Header", "value");
-     res.send("Header set");
-   });
-````
-
-6. `res.render()`: Renders a view template and sends the result as a response. This is commonly used in server-side rendering scenarios.
-
-   ```js
-   app.get("/view", (req, res) => {
-     res.render("template", { title: "Hello World" });
-   });
-   ```
-
-## Working with Query Strings in Express.js
-
-Query strings are used to pass additional parameters in the URL. You can access these parameters using `req.query`.
+> Node File From where we are passing link
 
 ```js
 const express = require("express");
+const path = require("path");
 const app = express();
 
-app.get("/search", (req, res) => {
-  const query = req.query.q; // Access query string parameter 'q'
-  res.send(`Search query is: ${query}`);
+app.set("view engine", "ejs");
+const viewsPath = path.join(__dirname, "views");
+app.set("views", viewsPath);
+
+app.get("/", (req, res) => {
+  res.render("index", { link: '<a href="http://example.com">Example</a>' });
 });
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+app.listen(3000);
 ```
 
-- **URL:** `/search?q=example`
-- **Response:** `Search query is: example`
+#### 3. JavaScript Code Tags `<% code %>`
 
-This code extracts the `q` parameter from the query string and sends it in the response
+- Executes the JavaScript code within the tags but does not output any result to the HTML.
+- Used for control flow and other logic.
+- Also known as `Scriptlet` tag
 
-## Using Path Parameters in Express.js:
+```html
+<% if (user.isLoggedIn) { %>
+<p>Welcome back, <%= user.name %>!</p>
+<% } else { %>
+<p>Please log in.</p>
+<% } %>
+```
 
-Path parameters are used to capture dynamic values from the URL.
+#### 4. Comment Tags `<%# comment %>`
+
+- Adds comments that are not included in the rendered HTML output.
+- Useful for leaving notes within templates.
+
+```html
+<%# This is a comment %>
+<p>This will be rendered as HTML.</p>
+```
+
+### Conditions in ejs
+
+```html
+<% if (user.isLoggedIn) { %>
+<p>Welcome back, <%= user.name %>!</p>
+<% } else { %>
+<p>Please log in to continue.</p>
+<% } %>
+```
+
+### Loops in ejs
+
+```html
+<ul>
+  <% for (let i = 0; i < items.length; i++) { %>
+  <li><%= items[i] %></li>
+  <% } %>
+</ul>
+```
+
+## EJS Partials
+
+EJS (Embedded JavaScript) partials are reusable chunks of HTML that you can include in multiple EJS templates. They help you maintain consistency across your views and avoid code duplication by allowing you to define common elements once and include them wherever needed.
+
+### Using EJS Partials
+
+#### 1. Creating Partials
+
+To create a partial, simply create an EJS file that contains the common HTML structure you want to reuse.
+
+For example, you might have a `header.ejs` file for the header of your website and a `footer.ejs` file for the footer.
+
+- `views/partials/header.ejs:`
+  ```html
+  <header>
+    <h1>My Website</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  ```
+- `views/partials/footer.ejs:`
+
+  ```html
+  <footer>
+    <p>&copy; 2024 My Website</p>
+  </footer>
+  ```
+
+#### 2. Including Partials in Templates
+
+You can include these partials in your main EJS templates using the `<%- include('path/to/partial') %>` syntax. The path should be relative to the views directory.
+
+- `views/index.ejs:`
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Home</title>
+    </head>
+    <body>
+      <%- include('partials/header') %>
+
+      <main>
+        <h2>Welcome to My Website</h2>
+        <p>This is the home page.</p>
+      </main>
+
+      <%- include('partials/footer') %>
+    </body>
+  </html>
+  ```
+
+In this example:
+
+- `<%- include('partials/header') %>` includes the header partial.
+- `<%- include('partials/footer') %>` includes the footer partial.
+
+#### 3. Passing Data to Partials
+
+You can also pass data to partials if needed. This can be done by providing an options object as the second argument to the include method.
+
+- `views/partials/sidebar.ejs:`
+
+  ```html
+  <header>
+    <h2><%= title %></h2>
+    <ul>
+      <% items.forEach(function(item) { %>
+      <li><a href="<%= item.url %>"><%= item.name %></a></li>
+      <% }); %>
+    </ul>
+  </header>
+  ```
+
+- `views/index.ejs`
+
+  ```html
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Home</title>
+    </head>
+    <body>
+      <%- include('partials/header', { title: 'Sidebar', items: [{ name: 'Item
+      1', url: '/item1' }, { name: 'Item 2', url: '/item2' }] }) %>
+
+      <main>
+        <h2>Welcome to My Website</h2>
+        <p>This is the home page.</p>
+      </main>
+
+      <%- include('partials/footer') %>
+    </body>
+  </html>
+  ```
+
+Partials in EJS are a powerful way to manage reusable content across your views, making your templates cleaner and easier to maintain.
+
+## Serving Static Assets in Express
+
+In Express.js, serving static assets like `images`, `CSS files`, and `JavaScript` files is straightforward using the built-in `express.static` middleware. This middleware allows you to serve static files from a directory, making them accessible to clients.
+
+### 1. Create a Directory for Static Assets
+
+First, create a directory in your project where you’ll store your static files. A common convention is to use a folder named `public` or `static`.
+
+### 2. Configure Express to Serve Static Assets
+
+In your Express application file (e.g., `app.js` or `server.js`), use the `express.static` middleware to serve static files from the directory you created.
 
 ```js
 const express = require("express");
+const path = require("path");
 const app = express();
 
-app.get("/user/:id", (req, res) => {
-  const userId = req.params.id; // Access path parameter 'id'
-  res.send(`User ID is: ${userId}`);
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, "public")));
+
+// Define a route to serve a main page
+app.get("/", (req, res) => {
+  res.send(
+    `<!DOCTYPE html>
+      <html>
+          <head>
+            <link rel="stylesheet" href="/styles/main.css">
+          </head>
+          <body>
+            <img src="/images/logo.png" alt="Logo">
+            <script src="/scripts/app.js"></script>
+          </body>
+      </html>`
+  );
 });
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+// Start the server
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
 ```
-
-- **URL**: `/user/123`
-- **Response**: `User ID is: 123`
-
-This code captures `:id` from the URL and uses it in the response.
