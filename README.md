@@ -272,7 +272,3 @@ app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 - **Response**: `User ID is: 123`
 
 This code captures `:id` from the URL and uses it in the response.
-
-```
-
-```
