@@ -1,274 +1,143 @@
-# Comprehensive Guide to Express.js
+# Understanding HTTP Request Methods, REST Architecture, and Middleware in Express.js
 
-- [Comprehensive Guide to Express.js](#comprehensive-guide-to-expressjs)
-  - [Express JS](#express-js)
-    - [Why Use Express Instead of Node's Built-in HTTP Module?](#why-use-express-instead-of-nodes-built-in-http-module)
-    - [Conclusion](#conclusion)
-  - [Building your first web server using `express`](#building-your-first-web-server-using-express)
-  - [Express Routing basics](#express-routing-basics)
-  - [Request and Response Objects](#request-and-response-objects)
-    - [Request Object (`req`)](#request-object-req)
-    - [Response Object (`res`)](#response-object-res)
-  - [Working with Query Strings in Express.js](#working-with-query-strings-in-expressjs)
-  - [Using Path Parameters in Express.js:](#using-path-parameters-in-expressjs)
+- [Understanding HTTP Request Methods, REST Architecture, and Middleware in Express.js](#understanding-http-request-methods-rest-architecture-and-middleware-in-expressjs)
+  - [Request Methods](#request-methods)
+    - [1. GET](#1-get)
+    - [2. POST](#2-post)
+    - [3. PUT](#3-put)
+    - [4. DELETE](#4-delete)
+    - [5. PATCH](#5-patch)
+  - [REST (Representational State Transfer)](#rest-representational-state-transfer)
+  - [Middlewares](#middlewares)
+    - [Middleware Function Signature](#middleware-function-signature)
+    - [Types of Middleware](#types-of-middleware)
+      - [1. Application-Level Middleware](#1-application-level-middleware)
+      - [2. Route-Level Middleware](#2-route-level-middleware)
+      - [3. Built-in Middleware](#3-built-in-middleware)
+  - [Global Error handling middlware](#global-error-handling-middlware)
 
-## Express JS
+## Request Methods
 
-Express is a popular web application framework for Node.js that simplifies building and managing web servers. It sits on top of Node.js’s built-in HTTP module and provides a higher-level abstraction that makes it easier to handle common tasks in web development.
+### 1. GET
 
-### Why Use Express Instead of Node's Built-in HTTP Module?
+- **Purpose**: To retrieve data from a server.
+- **Use Case**: When you want to request information without making any changes to the server.
+- **Example**: `GET /api/products` might be used to fetch a list of products.
 
-1. **Simplified Syntax:** Express abstracts away much of the complexity of handling `HTTP` requests and responses. With Node.js’s built-in `HTTP` module, you’d need to manually handle request and response parsing, routing, and more. Express provides a more intuitive and readable syntax for these tasks.
+### 2. POST
 
-   - Example with Node's HTTP Module:
+- **Purpose:** To submit data to the server to create a new resource.
+- **Use Case:** When you need to add new data or create a new resource.
+- **Example:** `POST /api/products` with a `payload` containing product details would create a new product.
 
-     ```js
-     const http = require("http");
+### 3. PUT
 
-     const server = http.createServer((req, res) => {
-       if (req.url === "/") {
-         res.writeHead(200, { "Content-Type": "text/plain" });
-         res.end("Hello, world!\n");
-       } else {
-         res.writeHead(404, { "Content-Type": "text/plain" });
-         res.end("Not Found\n");
-       }
-     });
+- **Purpose:** To update or replace an existing resource with new data.
+- **Use Case**: When you need to update an entire resource.
+- **Example**: `PUT /api/products/123` with updated product details would replace the product with ID 123.
 
-     server.listen(3000, () => {
-       console.log("Server running at http://localhost:3000/");
-     });
-     ```
+### 4. DELETE
 
-   - Example with Express:
+- **Purpose:** To remove a resource from the server.
+- **Use Case:** When you need to delete a specific resource.
+- **Example:** `DELETE /api/products/123` would delete the product with ID 123.
 
-     ```js
-     const express = require("express");
-     const express = require("express");
-     const app = express();
+### 5. PATCH
 
-     app.get("/", (req, res) => {
-       res.send("Hello, world!");
-     });
+- **Purpose:** To partially update an existing resource.
+- **Use Case:** When you need to update only some fields of a resource, rather than replacing the entire resource.
+- **Example:** `PATCH /api/products/123` with a `payload` containing updated fields (e.g., price) would update only those fields of the product with ID 123.
 
-     app.use((req, res) => {
-       res.status(404).send("Not Found");
-     });
+## REST (Representational State Transfer)
 
-     app.listen(3000, () => {
-       console.log("Server running at http://localhost:3000/");
-     });
-     ```
+REST stands for Representational State Transfer. It's an architectural style used in web services for designing networked applications. RESTful APIs are built to be simple, scalable, and stateless, often using `HTTP methods` and `URIs` to interact with resources.
 
-2. **Routing:** Express provides a robust routing system with support for route parameters, query strings, and middleware. This makes it easy to organize routes and handle different types of requests.
-3. **Middleware**: Express supports middleware functions that can be used to process requests and responses. Middleware functions are functions that have access to the request object, response object, and the next middleware function in the stack. This modular approach is great for adding functionality like logging, authentication, and body parsing.
-4. **Error Handling**: Express has built-in mechanisms for error handling, making it easier to catch and respond to errors in a consistent way.
-5. **Template Engines**: Express integrates easily with various template engines (like Pug, EJS, or Handlebars), which simplifies rendering dynamic HTML.
-6. **Community and Ecosystem**: Express has a large and active community, which means there are numerous plugins and extensions available to extend its functionality.
-7. **Request and Response Handling**: Express simplifies parsing and handling of incoming data (e.g., URL-encoded forms, JSON bodies) through middleware like body-parser.
+REST is a set of guidelines for how a client and server should communicate and perform CRUD (Create, Read, Update, Delete) operations on a given resource.
 
-### Conclusion
+The main idea of REST (Representational State Transfer) is to treat data on the server-side as resources that can be manipulated through standard CRUD (Create, Read, Update, Delete) operations.
 
-While Node.js’s built-in `HTTP` module provides the fundamental capabilities for handling `HTTP` requests and responses, Express offers a more developer-friendly interface and additional features that streamline web development tasks. It’s especially useful for building RESTful APIs and web applications where you need to manage routing, middleware, and templating more efficiently.
+![Rest Example](./assets/exampleRest.png)
 
-## Building your first web server using `express`
+> Further Reading on [REST](https://aws.amazon.com/what-is/restful-api/)
 
-- Step 1: Set Up Your Project
-  1. Create a New Directory
-  2. Create a New File named `app.js` (or `server.js`, if you prefer).
-  3. Initialize a New Node.js Project
-  ```bash
-    npm init -y
-  ```
-  4. Install Express
-  ```js
-    npm install express
-  ```
-- Step 2: Create Your Express Server
+## Middlewares
 
-  ```js
-  const express = require("express");
-  const app = express();
-  const port = 3000;
+Middleware functions are functions that execute during the request-response cycle. They have access to the request and response objects, and the next function, which allows them to pass control to the next middleware function or route handler.
 
-  // Define a route for the root URL
-  app.get("/", (req, res) => {
-    res.send("Hello, world!");
+In Express, middleware functions are a fundamental part of handling HTTP requests and responses. They are used to perform tasks like modifying request and response objects, ending the request-response cycle, and passing control to the next middleware function in the stack.
+
+### Middleware Function Signature
+
+```js
+function (req, res, next) {
+  // Middleware logic here
+}
+```
+
+### Types of Middleware
+
+#### 1. Application-Level Middleware
+
+This type of middleware is attached to the Express application instance using `app.use()`. It runs for every request made to the application.
+
+```js
+const express = require("express");
+const app = express();
+
+// Application-level middleware
+app.use((req, res, next) => {
+  console.log("Request received");
+  next(); // Pass control to the next middleware
+});
+```
+
+#### 2. Route-Level Middleware
+
+Middleware can also be attached to specific route. This allows you to apply middleware only to routes.
+
+```js
+const routeMiddleware = (req, res, next) => {
+  console.log("I ran");
+  next();
+};
+
+app.get("/", routeMiddleware, (req, res) => {
+  res.send("index route");
+});
+```
+
+#### 3. Built-in Middleware
+
+Express provides several built-in middleware functions that can be used to handle common tasks. Examples include:
+
+- `express.json()`: Parses incoming JSON request bodies.
+- `express.urlencoded()`: Parses URL-encoded request bodies.
+- `express.static()`: Serves static files from a directory.
+
+```js
+app.use(express.json()); // For parsing application/json
+app.use(express.urlencoded({ extended: true })); // For parsing application/x-www-form-urlencoded
+app.use(express.static("public")); // Serves static files from the "public" directory
+```
+
+Middleware in Express.js allows you to handle various aspects of HTTP requests and responses. By using middleware functions, you can perform operations such as logging, authentication, and error handling, providing a modular and flexible approach to building web applications.
+
+## Global Error handling middlware
+
+A global error-handling middleware function is used to handle errors that occur during the request-response cycle. This function has a special signature with four parameters: `err`, `req`, `res`, and `next`. It is designed to catch errors that occur in other middleware or route handlers and send an appropriate response to the client.
+
+```js
+app.use((err, req, res, next) => {
+  // Set the status code if available, otherwise default to 500
+  const statusCode = err.status || 500;
+
+  // Send a response to the client
+  res.status(statusCode).json({
+    message: err.message || "Internal Server Error",
+    // Optionally include more error details for development
+    // stack: process.env.NODE_ENV === 'development' ? err.stack : undefined
   });
-
-  // Start the server
-  app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-  });
-  ```
-
-- Step 3: Run Your Server
-
-  ```bash
-  node app.js
-  ```
-
-## Express Routing basics
-
-Express.js routing is fundamental for handling HTTP requests and mapping them to specific functionality within your application.
-
-Routes are defined using HTTP methods (e.g., GET, POST) and URL paths. Routes map URLs to specific handlers.
-
-```js
-const express = require("express");
-const app = express();
-
-app.get("/", (req, res) => res.send("Home Page")); // Handles GET requests to '/'
-app.post("/submit", (req, res) => res.send("Form Submitted")); // Handles POST requests to '/submit'
-
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
-```
-
-- `app.get('/')`: Responds to `GET` requests at the root URL with "Home Page".
-- `app.post('/submit')`: Responds to `POST` requests at `/submit` with "Form Submitted".
-
-Routing maps URLs to responses based on the request method and path.
-
-## Request and Response Objects
-
-In Express.js, a popular web application framework for Node.js, the request and response objects are central to handling HTTP requests and sending responses.
-
-### Request Object (`req`)
-
-The request object represents the HTTP request and contains information about the client's request to the server. Some of the key properties and methods of the `req` object include:
-
-1. `req.body`: Contains data submitted in the body of the request. This is commonly used with `POST` and `PUT` requests. To access req.body, you'll need middleware like `express.json()` or `express.urlencoded()` to parse the request body.
-
-   ```js
-   app.use(express.json()); // For JSON payloads
-   app.use(express.urlencoded({ extended: true })); // For URL-encoded payloads
-   ```
-
-2. `req.params`: Contains route parameters. These are values specified in the URL path.
-
-   ```js
-   app.get("/user/:id", (req, res) => {
-     const userId = req.params.id;
-     // Use userId to fetch user details
-   });
-   ```
-
-3. `req.query`: Contains query string parameters from the URL. These are typically used in GET requests.
-
-   ```js
-   app.get("/search", (req, res) => {
-     const searchTerm = req.query.term;
-     // Use searchTerm to perform a search
-   });
-   ```
-
-4. `req.headers`: Contains HTTP headers sent with the request.
-   ```js
-   app.get("/", (req, res) => {
-     const userAgent = req.headers["user-agent"];
-     // Use userAgent to determine browser type
-   });
-   ```
-   5.`req.url`: The full URL of the request.
-
-```js
-app.get("/", (req, res) => {
-  console.log(req.url);
-  // Logs the URL of the request
 });
 ```
 
-### Response Object (`res`)
-
-The response object represents the HTTP response that the server sends back to the client. Some of the key properties and methods of the `res` object include:
-
-1. `res.send()`: Sends a response to the client. The response can be a string, JSON object, or buffer.
-
-   ```js
-   app.get("/", (req, res) => {
-     res.send("Hello, World!");
-   });
-   ```
-
-2. `res.json()`: Sends a JSON response. This method automatically sets the Content-Type header to application/json.
-
-   ```js
-   app.get("/data", (req, res) => {
-     res.json({ message: "Hello, World!" });
-   });
-   ```
-
-3. `res.status()`: Sets the HTTP status code for the response.
-
-   ```js
-   app.get("/notfound", (req, res) => {
-     res.status(404).send("Not Found");
-   });
-   ```
-
-4. `res.redirect()`: Redirects the client to a different URL.
-
-   ```js
-   app.get("/redirect", (req, res) => {
-     res.redirect("https://www.example.com");
-   });
-   ```
-
-5. `res.set()`: Sets HTTP headers for the response.
-
-   ```js
-   app.get("/", (req, res) => {
-     res.set("X-Custom-Header", "value");
-     res.send("Header set");
-   });
-   ```
-
-6. `res.render()`: Renders a view template and sends the result as a response. This is commonly used in server-side rendering scenarios.
-
-   ```js
-   app.get("/view", (req, res) => {
-     res.render("template", { title: "Hello World" });
-   });
-   ```
-
-## Working with Query Strings in Express.js
-
-Query strings are used to pass additional parameters in the URL. You can access these parameters using `req.query`.
-
-```js
-const express = require("express");
-const app = express();
-
-app.get("/search", (req, res) => {
-  const query = req.query.q; // Access query string parameter 'q'
-  res.send(`Search query is: ${query}`);
-});
-
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
-```
-
-- **URL:** `/search?q=example`
-- **Response:** `Search query is: example`
-
-This code extracts the `q` parameter from the query string and sends it in the response
-
-## Using Path Parameters in Express.js:
-
-Path parameters are used to capture dynamic values from the URL.
-
-```js
-const express = require("express");
-const app = express();
-
-app.get("/user/:id", (req, res) => {
-  const userId = req.params.id; // Access path parameter 'id'
-  res.send(`User ID is: ${userId}`);
-});
-
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
-```
-
-- **URL**: `/user/123`
-- **Response**: `User ID is: 123`
-
-This code captures `:id` from the URL and uses it in the response.
+A global error-handling middleware in Express.js is essential for managing errors in a centralized manner. By placing it at the end of your middleware stack, you ensure that it catches and processes errors that occur throughout the request-response cycle. This approach helps maintain a clean and manageable error-handling strategy in your application.
