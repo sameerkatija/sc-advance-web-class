@@ -214,8 +214,6 @@ The response object represents the HTTP response that the server sends back to t
    });
    ```
 
-````
-
 5. `res.set()`: Sets HTTP headers for the response.
 
    ```js
@@ -223,7 +221,7 @@ The response object represents the HTTP response that the server sends back to t
      res.set("X-Custom-Header", "value");
      res.send("Header set");
    });
-````
+   ```
 
 6. `res.render()`: Renders a view template and sends the result as a response. This is commonly used in server-side rendering scenarios.
 
@@ -274,3 +272,7 @@ app.listen(3000, () => console.log("Server running on http://localhost:3000"));
 - **Response**: `User ID is: 123`
 
 This code captures `:id` from the URL and uses it in the response.
+
+```
+
+```
