@@ -1,460 +1,431 @@
-# A Comprehensive Guide to Databases: Concepts, Types, and SQL
+# Introduction to MongoDB and Mongoose: Basics, Setup, and Advanced Concepts
 
-- [A Comprehensive Guide to Databases: Concepts, Types, and SQL](#a-comprehensive-guide-to-databases-concepts-types-and-sql)
-  - [What is Database?](#what-is-database)
-    - [Why We Need Databases](#why-we-need-databases)
-    - [Types of Databases:](#types-of-databases)
-  - [Types of Databases (`SQL` VS `NoSQL`)](#types-of-databases-sql-vs-nosql)
-    - [1. Data Model](#1-data-model)
-      - [Relational Databases (SQL)](#relational-databases-sql)
-      - [Non-Relational Databases (NoSQL)](#non-relational-databases-nosql)
-    - [2. Query Language](#2-query-language)
-      - [Relational Databases (`SQL`)](#relational-databases-sql-1)
-      - [Non-Relational Databases (`NoSQL`)](#non-relational-databases-nosql-1)
-    - [3. Scalability](#3-scalability)
-      - [Relational Databases (SQL)](#relational-databases-sql-2)
-      - [Non-Relational Databases (NoSQL)](#non-relational-databases-nosql-2)
-    - [4. Transactions](#4-transactions)
-      - [Relational Databases (SQL)](#relational-databases-sql-3)
-      - [Non-Relational Databases (NoSQL)](#non-relational-databases-nosql-3)
-    - [Summary](#summary)
-  - [Understanding Relational Database Concepts (SQL)](#understanding-relational-database-concepts-sql)
-    - [1. Tables](#1-tables)
-    - [2. Rows and Columns](#2-rows-and-columns)
-    - [3. Primary Key](#3-primary-key)
-    - [4. Foreign Key](#4-foreign-key)
-    - [5. Relationships](#5-relationships)
-    - [7. Normalization](#7-normalization)
-    - [8. Transactions](#8-transactions)
-    - [9. Entity-Relationship Diagram (ERD)](#9-entity-relationship-diagram-erd)
-  - [What is SQL?](#what-is-sql)
-  - [SQL command classification / SQL language classification](#sql-command-classification--sql-language-classification)
-    - [1. Data Definition Language (DDL)](#1-data-definition-language-ddl)
-    - [2. Data Manipulation Language (DML)](#2-data-manipulation-language-dml)
-    - [3. Data Retrieval/Query Language (DRL/DQL)](#3-data-retrievalquery-language-drldql)
-    - [4. Data Control Language (DCL)](#4-data-control-language-dcl)
-    - [5. Transaction Control Language (TCL)](#5-transaction-control-language-tcl)
-    - [Summary](#summary-1)
-  - [Basics of SQL Language](#basics-of-sql-language)
-    - [2. SQL Data Types](#2-sql-data-types)
-    - [3. SQL BASIC COMMANDS](#3-sql-basic-commands)
-    - [4. Understand SQL Clauses](#4-understand-sql-clauses)
+- [Introduction to MongoDB and Mongoose: Basics, Setup, and Advanced Concepts](#introduction-to-mongodb-and-mongoose-basics-setup-and-advanced-concepts)
+  - [WHY are we learning MongoDB?](#why-are-we-learning-mongodb)
+  - [What is BSON?](#what-is-bson)
+  - [Getting Started with MongoDB](#getting-started-with-mongodb)
+    - [1. Start MongoDB](#1-start-mongodb)
+    - [2. Connect to MongoDB](#2-connect-to-mongodb)
+  - [Basic MongoDB Commands](#basic-mongodb-commands)
+    - [Show Databases](#show-databases)
+    - [Create or Switch to a Database](#create-or-switch-to-a-database)
+    - [Show Collections (Tables in relational terms)](#show-collections-tables-in-relational-terms)
+    - [Create or Insert a Document](#create-or-insert-a-document)
+    - [Find Documents](#find-documents)
+    - [Update Documents](#update-documents)
+    - [Delete Documents](#delete-documents)
+    - [Drop a Collection](#drop-a-collection)
+    - [Drop a Database](#drop-a-database)
+  - [Connecting MongoDb with Express](#connecting-mongodb-with-express)
+  - [Object Data Modeling (ODM)](#object-data-modeling-odm)
+  - [What is mongoose?](#what-is-mongoose)
+    - [Key Features of Mongoose](#key-features-of-mongoose)
+      - [1. Schema Definition](#1-schema-definition)
+      - [2. Models](#2-models)
+      - [3. Validation](#3-validation)
+      - [4. Middleware (Hooks)](#4-middleware-hooks)
+      - [5. Query Building](#5-query-building)
+      - [6. Population (Joins)](#6-population-joins)
+      - [7. Async/Await Support](#7-asyncawait-support)
+  - [connect MongoDB with `mongoose`](#connect-mongodb-with-mongoose)
+  - [Defining a Mongoose Model](#defining-a-mongoose-model)
+  - [Implement CRUD Operations](#implement-crud-operations)
+  - [references in mongodb](#references-in-mongodb)
+    - [Understanding References in MongoDB](#understanding-references-in-mongodb)
+    - [Example:](#example)
 
-## What is Database?
+## WHY are we learning MongoDB?
 
-A database is a systematic collection of data that is organized and stored in a way that allows for efficient retrieval, management, and manipulation. Databases can range from simple lists to complex systems used by large organizations.
+- Mongo is very commonly used with Node and Express( MEAN & MERN stacks)
+- It's easy to get started with (though it can be tricky to truly master)
+- It plays particularly well with JavaScript
+- MongoDB’s popularity: its strong and active developer community.
 
-### Why We Need Databases
+> To install mongo refer to any youtube video for mongo installation or follow the [documentation](https://www.mongodb.com/try/download/community)
 
-- **Data Organization:** Databases help in structuring data in a way that makes it easy to access and manage. They use tables, schemas, and relationships to ensure that data is stored logically and efficiently.
+## What is BSON?
 
-- **Efficient Data Retrieval:** With databases, you can quickly search for and retrieve specific pieces of data using queries. This is much faster and more reliable than manually searching through data.
+BSON (Binary JSON) is a binary-encoded serialization format used to represent documents in MongoDB, a popular NoSQL database. BSON extends JSON (JavaScript Object Notation) to provide additional data types and is designed for efficient encoding and decoding.
 
-- **Data Integrity:** Databases enforce rules and constraints to ensure that the data is accurate and consistent. This helps in maintaining data quality and avoiding errors.
+## Getting Started with MongoDB
 
-- **Data Security:** Databases provide mechanisms for controlling access to data, ensuring that only authorized users can view or modify sensitive information.
+### 1. Start MongoDB
 
-- **Data Management:** They support complex operations like sorting, filtering, and aggregating data. This makes it easier to generate reports, analyze trends, and make data-driven decisions.
+1. Open `CMD`
+2. Type `cd C:\Program Files\MongoDB\Server\7.0\bin`
+3. Start the MongoDB Server by typing `mongod` in the terminal
 
-- **Scalability:** Databases can handle large volumes of data and can be scaled up or out to accommodate growing data needs.
+### 2. Connect to MongoDB
 
-- **Concurrency:** Multiple users can access and modify the data simultaneously without interfering with each other, thanks to mechanisms like transactions and locking.
+1. Open Another `CMD` Window
+2. Type `mongosh`
 
-- **Backup and Recovery:** Databases have built-in features for backing up data and recovering it in case of failures or corruption.
+This will open an interactive MongoDB shell connected to your running MongoDB server.
 
-- **Automation:** Databases support automated tasks such as scheduled reports, triggers for data changes, and routine maintenance operations.
+## Basic MongoDB Commands
 
-- **Consistency Across Applications:** For organizations using multiple applications, a centralized database ensures that all applications access and update the same data consistently.
+In the MongoDB Shell
 
-### Types of Databases:
+### Show Databases
 
-    1. SQL DATABASES
-    2. NOSQL DATABASES
-
-Overall, databases are crucial for managing data in a way that is efficient, reliable, and secure, making them essential for businesses, organizations, and even personal projects that involve data.
-
-## Types of Databases (`SQL` VS `NoSQL`)
-
-Understanding the differences between `relational (SQL)` and `non-relational (NoSQL)` databases is crucial for selecting the right database system for a given application.
-
-### 1. Data Model
-
-#### Relational Databases (SQL)
-
-- **Data Structure:** Data is organized into `tables` (also called relations) with `rows` and `columns`. Each table has a defined schema specifying the data types and constraints for each column.
-- **Schema**: Fixed schema; each table follows a predefined structure. Schema changes often require `altering` the table and may involve downtime.
-- **Relationships**: Data is `normalized` and `relationships` between tables are established through `foreign keys`. Supports complex queries using SQL joins.
-- **Example**: MySQL, PostgreSQL, Oracle, Microsoft SQL Server.
-
-#### Non-Relational Databases (NoSQL)
-
-- **Data Structure:** Data can be stored in various formats such as `documents`, `key-value pairs`, `column families`, or `graphs`. No strict schema is required.
-- **Schema:** `Flexible` or `schema-less`. Allows for dynamic changes in data structure without altering existing data. Adaptable to changes in the data model.
-- **Relationships:** Relationships can be managed in different ways depending on the type of NoSQL database (e.g., embedding documents in MongoDB or linking nodes in a graph database).
-- **Example:** MongoDB (document-based), Redis (key-value), Cassandra (column-family), Neo4j (graph).
-
-### 2. Query Language
-
-#### Relational Databases (`SQL`)
-
-- **Query Language:** Uses Structured Query Language (`SQL`) for defining and manipulating data. SQL is standardized and widely used for querying relational databases.
-- **Complex Queries**: Supports complex queries, including `joins`, `aggregations`, and `transactions`.
-- **Example**: `SELECT \* FROM users WHERE age > 30;`
-
-#### Non-Relational Databases (`NoSQL`)
-
-- **Query Language:** Each NoSQL database has its own query language or API. Not standardized, and query capabilities vary by database type.
-- **Complex Queries**: Support for complex queries varies; some NoSQL databases offer rich querying capabilities, while others focus on fast key-based lookups.
-- **Example**: MongoDB uses BSON (Binary JSON) and a query API like `db.users.find({ age: { $gt: 30 } })`
-
-### 3. Scalability
-
-#### Relational Databases (SQL)
-
-- **Vertical Scalability:** Typically scales vertically by increasing the resources (CPU, RAM) of a single server. Horizontal scaling (scaling out by adding more servers) is more challenging.
-- **Replication**: Supports master-slave replication but can be complex to set up and manage.
-- **Example**: Increasing the power of a single MySQL server to handle more load.
-
-#### Non-Relational Databases (NoSQL)
-
-- **Horizontal Scalability:** Designed for horizontal scaling, where data is distributed across multiple servers or nodes. This makes it easier to scale out and handle large volumes of data and high traffic.
-- **Replication**: Often includes built-in support for distributed data replication and partitioning.
-- **Example**: MongoDB shards data across multiple servers to handle large datasets and high read/write loads.
-
-### 4. Transactions
-
-#### Relational Databases (SQL)
-
-- **ACID Transactions:** Supports `ACID (Atomicity, Consistency, Isolation, Durability)` transactions to ensure reliable and consistent data operations. This is critical for applications requiring strong data integrity and consistency.
-- **Example**: Transactions in PostgreSQL ensure that either all operations succeed or none do.
-
-#### Non-Relational Databases (NoSQL)
-
-- **Eventual Consistency**: Many NoSQL databases use eventual consistency rather than `ACID` transactions, which can offer better performance and scalability but may sacrifice immediate consistency in some scenarios.
-- **Transactions**: Some NoSQL databases offer transaction support, but it’s often less comprehensive than in relational databases.
-
-### Summary
-
-- **Relational Databases (SQL):** Offer a structured schema, standardized query language (SQL), and strong transaction support with ACID properties. They are ideal for applications with complex relationships and strict consistency requirements.
-- **Non-Relational Databases (NoSQL)**: Provide flexible schemas, various data models (document, key-value, column-family, graph), and are designed for horizontal scalability and high performance. They are suitable for applications with large volumes of data, varied data structures, or high traffic.
-
-Understanding these differences will help you select the appropriate database system based on the specific needs and constraints of your application.
-
-## Understanding Relational Database Concepts (SQL)
-
-### 1. Tables
-
-The basic unit of data storage in a relational database. A table is a collection of related data entries and consists of `rows` and `columns`.
-
-Each table has a name and a schema that defines the columns, their data types, and constraints.
-
-```
-Table: Employees
-+------------+---------+---------+
-| EmployeeID | Name    | Age     |
-+------------+---------+---------+
-| 1          | Alice   | 30      |
-| 2          | Bob     | 25      |
-+------------+---------+---------+
+```bash
+show dbs
 ```
 
-### 2. Rows and Columns
+### Create or Switch to a Database
 
-- **Rows:** Each `row` in a table represents a single `record` or instance of the data.
-- **Columns:** Each `column` represents a `field` or `attribute` of the data, with a specific data type.
-
-- **Example:** In the `Employees` table:
-
-  - **Row:** `(1, Alice, 30)`
-  - **Column:** `Name, Age`
-
-### 3. Primary Key
-
-A unique identifier for each row in a table. It ensures that each record can be uniquely identified.
-
-- **Constraints:** A primary key must be `unique` and `not null`.
-
-**Example:** In the `Employees` table, `EmployeeID` is a primary key.
-
-### 4. Foreign Key
-
-A field (or a set of fields) in one table that uniquely identifies a row of another table. It establishes and enforces a link between the data in the two tables.
-
-- **Constraints:** Ensures referential integrity between tables.
-
-> Referential integrity is a term used in database design to describe the relationship between two tables. It is important because it ensures that all data in a database remains consistent and up to date. It helps to prevent incorrect records from being added, deleted, or modified.
-
-- **Example:** If we have another table `Departments`:
-
-```
-Table: Departments
-+------------+------------------+
-| DepartmentID | DepartmentName |
-+------------+------------------+
-| 1            | HR             |
-| 2            | IT             |
-+------------+------------------+
+```bash
+use mydatabase
 ```
 
-In Employees, we might have a `DepartmentID` column as a foreign key
+This command switches to `mydatabase`. If `mydatabase` does not exist, MongoDB will create it when you first store data.
 
-### 5. Relationships
+### Show Collections (Tables in relational terms)
 
-- **One-to-One:** A single row in `Table A` is related to a single row in `Table B`.
-- **One-to-Many**: A single row in `Table A` can be related to multiple rows in `Table B`. This is the most common relationship.
-- **Many-to-Many**: Multiple rows in `Table A` can be related to multiple rows in `Table B`. This is typically managed with a junction table (This is normalized).
+```bash
+show collections
+```
 
-- **Examples:**
+### Create or Insert a Document
 
-  - **One-to-One:** A table `Users` and a table `UserProfiles`, where each user has exactly one profile.
-  - **One-to-Many**: A `Customers` table and an `Orders` table, where each customer can have multiple orders.
-  - **Many-to-Many**: A Students table and a `Courses` table, with a junction table `Enrollments` to manage which students are enrolled in which courses.
+```bash
+db.mycollection.insertOne({ name: "John Doe", age: 30 })
+```
 
-### 7. Normalization
+This command inserts a single document into `mycollection`.
 
-The process of organizing data to reduce redundancy and improve data integrity.
+### Find Documents
 
-- **Normal Forms:** A series of stages (First Normal Form, Second Normal Form, etc.) that a database schema can go through to achieve normalization.
+```bash
+db.mycollection.find()
+```
 
-- **Example:** Normalization involves breaking down a table into smaller tables and defining relationships between them to eliminate redundancy.
+This command retrieves all documents in `mycollection`.
 
-### 8. Transactions
+To format the output in a more readable way:
 
-A sequence of SQL operations that are executed as a single unit of work. Transactions ensure that a series of operations are completed successfully, or none at all.
+```bash
+db.mycollection.find().pretty()
+```
 
-### 9. Entity-Relationship Diagram (ERD)
+### Update Documents
 
-An Entity-Relationship Diagram (ERD) is a visual representation of the entities in a database and the relationships between them. ERDs are used in database design to outline and organize data structure, making it easier to understand how different pieces of data interact within the system.
+```bash
+db.mycollection.updateOne({ name: "John Doe" }, { $set: { age: 31 } })
+```
 
-- **ACID Properties:** `Atomicity, Consistency, Isolation, Durability.`
+This command updates a single document where `name` is `"John Doe"`, setting the `age` field to `31`.
 
-Relational databases use tables to organize data in a structured format, enforce data integrity through primary and foreign keys, and support complex querying through SQL. Concepts like normalization, indexing, and transactions are crucial for managing and optimizing relational databases. Understanding these concepts provides a strong foundation for working with SQL databases and helps in designing efficient and reliable data systems.
+### Delete Documents
 
-## What is SQL?
+```bash
+db.mycollection.deleteOne({ name: "John Doe" })
+```
 
-`SQL`, or `Structured Query Language`, is a standard programming language specifically designed for managing and manipulating `relational databases`. It provides a way to communicate with a database to perform various operations such as querying data, updating records, and managing database structures. SQL is widely used due to its powerful capabilities and standardization, making it essential for database professionals.
+This command deletes a single document where `name` is `"John Doe"`.
 
-## SQL command classification / SQL language classification
+### Drop a Collection
 
-SQL command classification refers to the categorization of SQL statements based on their function and purpose within a relational database management system (RDBMS). The main classifications are:
+```bash
+db.mycollection.drop()
+```
 
-![SQL command classification](./assets/SQLClass.webp)
+### Drop a Database
 
-### 1. Data Definition Language (DDL)
+```bash
+db.dropDatabase()
+```
 
-Define or modify database structures (schema).
+## Connecting MongoDb with Express
 
-- **Commands**
-  - `CREATE:` Creates new database objects such as tables, indexes, or views
-    ```SQL
-      CREATE TABLE Employees (
-        EmployeeID INT PRIMARY KEY,
-        FirstName VARCHAR(50),
-        LastName VARCHAR(50),
-        HireDate DATE
-      );
-    ```
-  - `ALTER`: Modifies existing database objects (e.g., adding or removing columns in a table).
-    ```SQL
-    ALTER TABLE Employees ADD Email VARCHAR(100);
-    ```
-  - `DROP`: Deletes database objects (e.g., tables, indexes).
-    ```SQL
-      DROP TABLE Employees;
-    ```
-  - `TRUNCATE`: Removes all rows from a table but retains the table structure.
-    ```SQL
-      TRUNCATE TABLE Employees;
-    ```
-  - `RENAME`: Changes the name of a database object
-    ```SQL
-      RENAME TABLE Employees TO Staff;
-    ```
+```js
+const { MongoClient } = require("mongodb");
 
-### 2. Data Manipulation Language (DML)
+async function main() {
+  const client = new MongoClient("mongodb://localhost:27017");
+  await client.connect();
+  const db = client.db("test");
+  const collection = db.collection("users");
+  const result = await collection.find({ age: { $gt: 18 } }).toArray();
+  console.log(result);
+  await client.close();
+}
 
-Manage and manipulate data within database objects (tables).
+main().catch(console.error);
+```
 
-- **Commands**
+> Note: We won't use this approch instead we will use mongoose.
 
-  - `SELECT`: Retrieves data from one or more tables.
-    ```SQL
-      SELECT * FROM Employees WHERE HireDate > '2023-01-01';
-    ```
-  - `INSERT`: Adds new rows to a table
-    ```SQL
-      INSERT INTO Employees (EmployeeID, FirstName, LastName, HireDate) VALUES (1, 'John', 'Doe', '2024-09-17');
-    ```
-  - `UPDATE`: Modifies existing data in a table.
+## Object Data Modeling (ODM)
 
-    ```SQL
-      UPDATE Employees SET Email = 'john.doe@example.com' WHERE EmployeeID = 1;
-    ```
+Object Data Modeling (ODM) is a programming pattern used to manage data in NoSQL databases, specifically MongoDB. An ODM provides an abstraction layer that maps database documents to application objects, allowing developers to interact with the database using higher-level programming constructs instead of raw database queries.
 
-  - `DELETE`: Removes rows from a table
-    ```SQL
-      DELETE FROM Employees WHERE EmployeeID = 1;
-    ```
+## What is mongoose?
 
-### 3. Data Retrieval/Query Language (DRL/DQL)
+> Let's face it, writing MongoDB validation, casting and business logic boilerplate is a drag. That's why we wrote Mongoose. [Reference](https://mongoosejs.com/)
 
-Query and retrieve data from the database. In many systems, DRL is considered a subset of DML.
+Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It provides a higher-level abstraction over the native MongoDB driver, making it easier to interact with MongoDB by defining `schemas`, `models`, and performing various database operations.
 
-- **Commands**
+### Key Features of Mongoose
 
-  - `SELECT`: This command is used to retrieve data and is the primary command in DRL.
+#### 1. Schema Definition
 
-    ```SQL
-      SELECT FirstName, LastName FROM Employees WHERE HireDate BETWEEN '2022-01-01' AND '2024-01-01' ORDER BY HireDate DESC;
+Allows you to define the structure of your MongoDB documents with a schema. This includes specifying fields, their types, default values, and validation rules.
 
-    ```
+#### 2. Models
 
-### 4. Data Control Language (DCL)
+Converts a schema into a model, which is a constructor for creating and querying documents. Models are used to interact with a specific collection in the databas
 
-Control access to data in the database.
+#### 3. Validation
 
-- **Commands**
-  - `GRANT`: Provides users with specific privileges.
-  - `REVOKE`: Removes specific privileges from users.
+Mongoose provides built-in validation for schemas, such as required fields, string lengths, and custom validators.
 
-### 5. Transaction Control Language (TCL)
+#### 4. Middleware (Hooks)
 
-Manage transactions within the database.
+Pre/Post Hooks Allows you to define middleware functions that run before or after certain events (e.g., saving a document, validating data).
 
-- **Commands:**
-  - `COMMIT:` Saves all changes made in the current transaction.
-    ```SQL
-      COMMIT;
-    ```
-  - `ROLLBACK`: Undoes changes made in the current transaction.
-    ```SQL
-      ROLLBACK;
-    ```
-  - `SAVEPOINT`: Sets a point within a transaction to which you can later roll back
-    ```SQL
-      SAVEPOINT SavepointName;
-    ```
-  - `SET TRANSACTION`: Configures transaction properties.
-    ```SQL
-      SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-    ```
+#### 5. Query Building
 
-### Summary
+Provides a fluent API for building and executing queries, including filtering, sorting, and pagination.
 
-- **DDL:** Defines or alters database structure (e.g., `CREATE`, `ALTER`, `DROP`).
-- **DML:** Manages and manipulates data (e.g., `SELECT`, `INSERT`, `UPDATE`, `DELETE`).
-- **DRL:** Specifically focuses on data retrieval (typically `SELECT`).
-- **DCL:** Controls access to data (e.g., `GRANT`, `REVOKE`).
-- **TCL:** Manages transactions (e.g., `COMMIT`, `ROLLBACK`).
+#### 6. Population (Joins)
 
-This classification helps in organizing SQL commands and understanding their roles in database operations and management.
+Supports document population to handle relationships between documents, similar to `SQL joins`.
 
-## Basics of SQL Language
+#### 7. Async/Await Support
 
-Structured Query Language (SQL) is a standard programming language for managing and manipulating relational databases.
+Fully supports promises and async/await syntax for cleaner, asynchronous code.
 
-SQL is used to perform various operations on the data stored in relational databases, including querying, updating, and managing data.
+In Summary, Mongoose is a powerful and flexible library that simplifies working with MongoDB in Node.js applications. It provides features such as schema definition, validation, middleware, and a rich query interface, making it easier to build and maintain complex applications with MongoDB. Its ODM approach helps developers manage data in a structured and consistent way, leveraging the benefits of both MongoDB's NoSQL capabilities and a structured schema system.
 
-### 2. SQL Data Types
+## connect MongoDB with `mongoose`
 
-- **Numeric Types:** `INT`, `FLOAT`, `DECIMAL`
-- **Character Types:** `CHAR`, `VARCHAR`, `TEXT`
-- **Date/Time Types:** `DATE`, `DATETIME`, `TIMESTAMP`
-- **Boolean Type:** `BOOLEAN`
+Install the [mongoose](https://mongoosejs.com/) package
 
-### 3. SQL BASIC COMMANDS
+```bash
+  npm i mongoose
+```
 
-- **Creating a Database and Tables**
+```js
+// app.js
 
-  ```SQL
-  CREATE DATABASE my_database;
-  USE my_database;
+const express = require("express");
+const mongoose = require("mongoose");
 
-  CREATE TABLE Employees (
-      EmployeeID INT PRIMARY KEY,
-      FirstName VARCHAR(50),
-      LastName VARCHAR(50),
-      HireDate DATE
-  );
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Connect to MongoDB using Mongoose
+const mongoURI = "mongodb://localhost:27017/mydatabase"; // Local MongoDB URI
+// If using MongoDB Atlas, use the connection string provided by Atlas
+// const mongoURI = 'mongodb+srv://<username>:<password>@cluster0.mongodb.net/mydatabase?retryWrites=true&w=majority';
+
+mongoose
+  .connect(URI)
+  .then(() => console.log("Database Connected"))
+  .catch((err) => console.error("Database connection error:", err));
+
+// Define a simple route
+app.get("/", (req, res) => {
+  res.send("Hello, Express with MongoDB!");
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+```
+
+## Defining a Mongoose Model
+
+1. **Create a Model File:** Create a new directory named `models` and add a file named `User.js` to define a Mongoose model.
+2. **Define a Mongoose Model:**
+
+   ```js
+   // models/User.js
+
+   const mongoose = require("mongoose");
+
+   const userSchema = new mongoose.Schema({
+     name: { type: String, required: true },
+     email: { type: String, required: true, unique: true },
+     password: { type: String, required: true },
+   });
+
+   const User = mongoose.model("User", userSchema);
+
+   module.exports = User;
+   ```
+
+## Implement CRUD Operations
+
+```js
+// routes/users.js
+
+const express = require("express");
+const app = express();
+const User = require("../models/User");
+
+// Create a new user
+app.post("/users", async (req, res) => {
+  try {
+    const user = new User(req.body);
+    await user.save();
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Get all users
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get a single user by ID
+app.get("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Update a user by ID
+app.put("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+// Delete a user by ID
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+```
+
+## references in mongodb
+
+In MongoDB, the concept of references (often abbreviated as ref) is used to establish relationships between documents across collections. Unlike relational databases where foreign keys are used to establish relationships between tables, MongoDB uses a different approach due to its document-oriented nature.
+
+### Understanding References in MongoDB
+
+- References involve storing the ObjectId of one document within another. This is useful for maintaining relationships where the referenced data is large or frequently updated.
+- Example: A `Post` document with a reference to an `Author` document.
+
+### Example:
+
+- **User Model:**
+
+  ```js
+  // models/User.js
+  const mongoose = require("mongoose");
+
+  const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+  });
+
+  const User = mongoose.model("User", userSchema);
+
+  module.exports = User;
   ```
 
-- **Inserting Data**
+- **Post Model:**
 
-  ```SQL
-  INSERT INTO Employees (EmployeeID, FirstName, LastName, HireDate)
-  VALUES (1, 'John', 'Doe', '2024-01-01');
+  ```js
+  // models/Post.js
+  const mongoose = require("mongoose");
+
+  const postSchema = new mongoose.Schema({
+    title: String,
+    content: String,
+    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // Reference to User
+  });
+
+  const Post = mongoose.model("Post", postSchema);
+
+  module.exports = Post;
   ```
 
-- **Querying Data**
+- **Creating and Saving Documents:**
 
-  ```SQL
-  SELECT * FROM Employees;
-  SELECT FirstName, LastName FROM Employees WHERE HireDate > '2023-01-01';
+  ```js
+  // app.js or another script file
+
+  const mongoose = require("mongoose");
+  const User = require("./models/User");
+  const Post = require("./models/Post");
+
+  mongoose.connect("mongodb://localhost:27017/mydatabase", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  // Create a User
+  const createUser = async () => {
+    const user = new User({
+      name: "John Doe",
+      email: "john.doe@example.com",
+    });
+    return await user.save();
+  };
+
+  // Create a Post that references the User
+  const createPost = async (userId) => {
+    const post = new Post({
+      title: "My First Post",
+      content: "This is the content of the post.",
+      author: userId, // Reference to the User's _id
+    });
+    return await post.save();
+  };
+
+  // Usage example
+  (async () => {
+    const user = await createUser();
+    const post = await createPost(user._id);
+    console.log("User:", user);
+    console.log("Post:", post);
+  })();
   ```
 
-- **Updating Data**
+- **Querying with References:**
 
-  ```SQL
-  UPDATE Employees SET LastName = 'Smith' WHERE EmployeeID = 1;
+  To query and populate references, use Mongoose's `.populate()` method.
+
+  ```js
+  // Retrieve a Post with populated Author
+  const getPostWithAuthor = async (postId) => {
+    const post = await Post.findById(postId).populate("author").exec();
+    console.log("Post with Author:", post);
+  };
+
+  // Usage example
+  (async () => {
+    const post = await Post.findOne().exec(); // Find a post
+    await getPostWithAuthor(post._id); // Get post with populated author
+  })();
   ```
-
-- **Deleting Data**
-
-  ```SQL
-    DELETE FROM Employees WHERE EmployeeID = 1;
-  ```
-
-- **Altering Tables**
-
-  ```SQL
-  ALTER TABLE Employees ADD Email VARCHAR(100);
-  ```
-
-- **Dropping Tables**
-
-  ```SQL
-  DROP TABLE Employees;
-  ```
-
-- **Dropping Database**
-
-  ```SQL
-  DROP DATABASE databasename;
-  ```
-
-### 4. Understand SQL Clauses
-
-- **WHERE:** Filter records.
-
-  ```SQL
-  SELECT * FROM Employees WHERE LastName = 'Smith';
-  ```
-
-- **ORDER BY:** Sort records.
-
-  ```SQL
-  SELECT * FROM Employees ORDER BY HireDate DESC;
-  ```
-
-- **GROUP BY:** Group records for aggregate functions.
-
-  ```SQL
-  SELECT COUNT(*), Department FROM Employees GROUP BY Department;
-  ```
-
-- **HAVING:** Filter groups.
-
-  ```SQL
-  SELECT Department, COUNT(*) FROM Employees GROUP BY Department HAVING COUNT(*) > 10;
-
-  ```
-
-- **JOIN:** Combine records from multiple tables.
-
-  ```SQL
-  SELECT Employees.FirstName, Departments.DepartmentName
-  FROM Employees
-  INNER JOIN Departments ON Employees.DepartmentID = Departments.DepartmentID;
-  ```
-
-Starting with SQL involves understanding the basics of databases, setting up your environment, learning fundamental commands, and practicing with real examples. As you gain more experience, delve into advanced topics and work on projects to solidify your skills. Engaging with the community and utilizing online resources will also help you along the way.
