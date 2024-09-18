@@ -3,9 +3,6 @@
 - [Introduction to MongoDB and Mongoose: Basics, Setup, and Advanced Concepts](#introduction-to-mongodb-and-mongoose-basics-setup-and-advanced-concepts)
   - [WHY are we learning MongoDB?](#why-are-we-learning-mongodb)
   - [What is BSON?](#what-is-bson)
-  - [Getting Started with MongoDB](#getting-started-with-mongodb)
-    - [1. Start MongoDB](#1-start-mongodb)
-    - [2. Connect to MongoDB](#2-connect-to-mongodb)
   - [Basic MongoDB Commands](#basic-mongodb-commands)
     - [Show Databases](#show-databases)
     - [Create or Switch to a Database](#create-or-switch-to-a-database)
@@ -46,21 +43,6 @@
 ## What is BSON?
 
 BSON (Binary JSON) is a binary-encoded serialization format used to represent documents in MongoDB, a popular NoSQL database. BSON extends JSON (JavaScript Object Notation) to provide additional data types and is designed for efficient encoding and decoding.
-
-## Getting Started with MongoDB
-
-### 1. Start MongoDB
-
-1. Open `CMD`
-2. Type `cd C:\Program Files\MongoDB\Server\7.0\bin`
-3. Start the MongoDB Server by typing `mongod` in the terminal
-
-### 2. Connect to MongoDB
-
-1. Open Another `CMD` Window
-2. Type `mongosh`
-
-This will open an interactive MongoDB shell connected to your running MongoDB server.
 
 ## Basic MongoDB Commands
 
