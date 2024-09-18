@@ -1,301 +1,306 @@
-# Advance Express.js: Methods, Cookies, Sessions, and MVC
+# Comprehensive Guide to Authentication and Security in Web Applications
 
-- [Advance Express.js: Methods, Cookies, Sessions, and MVC](#advance-expressjs-methods-cookies-sessions-and-mvc)
-  - [Making `PUT`, `PATCH` and `DELETE` Requests Using `method-override`](#making-put-patch-and-delete-requests-using-method-override)
-    - [Step 1: Install Required Packages](#step-1-install-required-packages)
-    - [Step 2: Set Up Express and Method-Override](#step-2-set-up-express-and-method-override)
-    - [Step 3: Create an HTML Form](#step-3-create-an-html-form)
-  - [Cookies Vs Session](#cookies-vs-session)
-    - [Cookies](#cookies)
-      - [Getting Started with `Cookie`](#getting-started-with-cookie)
-    - [Sessions](#sessions)
-      - [Getting Started with `Sessions`](#getting-started-with-sessions)
-  - [Key Differences](#key-differences)
-  - [Conclusion](#conclusion)
-  - [Signing Cookies in Express.js](#signing-cookies-in-expressjs)
-  - [MVC (Model-View-Controller)](#mvc-model-view-controller)
-    - [1. Model](#1-model)
-    - [2. View](#2-view)
-    - [3. Controller](#3-controller)
+- [Comprehensive Guide to Authentication and Security in Web Applications](#comprehensive-guide-to-authentication-and-security-in-web-applications)
+  - [Authentication Vs. Authorization](#authentication-vs-authorization)
+    - [Authentication](#authentication)
+    - [Authorization](#authorization)
     - [Summary](#summary)
-  - [`connect-flash` Middleware: Third-Party Package](#connect-flash-middleware-third-party-package)
-    - [Using `connect-flash`](#using-connect-flash)
-      - [1. Require Necessary Packages](#1-require-necessary-packages)
-      - [Configure Middleware](#configure-middleware)
-      - [Using Flash Messages](#using-flash-messages)
+  - [Encryption](#encryption)
+  - [Decryption](#decryption)
+  - [Hashing](#hashing)
+  - [`dotenv` npm Package](#dotenv-npm-package)
+    - [Create a `.env` File](#create-a-env-file)
+    - [Using env variables in the app](#using-env-variables-in-the-app)
+  - [What is `Bcrypt` npm Package?](#what-is-bcrypt-npm-package)
+    - [Key Features](#key-features)
+    - [Basic Usage](#basic-usage)
+    - [Summary](#summary-1)
+  - [Auth from Scratch](#auth-from-scratch)
+    - [Step 1: Install Required Packages](#step-1-install-required-packages)
+    - [Step 2: Set Up Your Express Application](#step-2-set-up-your-express-application)
+    - [Step 3: User Registration](#step-3-user-registration)
+    - [Step 4: User Login](#step-4-user-login)
+    - [Step 5: Protect Routes](#step-5-protect-routes)
+    - [Step 6: User Logout](#step-6-user-logout)
+    - [Summary](#summary-2)
+  - [JWT (JSON Web Tokens)](#jwt-json-web-tokens)
+    - [Step 1: Install Required Packages](#step-1-install-required-packages-1)
+    - [Step 2: Using JWT](#step-2-using-jwt)
 
-## Making `PUT`, `PATCH` and `DELETE` Requests Using `method-override`
+## Authentication Vs. Authorization
 
-HTML only supports `POST` and `GET` method. To make `PUT`, `PATCH` and `DELETE` requests we have to use thrid-party packages. We can use the `method-override` package in a Node.js application.
+Authentication and Authorization are two distinct concepts in security, often used together in web applications and systems.
 
-### Step 1: Install Required Packages
+### Authentication
 
-```bash
-npm install method-override
-```
+The process of verifying the identity of a user or system.
 
-### Step 2: Set Up Express and Method-Override
+- **Purpose: **
+  - To ensure that users are who they claim to be.
+  - Examples: - Logging in with a username and password.
+    Using multi-factor authentication (MFA) methods, like SMS codes or authenticator apps.
 
-```js
-const express = require("express");
-const methodOverride = require("method-override");
+### Authorization
 
-const app = express();
-const PORT = 3000;
+The process of determining whether an authenticated user has permission to access specific resources or perform certain actions.
 
-// Middleware to parse request bodies
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Method Override
-app.use(methodOverride("_method"));
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-```
-
-### Step 3: Create an HTML Form
-
-Add the `?_method=DELETE`, `?_method=PUT` or `?_method=PATCH` in the end of action attribute.
-
-```HTML
-<form action="/update-item?_method=DELETE" method="POST">
-    <input type="hidden" name="_method" value="PUT">
-     <button type="submit">Send PUT Request</button>
-</form>
-```
-
-With these steps, you have successfully set up an Express application that can handle `PUT`, `PATCH` and `DELETE` requests using the method-override middleware. This allows you to simulate different HTTP methods through HTML forms, making your application more flexible and compliant with RESTful standards.
-
-## Cookies Vs Session
-
-In Express.js, cookies and sessions are two important concepts used for managing user state and storing information across multiple requests.
-
-### Cookies
-
-Cookies are small pieces of data stored on the client-side (in the user's browser) that are sent back to the server with each HTTP request. They can be used to remember information about the user, such as preferences or session identifiers.
-
-- **Setting Cookies**: You can set cookies using the `res.cookie()` method in Express.
-- **Reading Cookies**: You can access cookies from the `req.cookies` object (requires the cookie-parser middleware).
-- **Expiration**: Cookies can have an expiration time set, after which they will be deleted from the browser.
-
-#### Getting Started with `Cookie`
-
-- Install `cookie-parser`
-  ```
-    npm install cookie-parser
-  ```
-- Basic Setup and usage
-
-  ```js
-  const express = require("express");
-  const cookieParser = require("cookie-parser");
-
-  const app = express();
-  const PORT = 3000;
-
-  app.use(cookieParser());
-
-  // Setting a cookie
-  app.get("/set-cookie", (req, res) => {
-    res.cookie("username", "JohnDoe", {
-      maxAge: 900000, // Sets the expiration time for a cookie in milliseconds.
-      httpOnly: true,
-    });
-    res.send("Cookie has been set");
-  });
-
-  // Reading a cookie
-  app.get("/get-cookie", (req, res) => {
-    const username = req.cookies.username;
-    res.send(`Username from cookie: ${username}`);
-  });
-
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
-  ```
-
-### Sessions
-
-Sessions are server-side storage that allows you to store user data for the duration of their visit. A session typically includes a unique session ID, which is stored in a cookie on the client side. The server maintains session data and associates it with the session ID.
-
-- Sessions are useful for storing temporary data, such as user authentication status, shopping cart contents, or user preferences.
-- When a user logs in, you can create a session and store user information, which persists across requests.
-
-#### Getting Started with `Sessions`
-
-- Install `express-session`
-  ```bash
-    npm install express-session
-  ```
-- Basic Setup and usage
-
-  ```js
-  const express = require("express");
-  const session = require("express-session");
-
-  const app = express();
-  const PORT = 3000;
-
-  app.use(
-    session({
-      secret: "your-secret-key", // Change this to a strong secret
-      resave: false,
-      saveUninitialized: true,
-      cookie: { secure: false }, // Set to true if using HTTPS
-    })
-  );
-
-  // Setting a session value
-  app.get("/login", (req, res) => {
-    req.session.username = "JohnDoe";
-    res.send("Session has been set");
-  });
-
-  // Reading a session value
-  app.get("/profile", (req, res) => {
-    const username = req.session.username;
-    res.send(`Username from session: ${username}`);
-  });
-
-  app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-  });
-  ```
-
-## Key Differences
-
-| Feature   | Cookies                                                  | Sessions                                       |
-| --------- | -------------------------------------------------------- | ---------------------------------------------- |
-| Storage   | Client-side                                              | Server-side                                    |
-| Data Size | Limited (typically 4KB per cookie)                       | Larger amounts of data                         |
-| Security  | Can be accessed by JavaScript (unless marked `httpOnly`) | More secure since data is stored on the server |
-| Lifetime  | Can have expiration dates                                | Lives until it expires or is destroyed         |
-
-## Conclusion
-
-Both cookies and sessions are essential for managing user interactions in web applications. Cookies are useful for storing small amounts of data on the client, while sessions provide a more secure and scalable way to store user information on the server. Depending on your application needs, you can use either or both to enhance user experience and maintain state across requests.
-
-## Signing Cookies in Express.js
-
-Signing cookies ensures data integrity and authenticity, allowing the server to verify that the cookie hasn't been tampered with.
-
-```js
-app.use(cookieParser("your-secret-key")); // Use your own secret key for signing
-// Set a signed cookie
-app.get("/set-signed-cookie", (req, res) => {
-  res.cookie("username", "JohnDoe", {
-    signed: true, // signing the cookie
-    maxAge: 900000,
-  });
-  res.send("Signed cookie has been set");
-});
-```
-
-## MVC (Model-View-Controller)
-
-`MVC` stands for Model-View-Controller, a software architectural pattern commonly used for developing user interfaces and web applications.
-
-<center>
-
-![MVC](./assets/mvc.webp)
-
-</center>
-
-### 1. Model
-
-The Model represents the data and business logic of the application. It manages the data, logic, and rules of the application.
-
-- Handles data storage (e.g., database interactions).
-- Enforces business rules and logic.
-- Notifies the View of any changes to the data.
-
-### 2. View
-
-The View is responsible for displaying the data to the user. It represents the user interface of the application.
-
-- Presents data from the Model in a user-friendly format.
-- Updates the user interface in response to changes in the Model.
-- Receives user input (though it typically passes this input to the Controller).
-
-### 3. Controller
-
-The Controller acts as an intermediary between the Model and the View. It handles user input and updates the Model accordingly.
-
-- Receives user actions (e.g., button clicks).
-- Updates the Model based on user input.
-- Selects the appropriate View to render in response.
+- **Purpose:**
+  - To control user access to resources based on their identity and roles.
+  - Examples:
+    - Allowing only admins to access certain admin panels.
+    - Granting read-only access to regular users while allowing write access to editors.
 
 ### Summary
 
-- **Separation of Concerns:** MVC separates the application into distinct components, making it easier to manage, maintain, and test.
-- **Data Flow:** User interacts with the View → View sends input to the Controller → Controller updates the Model → Model notifies the View of changes → View updates the display.
+- **Authentication = Identity Verification:** Confirms who you are.
+- **Authorization = Access Control**: Determines what you can do.
 
-This architecture is widely used in web frameworks.
+Both processes are essential for securing applications and ensuring that users have the appropriate level of access.
 
-## `connect-flash` Middleware: Third-Party Package
+## Encryption
 
-`connect-flash` is a middleware for Express.js that enables the storage and retrieval of flash messages, which are temporary messages that can be used to convey feedback to users. Flash messages are commonly used to display success or error notifications after a form submission or user action.
+The process of converting plaintext (readable data) into ciphertext (encoded data) using an algorithm and a key.
 
-- **Temporary Storage**: Flash messages persist for a single request, which means they are available in the session for one subsequent request and then automatically deleted.
-- **User Feedback**: Ideal for showing notifications like "Registration successful" or "Login failed".
+> Encryption: Two-way process for confidentiality; reversible with a key.
 
-### Using `connect-flash`
+## Decryption
 
-To use `connect-flash`, you need to install it along with `express-session`
+The reverse process of encryption, converting ciphertext back into plaintext using a decryption key.
+
+## Hashing
+
+The process of converting data into a fixed-size string of characters (a hash) using a hash function.
+
+> Hashing: One-way process for integrity checks; not reversible.
+
+## `dotenv` npm Package
+
+Using the dotenv package allows you to manage environment variables more securely and conveniently.
 
 ```bash
-  npm install connect-flash express-session
+  npm i dotenv
 ```
 
-#### 1. Require Necessary Packages
+### Create a `.env` File
+
+- Create a `.env` file in your project root and add your secret key
+
+  ```
+  PORT=3000
+  ```
+
+### Using env variables in the app
+
+```js
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+require("dotenv").config(); // Load environment variables
+
+const app = express();
+const PORT = process.env.PORT; // using the .env variable
+
+app.use(express.json());
+```
+
+## What is `Bcrypt` npm Package?
+
+Bcrypt is a popular npm package used for hashing passwords securely. It provides a simple API for creating hashed passwords and verifying them, making it a crucial tool for user authentication in web applications.
+
+### Key Features
+
+- **Password Hashing:** Uses the bcrypt algorithm to hash passwords, making them difficult to crack.
+- **Salt Generation:** Automatically generates a unique salt for each password, enhancing security against pre-computed attacks (rainbow tables).
+- **Adaptive Cost Factor:** Allows you to set a complexity factor that increases the hashing time, making it more resistant to brute-force attacks.
+
+### Basic Usage
+
+To use the package, we need to install it.
+
+```bash
+  npm install bcrypt
+```
+
+- **Hashing a Password**
+
+  ```js
+  const bcrypt = require("bcrypt");
+  const saltRounds = 10; // Cost factor
+
+  bcrypt.hash("yourPassword", saltRounds, (err, hash) => {
+    // Store hash in your password DB
+  });
+  ```
+
+- **Verifying a Password**
+
+  ```js
+  bcrypt.compare("yourPassword", storedHash, (err, result) => {
+    // result will be true if the password matches
+  });
+  ```
+
+### Summary
+
+The Bcrypt npm package provides a secure and efficient way to hash and verify passwords, making it essential for secure user authentication in applications.
+
+## Auth from Scratch
+
+Implementing authentication in web applications isn’t a piece of cake. It involves navigating the complexities of user identity verification, password management, and data security.
+
+We’ll explore how to set up basic auth in Express application using `express-session`, `cookie-parser`, and `bcrypt`.
+
+### Step 1: Install Required Packages
+
+First, install the necessary packages
+
+```bash
+  npm install express express-session cookie-parser bcrypt connect-flush
+```
+
+### Step 2: Set Up Your Express Application
+
+Create a basic Express app with session and cookie support
 
 ```js
 const express = require("express");
 const session = require("express-session");
-const flash = require("connect-flash");
+const cookieParser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const PORT = 3000;
-```
 
-#### Configure Middleware
-
-```js
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true })); // To parse URL-encoded bodies
 app.use(
   session({
     secret: "your-secret-key",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Set to true if using HTTPS
   })
 );
 
-app.use(flash());
+// Connect to MongoDB using Mongoose
+const mongoURI = "mongodb://localhost:27017/mydatabase";
+mongoose
+  .connect(URI)
+  .then(() => console.log("Database Connected"))
+  .catch((err) => console.error("Database connection error:", err));
 ```
 
-#### Using Flash Messages
+### Step 3: User Registration
 
 ```js
-app.get("/friends", (req, res) => {
-  res.render("friends", {
-    friends,
-    message: req.flash('success');
-  });
-});
-
-app.post("/friends", (req, res) => {
-  const { friend } = req.body;
-  friends.push(friend);
-  req.flash("success", "Friend is added!");
-  res.redirect("/friends");
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+  const user = new User({ username, password: hashedPassword });
+  await user.save();
+  req.flash("success", "User is registered successfully!");
+  res.send("User registered successfully!");
 });
 ```
 
-Summary
+### Step 4: User Login
 
-- **Purpose:** connect-flash is used for sending temporary messages in Express applications.
-- **Integration:** Works with express-session to store messages in the session.
-- **Easy to Use:** Simple API for setting and retrieving flash messages.
+```js
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username });
+
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.cookie("authToken", "userId is loggedIn", {
+      httpOnly: true,
+      secure: false,
+    }); // Set cookie
+    res.send("Logged in successfully!");
+  } else {
+    res.send("Invalid username or password.");
+  }
+});
+```
+
+### Step 5: Protect Routes
+
+Create a middleware to protect routes
+
+```js
+function isAuthenticated(req, res, next) {
+  if (req.cookies.authToken) {
+    return next(); // User is authenticated
+  }
+  res.status(401).send("Unauthorized");
+}
+
+// Example of a protected route
+app.get("/protected", isAuthenticated, (req, res) => {
+  res.send(`Hello, Name! This is a protected route.`);
+});
+```
+
+### Step 6: User Logout
+
+```js
+app.post("/logout", (req, res) => {
+  res.clearCookie("authToken"); // Clear the cookie
+  res.send("Logged out successfully!");
+});
+```
+
+### Summary
+
+This approach eliminates the need for `server-side session management` and leverages cookies to maintain user authentication, enhancing scalability for applications.
+
+While `cookie-based` authentication is scalable and can simplify certain aspects of session management, it introduces security challenges and complexities that need to be addressed. Implementing proper security measures, such as using HTTPS, securing cookies, and protecting against XSS and CSRF, is essential to mitigate these drawbacks.
+
+## JWT (JSON Web Tokens)
+
+JSON Web Token (JWT) is an open standard (RFC 7519) for securely transmitting information between parties as a JSON object. It is commonly used for authentication and information exchange in web applications.
+
+Using JSON Web Tokens (JWT) for authentication can help mitigate some of the drawbacks associated with cookie-based authentication.
+
+JWTs provide a more flexible and secure approach to authentication by reducing the risks associated with XSS and CSRF, allowing for better token expiration management, and simplifying multi-service architectures. However, developers must still implement best practices for secure token storage and management to fully benefit from JWT's advantages.
+
+### Step 1: Install Required Packages
+
+```bash
+  npm install jsonwebtoken
+```
+
+### Step 2: Using JWT
+
+- Modify the Login Route
+
+  ```js
+  app.post("/login", async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+      const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: "1h" });
+      res.cookie("authToken", token, { httpOnly: true, secure: false }); // Set cookie
+      res.send("Logged in successfully!");
+    } else {
+      res.send("Invalid username or password.");
+    }
+  });
+  ```
+
+- Modify the middleware to protect routes
+
+  ```js
+  function isAuthenticated(req, res, next) {
+    const token = req.cookies.authToken;
+    if (!token) return res.status(401).send("Unauthorized");
+
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+      if (err) return res.status(403).send("Forbidden");
+      req.username = decoded.username; // Attach username to request
+      next();
+    });
+  }
+  ```
+
+This example shows a simple implementation of JWT for user authentication, including registration, login, and a protected route. Users receive a token upon successful login, which they can use to access secured endpoints.
